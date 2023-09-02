@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import Routes and Route
 import Home from './screens/Home';
-import About from './screens/About';
+import Singin from './screens/Singin';
 
 function App() {
   return (
     <Router>
       <Routes> 
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/Singin" element={<Singin />} />
       </Routes>
     </Router>
   );

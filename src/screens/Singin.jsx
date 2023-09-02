@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "../styles/singin.scss"
 
-const About = () => {
+const Singin = () => {
     return (
-        <div className = "singin">
+        <div className = "background">
             <p>hola</p>
             <Link to="/">Go to Home</Link>
         </div>
@@ -12,4 +13,4 @@ const About = () => {
 }
 
 
-export default About
+export default Singin
