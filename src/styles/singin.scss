@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
   margin: 0;
   height: 100vh;
   background-color: #353839;
@@ -15,10 +16,6 @@
 }
 
 .background {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #353839;
   color: #fff;
   text-align: center;
