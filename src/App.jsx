@@ -4,6 +4,7 @@ import Singin from './screens/singin/Singin';
 import Home from './screens/home/Home'
 import Messages from './screens/messages/Messages'
 import Notifications from './screens/notifications/Notifications'
+import Login from './screens/login/Login'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/Singin" element={<Singin />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
