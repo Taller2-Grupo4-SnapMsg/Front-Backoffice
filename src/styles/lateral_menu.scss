@@ -1,0 +1,64 @@
+.container_1 {
+
+    position: absolute;
+    left: 100px;
+    width: 15%; /* Ancho del container 1 con respecto a la ventana */
+    height: 100%;
+    border-right: 3px solid rgb(29, 28, 28);
+
+    .logo-container {
+        position: absolute;
+        top: 5%; /* Alinea el logotipo en la parte superior */
+        left: 5%; /* Alinea el logotipo en la izquierda */
+        height: 10%; 
+        padding: 5px; /* Agrega espaciado alrededor del logotipo si es necesario */
+        background-color: transparent; /* Puedes establecer un fondo si lo deseas */
+        align-items: center;
+    }
+    
+    .logo-app {
+        width: 70px; /* Establece el ancho deseado para el logotipo */
+        height: auto; /* Mantiene la proporción de aspecto original */
+    }
+    
+    .text-app {
+        color: whitesmoke;
+        font-size: 30px; /* Tamaño del texto */
+        text-align: center;
+        font-weight: 100;
+        margin-bottom: 20px;
+    }
+    
+    .menu {
+        position: absolute;
+        top: 20%; /* Alinea el logotipo en la parte superior */
+        left: 5%; /* Alinea el logotipo en la izquierda */
+        display: flex;
+        flex-direction: column;
+        background-color: #333; /* Color de fondo del menú */
+        color: white; /* Color del texto en el menú */
+        width: 90%;
+    }
+    
+    .item {
+        display: flex;
+        align-items: center; /* Centra verticalmente los elementos */
+        padding: 10px; /* Espaciado interno de los elementos */
+        cursor: pointer; /* Cambia el cursor al pasar sobre los elementos */
+        transition: background-color 0.3s; /* Agrega una transición al sombrearse */
+    }
+    
+    .item:hover {
+        background-color: #444; /* Color de fondo al pasar el cursor */
+    }
+    
+    .icon {
+        width: 24px; /* Ancho deseado para los iconos */
+        height: 24px; /* Alto deseado para los iconos */
+        margin-right: 10px; /* Espacio entre el icono y el texto */
+    }
+    
+    .text {
+        font-size: 16px; /* Tamaño del texto */
+    }
+  }
