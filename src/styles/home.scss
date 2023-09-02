@@ -1,0 +1,36 @@
+.home {
+
+  .home-title {
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .centered-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+  }
+  
+  .centered-text {
+    text-align: center; /* Centra el texto horizontalmente dentro del contenedor */
+    font-size: 24px; /* Puedes ajustar el tamaño de fuente según tus necesidades */
+  }
+
+  .lateral_menu {
+
+    .logo-container {
+      position: fixed; /* Fija el logotipo en la ventana */
+      top: 0; /* Alinea el logotipo en la parte superior */
+      left: 0; /* Alinea el logotipo en la izquierda */
+      padding: 5px; /* Agrega espaciado alrededor del logotipo si es necesario */
+      z-index: 1000; /* Controla la superposición del logotipo sobre otros elementos */
+      background-color: transparent; /* Puedes establecer un fondo si lo deseas */
+    }
+
+    .logo-img {
+      width: 1px; /* Establece el ancho deseado para el logotipo */
+      height: auto; /* Mantiene la proporción de aspecto original */
+    }
+  }
+}
