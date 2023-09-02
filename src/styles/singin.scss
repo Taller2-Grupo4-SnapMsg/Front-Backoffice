@@ -1,10 +1,10 @@
 /* singin.scss */
-body {
-  width: 100%;
+ .top-centre{
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
+  height: 100vh;
   background-color: #353839;
 }
 
@@ -22,6 +22,7 @@ body {
   background-color: #353839;
   color: #fff;
   text-align: center;
+  height: 100vh;
 }
 
 .title {
