@@ -1,0 +1,30 @@
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+    color: #000;
+
+    label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #000000;
+    }
+    input {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        height: 40px;
+        padding: 0 10px;
+        color: #000;
+        background-color: #FFA500;
+        &:focus {
+            outline: none;
+        }
+    }
+    .error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}
