@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from 'react';
 import "../../styles/home/container-2.scss";
 
 const publicacionesHarcodeadas = [

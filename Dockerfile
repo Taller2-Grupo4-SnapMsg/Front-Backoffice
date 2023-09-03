@@ -1,23 +1,23 @@
-# Usar la imagen oficial de Node.js como base
-FROM node:14
+# Establecer la imagen base
+FROM node:14-alpine
 
-# Establecer el directorio de trabajo en /app
+# Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar el archivo package.json y package-lock.json al contenedor
+# Copiar el package.json y el package-lock.json al directorio de trabajo
 COPY package*.json ./
 
-# Instalar las dependencias de la aplicación
+# Instalar las dependencias
 RUN npm install
 
-# Copiar el resto de los archivos de la aplicación al contenedor
+# Copiar todos los archivos de la aplicación al directorio de trabajo
 COPY . .
 
-# Construir la aplicación React para producción
+# Construir la aplicación
 RUN npm run build
 
 # Exponer el puerto en el que corre la aplicación (puede variar según tu configuración)
 EXPOSE 3000
 
-# Comando para iniciar la aplicación
-CMD ["npm", "start"]
+# Comando para ejecutar la aplicación cuando el contenedor se inicia
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3000"]
