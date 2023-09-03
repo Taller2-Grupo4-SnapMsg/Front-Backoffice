@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import pingHandler from '../../service/Ping'
 import '../../styles/singin/singin.scss';
 import Logo from '../../components/logo/Logo';
+import InputBox from '../../components/inputBox/InputBox';
+import PasswordBox from '../../components/password/Password';
+import BackButton from '../../components/backButton/BackButton';
 
 const Singin = () => {
     const [email, setEmail] = useState('');
@@ -19,18 +22,15 @@ const Singin = () => {
 
   return (
     <div className="top-centre">
-        <Logo/>
-        <div className="background">
-            <div>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <Logo/>
+            <div className="background" style={{ paddingLeft: '20px' }}>
                 <h1 className="title"> Welcome back! </h1>
+                <InputBox default_text="Email" />
+                <PasswordBox default_text="Password" />
+                <button className="sign-in-button" onClick={handlePingRequest}>Sign in</button>
+                <BackButton />
             </div>
-            <div className="center">
-                <button className="google-sign-in-button">Continue with Google</button>
-            </div>
-            <input className="center" type="email" placeholder="Email or Username" value={email} onChange={(e) => setEmail(e.target.value)}></input>
-            <input className="center" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-            <button className="sign-in-button" onClick={handlePingRequest}>Sign in</button>
-            <Link to="/">Go to Home</Link>
         </div>
     </div>
   );
