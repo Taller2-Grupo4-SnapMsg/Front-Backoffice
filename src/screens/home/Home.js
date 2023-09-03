@@ -1,4 +1,9 @@
 import { useState } from "react";
+import {
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 //import Feed from './Feed';
 import "../../styles/home/home.scss";
 import "../../styles/home/container-1.scss";
@@ -64,14 +69,18 @@ const Home = () => {
           <img src="/home.png" alt="Icono 2" className="icon"/>
             <span className="text">Explore</span>
           </div>
+          <Link to="/notifications" className="text">
           <div className="item">
             <img src="/home.png" alt="Icono 1" className="icon"/>
             <span className="text">Notifications</span>
           </div>
+          </Link>
+          <Link to="/notifications" className="text">
           <div className="item">
             <img src="/home.png" alt="Icono 1" className="icon"/>
             <span className="text">Messages</span>
           </div>
+          </Link>
           <div className="item">
             <img src="/home.png" alt="Icono 1" className="icon"/>
             <span className="text">Profile</span>
