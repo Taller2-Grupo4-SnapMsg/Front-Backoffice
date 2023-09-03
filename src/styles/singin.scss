@@ -1,0 +1,46 @@
+/* singin.scss */
+ .top-centre{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin: 0;
+  height: 100vh;
+  background-color: #353839;
+}
+
+.center {
+  width: 100%;
+  max-width: 500px;
+  margin: 25px auto;
+}
+
+.background {
+  background-color: #353839;
+  color: #fff;
+  text-align: center;
+  height: 100vh;
+}
+
+.title {
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  color: #947EB0;
+}
+
+.google-sign-in-button {
+  background-color: #4285f4;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.google-sign-in-button:hover {
+  background-color: #357ae8;
+}
