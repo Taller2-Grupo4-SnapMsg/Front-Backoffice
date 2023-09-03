@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import pingHandler from '../service/Ping';
-import '../styles/singin.scss';
+import pingHandler from '../../service/Ping'
+import '../../styles/singin/singin.scss';
 
 const Singin = () => {
     const [email, setEmail] = useState('');
