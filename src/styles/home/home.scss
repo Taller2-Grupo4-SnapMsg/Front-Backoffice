@@ -1,0 +1,20 @@
+body {
+  background-color: #343939;
+}
+
+.home {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* 100% del alto de la ventana */
+  background-color: #343939;
+}
+
+.container-1, .container-2, .container-3 {
+  flex: 1;
+  padding: 10px; /* Espacio interno para separar el contenido del borde */
+}
+
+.container-2 {
+  flex: 2;
+}
+

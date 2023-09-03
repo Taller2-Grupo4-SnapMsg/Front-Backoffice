@@ -1,32 +1,30 @@
-.container_1 {
-
-    position: absolute;
-    left: 100px;
-    width: 15%; /* Ancho del container 1 con respecto a la ventana */
-    height: 100%;
-    border-right: 3px solid rgb(29, 28, 28);
+.container-1 {
+    left: 150px;
+    border-right: 3px solid rgb(12, 12, 12);
 
     .logo-container {
+        display: flex; /* Cambiar display a flex */
+        align-items: center; /* Alinea verticalmente los elementos */
         position: absolute;
-        top: 5%; /* Alinea el logotipo en la parte superior */
-        left: 5%; /* Alinea el logotipo en la izquierda */
+        top: 5%;
+        left: 5%;
         height: 10%; 
-        padding: 5px; /* Agrega espaciado alrededor del logotipo si es necesario */
         background-color: transparent; /* Puedes establecer un fondo si lo deseas */
-        align-items: center;
+        padding: 10px;
+
     }
     
     .logo-app {
         width: 70px; /* Establece el ancho deseado para el logotipo */
         height: auto; /* Mantiene la proporción de aspecto original */
+        margin-right: 20px;
     }
     
     .text-app {
         color: whitesmoke;
         font-size: 30px; /* Tamaño del texto */
         text-align: center;
-        font-weight: 100;
-        margin-bottom: 20px;
+        font-weight: bold;
     }
     
     .menu {
@@ -37,13 +35,14 @@
         flex-direction: column;
         background-color: #333; /* Color de fondo del menú */
         color: white; /* Color del texto en el menú */
-        width: 90%;
+        width: 15%;
+        height: 80%;
     }
     
     .item {
         display: flex;
         align-items: center; /* Centra verticalmente los elementos */
-        padding: 10px; /* Espaciado interno de los elementos */
+        padding: 20px; /* Espaciado interno de los elementos */
         cursor: pointer; /* Cambia el cursor al pasar sobre los elementos */
         transition: background-color 0.3s; /* Agrega una transición al sombrearse */
     }
