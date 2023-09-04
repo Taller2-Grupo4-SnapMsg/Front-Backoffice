@@ -5,6 +5,7 @@ import Home from './screens/home/Home'
 import Messages from './screens/messages/Messages'
 import Notifications from './screens/notifications/Notifications'
 import Login from './screens/login/Login'
+import Test from './screens/test/Test'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/messages" element={<Messages />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/test" element={<Test />} />
         <Route path="*" element={<h1>Not Found</h1>} /> {/* If the path is not found, render this component */}
       </Routes>
     </Router>
