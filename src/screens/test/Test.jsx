@@ -103,14 +103,29 @@ export default function Test() {
                 }}
             />
             <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
+                control={<Checkbox value="remember" color="primary" sx = {{
+                    color: "#947EB0",
+                    '& label': {
+                      color: "#6C5580",
+                    },
+                    '&.Mui-checked': {
+                      color: "#6C5580",
+                    },
+                }}/>}
+                label={<span style={{ color: "#6C5580" }}>Remember me</span>}
             />
             <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ 
+                  mt: 3, 
+                  mb: 2, 
+                  backgroundColor: "#947EB0",
+                  '&:hover': {
+                    backgroundColor: "#6C5580",
+                  }
+                }}
             >
                 Sign In
             </Button>
