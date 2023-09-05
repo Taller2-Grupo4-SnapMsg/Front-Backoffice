@@ -1,14 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import pingHandler from '../../service/Ping'
-import '../../styles/singin/singin.scss';
+import '../../styles/signin/signin.scss';
 import Logo from '../../components/logo/Logo';
 import InputBox from '../../components/inputBox/InputBox';
 import PasswordBox from '../../components/password/Password';
 import BackButton from '../../components/backButton/BackButton';
 
-const Singin = () => {
+const Signin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const handlePingRequest = async () => {
@@ -36,4 +35,4 @@ const Singin = () => {
   );
 };
 
-export default Singin;
+export default Signin;
