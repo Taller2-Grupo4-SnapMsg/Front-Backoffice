@@ -137,7 +137,7 @@ export default function SignInSide() {
                 id="password"
                 autoComplete="current-password"
                 value={password}
-                onChange={(e) => setPassword(e.target.passw)}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={
