@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import "./signup.scss";
 
 function Copyright(props) {
   return (
@@ -21,7 +20,7 @@ function Copyright(props) {
             color: "#947EB0",
           }
       }}>
-        Your Website
+        SnapMsg
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -63,7 +62,7 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar alt="logo" src="/small_logo.png" sx={{ m: 1}} />
+          <Avatar alt="logo" src="/small_logo.png" sx={{ m: 1, width: 56, height: 56}} />
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -79,7 +78,7 @@ export default function SignUp() {
                   label="First Name"
                   sx = {{ 
                     "& label.Mui-focused": {
-                      color: "#947EB0"
+                      color: "#A995C9"
                     }
                   }}
                   autoFocus
@@ -95,7 +94,7 @@ export default function SignUp() {
                   autoComplete="family-name"
                   sx = {{ 
                     "& label.Mui-focused": {
-                      color: "#947EB0"
+                      color: "#A995C9"
                     }
                   }}
                 />
@@ -111,7 +110,7 @@ export default function SignUp() {
                   color = "primary"
                   sx = {{ 
                     "& label.Mui-focused": {
-                      color: "#947EB0"
+                      color: "#A995C9"
                     }
                     }}
                 />
@@ -126,7 +125,7 @@ export default function SignUp() {
                   id="password"
                   sx = {{ 
                     "& label.Mui-focused": {
-                      color: "#947EB0"
+                      color: "#A995C9"
                     }
                   }}
                   autoComplete="new-password"
@@ -142,7 +141,7 @@ export default function SignUp() {
                     autoComplete="username"
                     sx = {{
                       "& label.Mui-focused": {
-                        color: "#947EB0"
+                        color: "#A995C9"
                       }
                     }}
                   />
