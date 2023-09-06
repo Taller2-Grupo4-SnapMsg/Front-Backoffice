@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,7 +10,6 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import SmallLogo from '/small_logo.png';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -48,14 +48,16 @@ const defaultTheme = createTheme({
   });
 
 export default function SignInSide() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+        email: email,
+        password: password,
+      });
   };
 
   return (
@@ -105,6 +107,8 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -120,6 +124,8 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.passw)}
               />
               <FormControlLabel
                 control={
@@ -162,7 +168,7 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
                 <Grid item>
-                <Link href="/signin" variant="body2" sx={{
+                <Link href="/signup" variant="body2" sx={{
                     color: "#6B5A8E",
                     '&:hover': {
                         color: "#947EB0",
