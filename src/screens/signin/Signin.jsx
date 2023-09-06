@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
+
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -47,7 +49,7 @@ const defaultTheme = createTheme({
     }
   });
 
-export default function SignInSide() {
+export default function SignInSide() { 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -69,6 +71,8 @@ export default function SignInSide() {
       email: email,
       password: password,
     });
+
+    history.push('/pin');
   };
 
 
@@ -147,13 +151,6 @@ export default function SignInSide() {
                     />
                 }
                 label="Remember me"
-                sx={{
-                    '& .Mui-checked': {
-                    color: 'white', // Change the color when checked
-                    },
-                }}
-
-                
                 />
               <Button
               type="submit"
