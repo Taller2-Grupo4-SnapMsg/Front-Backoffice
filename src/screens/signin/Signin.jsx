@@ -50,15 +50,27 @@ const defaultTheme = createTheme({
 export default function SignInSide() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+
+    // Check if email and password are empty
+    if (!email || !password) {
+      setError('Please fill out all fields.');
+      return; // Prevent form submission
+    }
+
+    // Clear any previous error messages
+    setError('');
+
+    // Now you can send email and password to the backend.
     console.log({
-        email: email,
-        password: password,
-      });
+      email: email,
+      password: password,
+    });
   };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -156,6 +168,12 @@ export default function SignInSide() {
             >
                 Sign In
             </Button>
+             {/* Display error message */}
+                {error && (
+                    <Typography variant="body2" color="error" align="center">
+                    {error}
+                    </Typography>
+                )}
                 <Grid container justifyContent="space-between">
                 <Grid item>
                     <Link href="/signin" variant="body2" sx={{
