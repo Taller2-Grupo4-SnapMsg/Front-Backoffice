@@ -5,15 +5,16 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import IconButton from '@mui/material/IconButton';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 
 function Copyright(props) {
   return (
@@ -45,14 +46,26 @@ const defaultTheme = createTheme({
   }
 });
 
-export default function PINVerification() {
-  const [pin, setPIN] = useState('');
+export default function PasswordRecovery() {
+  const [new_password, setNewPassword] = useState('');
+  const [confirmed_password, setConfirmedPassword] = useState('');
+  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    if (new_password != confirmed_password) {
+        setError('Passwords are not equal.');
+        return; // Prevent form submission
+      }
+
+    // Clear any previous error messages
+    setError('');
+
+    // Now you can send email and password to the backend.
     console.log({
-      pin: data.get('pin'),
+      email: email,
+      password: password,
     });
   };
 
@@ -70,26 +83,50 @@ export default function PINVerification() {
         >
           <Avatar alt="logo" src="/small_logo.png" sx={{ m: 1, width: 56, height: 56}} />
           <Typography component="h1" variant="h5">
-            Just one last step
+            Enter the new password
           </Typography>
 
-          <Typography variant="body1" align="center">
-            A PIN has been sent to your email. Please enter it to finish your registration.
-          </Typography>
+          <IconButton
+                onClick={() => setShowPassword(!showPassword)} // Toggle showPassword state
+                edge="end"
+                aria-label="toggle password visibility"
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center', // Center vertically within the IconButton
+                  }}
+                >
+                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+            </IconButton>
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="pin"
-              label="PIN"
-              name="pin"
-              autoComplete="PIN"
+              id="new_password"
+              label="New Password"
+              name="new_password"
+              type={showPassword ? 'text' : 'password'} // Toggle between 'text' and 'password'
+              autoComplete="New Password"
               autoFocus
-              value={pin}
-              onChange={(e) => setPIN(e.target.value)}
+              value={new_password}
+              onChange={(e) => setNewPassword(e.target.value)}
             />
+            
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="confirmed_password"
+              label="Confirm New Password"
+              name="confirmed_password"
+              type={showPassword ? 'text' : 'password'}
+              autoComplete="Confirm New Password"
+              autoFocus
+              value={confirmed_password}
+              onChange={(e) => setConfirmedPassword(e.target.value)}
+            />
+
             <Button
               type="submit"
               fullWidth
@@ -101,8 +138,14 @@ export default function PINVerification() {
                   }
                 }}
             >
-              Sign Up
+              Change Password
             </Button>
+             {/* Display error message */}
+             {error && (
+                    <Typography variant="body2" color="error" align="center">
+                    {error}
+                    </Typography>
+                )}
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />

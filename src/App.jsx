@@ -8,6 +8,7 @@ import Notifications from './screens/notifications/Notifications'
 import Login from './screens/login/Login'
 import Test from './screens/test/Test'
 import PINVerification from './screens/signup/PINVerification'
+import PasswordRecovery from './screens/signin/PasswordRecovery'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/test" element={<Test />} />
         <Route path="/pin" element={<PINVerification />} />
+        <Route path="/password_recovery" element={<PasswordRecovery />} />
         <Route path="*" element={<h1>Not Found</h1>} /> {/* If the path is not found, render this component */}
       </Routes>
     </Router>

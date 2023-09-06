@@ -173,7 +173,7 @@ export default function SignInSide() {
                 )}
                 <Grid container justifyContent="space-between">
                 <Grid item>
-                    <Link href="/signin" variant="body2" sx={{
+                    <Link href="/password_recovery" variant="body2" sx={{
                     color: "#6B5A8E",
                     '&:hover': {
                         color: "#947EB0",
