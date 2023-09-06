@@ -15,6 +15,11 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 
 
 function Copyright(props) {
@@ -52,6 +57,8 @@ const defaultTheme = createTheme({
 export default function SignInSide() { 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  
   const [error, setError] = useState('');
 
   const handleSubmit = (event) => {
@@ -126,23 +133,37 @@ export default function SignInSide() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                sx = {{ 
+                sx={{
                     "& label.Mui-focused": {
-                      color: "#A995C9"
+                    color: "#A995C9"
                     }
-                  }}
+                }}
                 name="password"
                 label="Password"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 id="password"
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              />
+                InputProps={{
+                    endAdornment: (
+                    <InputAdornment position="end">
+                        <IconButton
+                        onClick={() => setShowPassword(!showPassword)}
+                        aria-label="toggle password visibility"
+                        edge="end"
+                        >
+                        {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                        </IconButton>
+                    </InputAdornment>
+                    )
+                }}
+                />
               <FormControlLabel
                 control={
                     <Checkbox
