@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 
+import LogInHandler from '../../service/LogIn';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -74,12 +75,11 @@ export default function SignInSide() {
     setError('');
 
     // Now you can send email and password to the backend.
-    console.log({
-      email: email,
-      password: password,
-    });
-
-    history.push('/pin');
+    const data = new FormData(event.currentTarget);
+    console.log("email: " + data.get('email') + " and password " + data.get('password'));
+    LogInHandler(data.get('email'), 
+                 data.get('password'));
+    //history.push('/pin');
   };
 
 
