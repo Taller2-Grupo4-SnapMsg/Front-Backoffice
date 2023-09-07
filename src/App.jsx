@@ -6,6 +6,7 @@ import Messages from './screens/messages/Messages'
 import Notifications from './screens/notifications/Notifications'
 import Login from './screens/login/Login'
 import Test from './screens/test/Test'
+import Profile from './screens/profile/Profile';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/login" element={<Login />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<h1>Not Found</h1>} /> {/* If the path is not found, render this component */}
       </Routes>
     </Router>

@@ -38,10 +38,12 @@ const Menu = () => {
             <span className="text">Messages</span>
           </div>
           </Link>
+          <Link to="/profile" className="text">
           <div className="item">
             <img src="/home.png" alt="Icono 1" className="icon"/>
             <span className="text">Profile</span>
           </div>
+          </Link>
           <div className="item">
             <img src="/home.png" alt="Icono 1" className="icon"/>
             <span className="text">Settings</span>
