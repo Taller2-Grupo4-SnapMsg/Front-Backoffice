@@ -12,6 +12,12 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import Avatar from '@mui/material/Avatar';
+import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
+
+
+
 // Importa los iconos
 import MessagesIcon from '@mui/icons-material/Email';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
@@ -23,8 +29,8 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 // Import your custom Logo component
 import Logo from '../../components/logo/Logo';
+import logo from '../../components/logo/Logo';
 
-const drawerWidth = 300;
 
 const defaultTheme = createTheme({
   palette: {
@@ -41,7 +47,11 @@ const spacerStyles = {
 };
 
 const logoStyles = {
-  display: 'flex',
+  textAlign: 'center',
+  margin: '20px 0', // Adjust the margin as needed
+  '& img': {
+    maxWidth: '50px', // Adjust the maximum width as needed
+  },
 };
 
 const listItemButtonStyle = {
@@ -60,10 +70,10 @@ export default function PermanentDrawerLeft() {
         <CssBaseline />
         <Drawer
           sx={{
-            width: drawerWidth,
+            width: '300px',
             flexShrink: 0,
             '& .MuiDrawer-paper': {
-              width: drawerWidth,
+              width: '300px',
               boxSizing: 'border-box',
 
             },
@@ -73,7 +83,7 @@ export default function PermanentDrawerLeft() {
         >
           <Toolbar />
           <Box sx={logoStyles}>
-            <Logo sx={{ width: '10px', height: 'auto' , marginLeft: '11.5%'}}/>
+            <Logo />
           </Box>
           <List position="fixed" sx={{ marginLeft: '20px', marginRight: '20px' }}>
             {['Home', 'Explore', 'Notifications', 'Messages', 'Profile', 'Settings'].map((text, index) => (
@@ -96,23 +106,27 @@ export default function PermanentDrawerLeft() {
         <Box
           component="main"
           sx={{ flexGrow: 1, bgcolor: '#947EB0', p: 3 }}
-        >
-          {/* Add the AppBar with the custom Logo component */}
-          <AppBar position="fixed">
-            <Toolbar>
-              <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
-                Your App Name
-              </Typography>
-            </Toolbar>
-          </AppBar>
+        >         
           <Toolbar />
-          <Typography paragraph>
-            {/* Your main content */}
-            This is your main content. You can add your content here.
+          <Avatar
+            sx={{ width: 100, height: 100, margin: '0 auto' }}
+          >
+            J
+          </Avatar>
+          <Typography variant="h4" sx={{ textAlign: 'center', mt: 2 }}>
+            Taylor Swift
           </Typography>
-          <Typography paragraph>
-            {/* Additional content */}
-            More content can be added here.
+          <Typography variant="subtitle1" sx={{ textAlign: 'center', color: 'text.secondary' }}>
+            @TaylorSwift
+          </Typography>
+          <Typography variant="body1" sx={{ textAlign: 'center', mt: 2 }}>
+            jsdjfsdjfslkfjslka
+            ajsdnakjsdnalksndsa
+            asjkdaksjdnaksjdnsa
+          </Typography>
+          <Divider sx={{ mt: 3, mb: 2 }} />
+          <Typography variant="subtitle1" sx={{ textAlign: 'center' }}>
+            1 Followers
           </Typography>
         </Box>
       </Box>
