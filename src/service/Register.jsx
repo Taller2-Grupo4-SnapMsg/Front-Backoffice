@@ -1,11 +1,10 @@
-import axios from "axios";
 const headers = {
-    'Content-Type': 'application/json;charset=utf-8',
-    'Access-Control-Allow-Origin': '*',
-  };
+  'Content-Type': 'application/json;charset=utf-8',
+  'Access-Control-Allow-Origin': '*',
+};
 
 const RegisterHandler = async (email, password, firstName, lastName, nickname) => {
-  try {    
+  try {
     const requestBody = {
       email: email,
       password: password,
@@ -13,19 +12,30 @@ const RegisterHandler = async (email, password, firstName, lastName, nickname) =
       last_name: lastName,
       nickname: nickname,
     };
-    console.log(requestBody);
-    console.log(requestBody.email);
-    const res = await axios.post(
-        'https://loginback-lg51.onrender.com/register/',
-        requestBody,
-        { headers }
-        );
-    return res.data;
+
+    const response = await fetch('https://loginback-lg51.onrender.com/register', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(requestBody),
+    });
+
+    if (response.status === 200) {
+      // Registration successful
+      console.log('Registration successful');
+      // Redirect or perform any other action you need here
+      //window.location.href = '/pin';
+    } else {
+      // Registration failed
+      const responseData = await response.json();
+      console.error('Registration failed:', responseData);
+    }
+
+    return response.json();
   } catch (error) {
     const message =
       error.response?.data?.error ||
       error.message ||
-      "Service is not available at the moment";
+      'Service is not available at the moment';
     console.log(message);
     throw new Error(message);
   }
