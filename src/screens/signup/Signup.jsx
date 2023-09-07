@@ -11,11 +11,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import RegisterHandler from '../../service/Register';
 
 
 function Copyright(props) {
@@ -54,12 +54,13 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    RegisterHandler(data.get('email'), 
+                    data.get('password'), 
+                    data.get('firstName'), 
+                    data.get('lastName'), 
+                    data.get('username'));
 
-    window.location.href = '/pin';
+    //window.location.href = '/pin';
   };
 
   return (
