@@ -67,13 +67,12 @@ const spacerStyles = {
           anchor="left"
         >*/
 //</Drawer>
+//      <Toolbar>
 
 const NavegationBar = () => {
   return (
-    <ThemeProvider theme={DefaultTheme}>
       <Box component="navBar"
         sx={{bgcolor: '#000000'}}>
-      <Toolbar />
         <Box sx={logoStyles}>
           <Logo />
         </Box>
@@ -95,7 +94,6 @@ const NavegationBar = () => {
           ))}
         </List>
       </Box>
-      </ThemeProvider>
   );
 };
 

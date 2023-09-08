@@ -27,13 +27,13 @@ export default function PermanentDrawerLeft() {
   return (
     <ThemeProvider theme={DefaultTheme}>
       <CssBaseline />
-      <Box sx={{ display: 'flex', bgcolor: '#353839' }}>
+      <Box sx={{ display: 'flex', bgcolor: '#000000', height: "100%"}}>
         <NavegationBar/>
 
         
         <Box
           component="main"
-          sx={{ flexGrow: 1, bgcolor: '#000000', p: 3 }}
+          sx={{ flexGrow: 1, bgcolor: 'tranparent', p: 3 }}
         >   
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
@@ -45,7 +45,7 @@ export default function PermanentDrawerLeft() {
               >
                 J
               </Avatar>
-              <Typography variant="h4" sx={{ textAlign: 'center', mt: 2 }}>
+              <Typography variant="h4" sx={{ textAlign: 'center', mt: 2}}>
                 Taylor Swift
               </Typography>
               <Typography variant="subtitle1" sx={{ textAlign: 'center', color: 'text.secondary' }}>
@@ -75,4 +75,4 @@ export default function PermanentDrawerLeft() {
       </Box>
     </ThemeProvider>
   );
-}
+  }
