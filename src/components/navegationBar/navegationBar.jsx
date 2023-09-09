@@ -8,16 +8,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { Link } from 'react-router-dom';
 
 // Importa los iconos
-import MessagesIcon from '@mui/icons-material/Email';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import MessagesIcon from './messageIcon';
+import NotificationsIcon from './notificationIcon';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
-
-// Import your custom Logo component
 import Logo from '../../components/logo/Logo';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -34,66 +33,73 @@ export const DefaultTheme = createTheme({
   });
 
 const spacerStyles = {
-    marginTop: '50px', // Increase this value for more vertical space
+    marginTop: '50px',
+    width: '100%',
+    padding: '0px'
   };
   
-  const logoStyles = {
-    textAlign: 'center',
-    margin: '20px 0', // Adjust the margin as needed
-    '& img': {
-      maxWidth: '50px', // Adjust the maximum width as needed
-    },
-  };
+const logoStyles = {
+  textAlign: 'center',
+  marginTop: '20%',
+  marginLeft: '10%',
+  marginRight: '10%',
+  '& img': {
+    maxWidth: '50px',
+  },
+};
   
-  const listItemButtonStyle = {
-    borderRadius: '24px',
-    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-    display: 'flex', // Added
-    alignItems: 'center', // Vertically center content
-    padding: '8px 16px', // Adjust padding as needed
-  };
+const listItemButtonStyle = {
+  borderRadius: '24px',
+  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+  display: 'flex',
+  alignItems: 'center',
+  padding: '8px 16px',
+};
+  
+const navigationItems = [
+  { text: 'Home', url: '/', icon: <HomeIcon />},
+  { text: 'Explore', url: '/notifications', icon: <SearchIcon />},
+  { text: 'Notifications', url: '/notifications', icon: <NotificationsIcon /> },
+  { text: 'Messages', url: '/messages', icon:  <MessagesIcon />},
+  { text: 'Profile', url: '/profile', icon: <PersonIcon /> },
+  { text: 'Settings', url: '/notifications', icon: <SettingsIcon /> },
+];
 
-  /*    <Drawer
+const NavegationBar = () => {
+  return (
+        <Drawer
           sx={{
-            width: '300px',
+            width: '100%',
             flexShrink: 0,
+            bgcolor: '#000000',
             '& .MuiDrawer-paper': {
-              width: '300px',
               boxSizing: 'border-box',
-
+              width: '20%',
+              marginLeft: "50px",
+              //borderRight: '5px solid white'
+              border: '5px solid green',
+              backgroundColor: '#000000',
             },
           }}
           variant="permanent"
           anchor="left"
-        >*/
-//</Drawer>
-//      <Toolbar>
-
-const NavegationBar = () => {
-  return (
-      <Box component="navBar"
-        sx={{bgcolor: '#000000'}}>
+        >
         <Box sx={logoStyles}>
           <Logo />
         </Box>
-        <List position="fixed" sx={{ marginLeft: '20px', marginRight: '20px' }}>
-          {['Home', 'Explore', 'Notifications', 'Messages', 'Profile', 'Settings'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={spacerStyles}>
-              <ListItemButton sx={listItemButtonStyle}>
-                <ListItemIcon>
-                  {index === 0 && <HomeIcon />}
-                  {index === 1 && <SearchIcon />}
-                  {index === 2 && <NotificationsActiveIcon />}
-                  {index === 3 && <MessagesIcon />}
-                  {index === 4 && <PersonIcon />}
-                  {index === 5 && <SettingsIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+        <Toolbar sx={{ width: '100%' }}>
+        <List position="fixed" sx={{ marginLeft: '10px', marginRight: '10px', width: '100%' }}>
+          {navigationItems.map((item) => (
+            <ListItem key={item.text} sx={spacerStyles}>
+              <ListItemButton sx={listItemButtonStyle} component={Link} to={item.url}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.text} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
-      </Box>
+        </Toolbar>
+        </Drawer>
   );
 };
 

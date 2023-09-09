@@ -10,6 +10,8 @@ COPY package*.json ./
 # Instalar las dependencias
 RUN npm install
 
+RUN npm install @mui/joy
+
 # Copiar todos los archivos de la aplicación al directorio de trabajo
 COPY . .
 
