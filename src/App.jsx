@@ -6,7 +6,7 @@ import Messages from './screens/messages/Messages'
 import Notifications from './screens/notifications/Notifications'
 import Login from './screens/login/Login'
 import Test from './screens/test/Test'
-import Profile from './screens/profile/Profile';
+import Profile from './screens/profile/profileMain/Profile';
 import ProfileSettings from './screens/profile/profileSettings/ProfileSettings';
 
 function App() {

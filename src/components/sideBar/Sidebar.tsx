@@ -8,7 +8,7 @@ import Box from '@mui/joy/Box';
 import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
 import Input from '@mui/joy/Input';
-import Link from '@mui/joy/Link';
+//import Link from '@mui/joy/Link';
 import LinearProgress from '@mui/joy/LinearProgress';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -19,9 +19,9 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
 import Badge from '@mui/joy/Badge';
 import Sheet from '@mui/joy/Sheet';
-import Logo from './SmallLogo';
-import ColorSchemeToggle from './ColorSchemeToggle';
-import { closeSidebar } from '../utils';
+import Logo from '../smallLogo/SmallLogo';
+import ColorSchemeToggle from '../colorSchemeToggle/ColorSchemeToggle';
+import { closeSidebar } from './utils';
 
 const Dropdown = styled('i')(({ theme }) => ({
   color: theme.vars.palette.text.tertiary,

@@ -5,9 +5,9 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import useScript from './useScript';
-import Sidebar from '../../components/sideBar/Sidebar';
-import Header from '../../components/header/Header';
-import Feed from './Feed';
+import Sidebar from '../../../components/sideBar/Sidebar';
+import Header from '../../../components/header/Header';
+import ProfileInformation from './ProfileInformation';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -42,9 +42,10 @@ export default function Home() {
         <Header />
          <Sidebar />
         <Box component="main" className="MainContent" sx={{ flex: 1 }}>
-          <Feed/>
+          <ProfileInformation/>
         </Box>
       </Box>
     </CssVarsProvider>
   );
 }
+

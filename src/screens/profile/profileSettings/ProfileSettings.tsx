@@ -4,8 +4,8 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import useScript from './useScript';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
+import Sidebar from '../../../components/sideBar/Sidebar';
+import Header from '../../../components/header/Header';
 import MyProfile from './components/MyProfile';
 
 const useEnhancedEffect =

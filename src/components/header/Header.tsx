@@ -2,9 +2,9 @@ import * as React from 'react';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
-import MuiLogo from './MuiLogo';
-import ColorSchemeToggle from './ColorSchemeToggle';
-import { toggleSidebar } from '../utils';
+import SmallLogo from '../smallLogo/SmallLogo';
+import ColorSchemeToggle from '../colorSchemeToggle/ColorSchemeToggle';
+import { toggleSidebar } from '../../screens/home/utils';
 
 export default function Header() {
   return (
@@ -41,7 +41,7 @@ export default function Header() {
       >
         <i data-feather="menu" />
       </IconButton>
-      <MuiLogo variant="plain" sx={{ boxShadow: 'none', mr: 'auto' }} />
+      <SmallLogo variant="plain" sx={{ boxShadow: 'none', mr: 'auto' }} />
       <ColorSchemeToggle id={undefined} />
     </Sheet>
   );

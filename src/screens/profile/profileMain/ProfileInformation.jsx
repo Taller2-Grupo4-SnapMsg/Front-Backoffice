@@ -1,6 +1,5 @@
 import React from 'react';
-import Toolbar from '@mui/material/Toolbar';
-import Avatar from '@mui/material/Avatar';
+import Avatar from '@mui/joy/Avatar';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -9,7 +8,6 @@ const ProfileInformation = () => {
   return (
     <Grid item xs={12} sx={{border: '5px solid white'}}>
         <Divider sx={{ mr: 3 }} />
-        <Toolbar />
         <Avatar
         sx={{ width: 100, height: 100, margin: '0 auto' }}
         >
