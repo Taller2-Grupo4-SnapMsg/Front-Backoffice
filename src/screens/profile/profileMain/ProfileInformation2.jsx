@@ -6,7 +6,7 @@ const UserProfile = () => {
   return (
     <Box className="h-100 gradient-custom-2">
       <Grid container justifyContent="center" alignItems="center" className="h-100">
-        <Grid item xs={12} lg={9} xl={7}>
+        {/*<Grid item xs={12} lg={9} xl={7}>*/}
           <Card elevation={3}>
             <CardHeader
               title={
@@ -100,7 +100,7 @@ const UserProfile = () => {
               </Box>
             </CardContent>
           </Card>
-        </Grid>
+        {/*</Grid>*/}
       </Grid>
     </Box>
   );
