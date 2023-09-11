@@ -8,7 +8,7 @@ import Notifications from './screens/notifications/Notifications'
 import Explore from './screens/explore/Explore'
 import Profile from './screens/profile/profileMain/Profile';
 import ProfileSettings from './screens/profile/profileSettings/ProfileSettings';
-import Test from './screens/test/Test'
+import Test from './screens/test/ProfileInformation2'
 import PINVerification from './screens/signup/PINVerification'
 import PasswordRecovery from './screens/signin/PasswordRecovery'
 
