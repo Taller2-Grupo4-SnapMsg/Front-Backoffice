@@ -1,6 +1,4 @@
-import { ChatProps, UserProps } from './types';
-
-export const users: UserProps[] = [
+export const users = [
   {
     name: 'Abel Boyle',
     username: '@abel',
@@ -45,7 +43,7 @@ export const users: UserProps[] = [
   },
 ];
 
-export const chats: ChatProps[] = [
+export const chats = [
   {
     id: '1',
     sender: users[0],

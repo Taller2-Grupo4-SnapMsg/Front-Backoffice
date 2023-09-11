@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
@@ -6,14 +6,8 @@ import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
-import { UserProps } from '../types';
-import { toggleMessagesPane } from '../utils';
 
-type MessagesPaneHeaderProps = {
-  sender: UserProps;
-};
-
-export default function MessagesPaneHeader({ sender }: MessagesPaneHeaderProps) {
+export default function MessagesPaneHeader({ sender }) {
   return (
     <Stack
       direction="row"

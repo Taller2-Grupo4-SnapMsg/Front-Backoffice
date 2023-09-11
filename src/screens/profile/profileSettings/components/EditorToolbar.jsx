@@ -1,11 +1,10 @@
-import * as React from 'react';
-
-import Box, { BoxProps } from '@mui/joy/Box';
+import React from 'react';
+import Box from '@mui/joy/Box';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import IconButton from '@mui/joy/IconButton';
 
-export default function EditorToolbar({ sx, ...props }: BoxProps) {
+export default function EditorToolbar({ sx, ...props }) {
   return (
     <Box
       {...props}

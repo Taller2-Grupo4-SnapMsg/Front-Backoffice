@@ -1,24 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import { Box, Chip, IconButton, Input } from '@mui/joy';
 import List from '@mui/joy/List';
 import ChatListItem from './ChatListItem';
-import { ChatProps } from '../types';
 import { toggleMessagesPane } from '../utils';
-
-type ChatsPaneProps = {
-  chats: ChatProps[];
-  setSelectedChat: (chat: ChatProps) => void;
-  selectedChatId: string;
-};
 
 export default function ChatsPane({
   chats,
   setSelectedChat,
   selectedChatId,
-}: ChatsPaneProps) {
+}) {
   return (
     <Sheet
       sx={{
@@ -92,3 +85,4 @@ export default function ChatsPane({
     </Sheet>
   );
 }
+

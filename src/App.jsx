@@ -5,7 +5,8 @@ import Home from './screens/home/Home'
 import Messages from './screens/messages/Messages'
 import Notifications from './screens/notifications/Notifications'
 import Login from './screens/login/Login'
-import Test from './screens/test/Test'
+//import Test from './screens/test/Test'
+import Test from './screens/test/InstagramPost'
 import Profile from './screens/profile/profileMain/Profile';
 import ProfileSettings from './screens/profile/profileSettings/ProfileSettings';
 

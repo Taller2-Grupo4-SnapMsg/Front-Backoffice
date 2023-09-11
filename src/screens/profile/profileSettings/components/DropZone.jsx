@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/joy/Box';
-import Card, { CardProps } from '@mui/joy/Card';
-import Link from '@mui/joy/Link';
+import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 
-export default function DropZone({ sx, ...props }: CardProps) {
+export default function DropZone({ sx, ...props }) {
   return (
     <Card
       variant="outlined"
@@ -39,12 +38,13 @@ export default function DropZone({ sx, ...props }: CardProps) {
         </Box>
       </Box>
       <Typography level="body-sm" textAlign="center">
-        <Link component="button" overlay>
+        <a href="#" onClick={(e) => e.preventDefault()}>
           Click to upload
-        </Link>{' '}
+        </a>{' '}
         or drag and drop
-        <br /> SVG, PNG, JPG or GIF (max. 800x400px)
+        <br /> SVG, PNG, JPG, or GIF (max. 800x400px)
       </Typography>
     </Card>
   );
 }
+

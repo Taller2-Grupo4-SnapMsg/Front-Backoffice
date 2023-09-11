@@ -2,11 +2,8 @@ import * as React from 'react';
 import Sheet from '@mui/joy/Sheet';
 import { Box } from '@mui/joy';
 
-type FileIconProps = {
-  fileType: string;
-};
 
-export default function FileIcon({ fileType }: FileIconProps) {
+export default function FileIcon() {
   return (
     <Box sx={{ position: 'relative', ml: 1 }}>
       <svg
@@ -46,7 +43,6 @@ export default function FileIcon({ fileType }: FileIconProps) {
           fontWeight: 'xl',
         }}
       >
-        {fileType}
       </Sheet>
     </Box>
   );

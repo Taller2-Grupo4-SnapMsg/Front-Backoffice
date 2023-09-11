@@ -1,6 +1,4 @@
-/*Codigo para mostrar un mensaje en el chat*/
-
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
@@ -9,35 +7,19 @@ import Typography from '@mui/joy/Typography';
 import CelebrationOutlinedIcon from '@mui/icons-material/CelebrationOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FileIcon from './FileIcon';
-import { MessageProps } from '../types';
-
-type ChatBubbleProps = MessageProps & {
-  variant: 'sent' | 'received';
-};
 
 export default function ChatBubble({
-  /*
-    Argumentos que toma el componente:
-      content: el contenido del mensaje
-      variant: 'sent' o 'received' para indicar si el mensaje fue enviado o recibido
-      timestamp: la marca de tiempo del mensaje
-      attachment:undefined, //un archivo adjunto al mensaje, si lo hay
-      sender: quien mando el mensaje 
-  */
   content,
   variant,
   timestamp,
   attachment = undefined,
   sender,
-}: ChatBubbleProps) {
-  /*variable booleana que se establece en true si el mensaje es de tipo 'sent', y false si es de tipo 'received'*/
+}) {
   const isSent = variant === 'sent';
-  /*para seguir si es mouse esta encima del msg*/
-  const [isHovered, setIsHovered] = React.useState<boolean>(false);
-  /*para seguir el estado si se likeo*/
-  const [isLiked, setIsLiked] = React.useState<boolean>(false);
-  /*para seguir el estado si se celebro*/
-  const [isCelebrated, setIsCelebrated] = React.useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isCelebrated, setIsCelebrated] = useState(false);
+
   return (
     <Box sx={{ maxWidth: '80%', minWidth: attachment ? '80%' : 'auto' }}>
       <Stack
@@ -51,9 +33,6 @@ export default function ChatBubble({
         </Typography>
         <Typography level="body-xs">{timestamp}</Typography>
       </Stack>
-      {/*attachment ? aca define si tiene que mardar un msg con o sin 
-      archivo adjunto y en base a eso selecciona el formato, se usa 
-      el estilo Sheet para darle forma al msg con archivo adjunto*/}
       {attachment ? (
         <Sheet
           variant="outlined"
@@ -136,3 +115,5 @@ export default function ChatBubble({
     </Box>
   );
 }
+
+

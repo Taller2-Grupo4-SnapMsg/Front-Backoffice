@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
@@ -16,12 +16,16 @@ export default function ProfileSettings() {
 
   useEnhancedEffect(() => {
     // Feather icon setup: https://github.com/feathericons/feather#4-replace
-    // @ts-ignore
     if (typeof feather !== 'undefined') {
-      // @ts-ignore
       feather.replace();
     }
   }, [status]);
+
+  useEffect(() => {
+    // Define feather here since it's used above
+    // eslint-disable-next-line no-undef
+    const feather = window.feather;
+  }, []);
 
   return (
     <CssVarsProvider disableTransitionOnChange>
@@ -73,3 +77,4 @@ export default function ProfileSettings() {
     </CssVarsProvider>
   );
 }
+

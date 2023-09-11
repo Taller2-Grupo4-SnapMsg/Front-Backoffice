@@ -1,28 +1,30 @@
-import * as React from 'react';
+import React, { useState, useRef } from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import Textarea from '@mui/joy/Textarea';
 import { IconButton, Stack } from '@mui/joy';
 
-export type MessageInputProps = {
-  textAreaValue: string;
-  setTextAreaValue: (value: string) => void;
-  onSubmit: () => void;
-};
-
 export default function MessageInput({
   textAreaValue,
   setTextAreaValue,
   onSubmit,
-}: MessageInputProps) {
-  const textAreaRef = React.useRef<HTMLDivElement>(null);
+}) {
+  const textAreaRef = useRef(null);
+
   const handleClick = () => {
     if (textAreaValue.trim() !== '') {
       onSubmit();
       setTextAreaValue('');
     }
   };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
+      handleClick();
+    }
+  };
+
   return (
     <Box sx={{ px: 2, pb: 3 }}>
       <FormControl>
@@ -53,13 +55,10 @@ export default function MessageInput({
               <Button onClick={handleClick}>Send</Button>
             </Stack>
           }
-          onKeyDown={(event) => {
-            if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
-              handleClick();
-            }
-          }}
+          onKeyDown={handleKeyDown}
         />
       </FormControl>
     </Box>
   );
 }
+

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
@@ -6,17 +6,12 @@ import AvatarWithStatus from './AvatarWithStatus';
 import ChatBubble from './ChatBubble';
 import MessageInput from './MessageInput';
 import MessagesPaneHeader from './MessagesPaneHeader';
-import { ChatProps, MessageProps } from '../types';
 
-type MessagesPaneProps = {
-  chat: ChatProps;
-};
+export default function MessagesPane({ chat }) {
+  const [chatMessages, setChatMessages] = useState(chat.messages);
+  const [textAreaValue, setTextAreaValue] = useState('');
 
-export default function MessagesPane({ chat }: MessagesPaneProps) {
-  const [chatMessages, setChatMessages] = React.useState(chat.messages);
-  const [textAreaValue, setTextAreaValue] = React.useState('');
-
-  React.useEffect(() => {
+  useEffect(() => {
     setChatMessages(chat.messages);
   }, [chat.messages]);
 
@@ -42,7 +37,7 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
         }}
       >
         <Stack spacing={2} justifyContent="flex-end">
-          {chatMessages.map((message: MessageProps, index: number) => {
+          {chatMessages.map((message, index) => {
             const isYou = message.sender === 'You';
             return (
               <Stack
@@ -84,3 +79,4 @@ export default function MessagesPane({ chat }: MessagesPaneProps) {
     </Sheet>
   );
 }
+

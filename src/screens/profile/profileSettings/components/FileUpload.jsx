@@ -1,24 +1,20 @@
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
-import Card, { CardProps } from '@mui/joy/Card';
+import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import IconButton from '@mui/joy/IconButton';
 import LinearProgress from '@mui/joy/LinearProgress';
 import Typography from '@mui/joy/Typography';
 
-export default function FileUpload({
+function FileUpload({
   icon,
   fileName,
   fileSize,
   progress,
   sx,
   ...props
-}: CardProps & {
-  icon?: React.ReactElement;
-  fileName: string;
-  fileSize: string;
-  progress: number;
 }) {
   return (
     <Card
@@ -89,3 +85,6 @@ export default function FileUpload({
     </Card>
   );
 }
+
+
+export default FileUpload;

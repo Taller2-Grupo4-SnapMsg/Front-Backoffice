@@ -1,16 +1,15 @@
-import * as React from 'react';
-
-export type UseScriptStatus = 'idle' | 'loading' | 'ready' | 'error';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 // Cached script statuses
-const cachedScriptStatuses: Record<string, UseScriptStatus | undefined> = {};
+const cachedScriptStatuses = {};
 
 /**
  * Simplified version of https://usehooks-ts.com/react-hook/use-script
  */
-function getScriptNode(src: string) {
-  const node: HTMLScriptElement | null = document.querySelector(`script[src="${src}"]`);
-  const status = node?.getAttribute('data-status') as UseScriptStatus | undefined;
+function getScriptNode(src) {
+  const node = document.querySelector(`script[src="${src}"]`);
+  const status = node?.getAttribute('data-status');
 
   return {
     node,
@@ -18,8 +17,8 @@ function getScriptNode(src: string) {
   };
 }
 
-function useScript(src: string): UseScriptStatus {
-  const [status, setStatus] = React.useState<UseScriptStatus>(() => {
+function useScript({ src }) {
+  const [status, setStatus] = useState(() => {
     if (typeof window === 'undefined') {
       // SSR Handling - always return 'loading'
       return 'loading';
@@ -28,7 +27,7 @@ function useScript(src: string): UseScriptStatus {
     return cachedScriptStatuses[src] ?? 'loading';
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const cachedScriptStatus = cachedScriptStatuses[src];
     if (cachedScriptStatus === 'ready' || cachedScriptStatus === 'error') {
       // If the script is already cached, set its status immediately
@@ -51,8 +50,8 @@ function useScript(src: string): UseScriptStatus {
 
       // Store status in attribute on script
       // This can be read by other instances of this hook
-      const setAttributeFromEvent = (event: Event) => {
-        const scriptStatus: UseScriptStatus = event.type === 'load' ? 'ready' : 'error';
+      const setAttributeFromEvent = (event) => {
+        const scriptStatus = event.type === 'load' ? 'ready' : 'error';
 
         scriptNode?.setAttribute('data-status', scriptStatus);
       };
@@ -67,7 +66,7 @@ function useScript(src: string): UseScriptStatus {
     // Script event handler to update status in state
     // Note: Even if the script already exists we still need to add
     // event handlers to update the state for *this* hook instance.
-    const setStateFromEvent = (event: Event) => {
+    const setStateFromEvent = (event) => {
       const newStatus = event.type === 'load' ? 'ready' : 'error';
       setStatus(newStatus);
       cachedScriptStatuses[src] = newStatus;

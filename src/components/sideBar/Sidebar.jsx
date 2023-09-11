@@ -89,7 +89,7 @@ export default function Sidebar() {
         <Typography fontWeight="xl">SnapMessage</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
-      <Input startDecorator={<i data-feather="search" />} placeholder="Search" />
+      {/*<Input startDecorator={<i data-feather="search" />} placeholder="Search" />*/}
       <Box
         sx={{
           minHeight: 0,
@@ -136,7 +136,7 @@ export default function Sidebar() {
                   </Badge>
                 </Stack>
               </ListItemDecorator>
-              <ListItemContent>Dashboard</ListItemContent>
+              <ListItemContent>Notifications</ListItemContent>
             </ListItemButton>
           </ListItem>
           </Link>
@@ -160,7 +160,7 @@ export default function Sidebar() {
                   </Badge>
                 </Stack>
               </ListItemDecorator>
-              <ListItemContent>Projects</ListItemContent>
+              <ListItemContent>Messages</ListItemContent>
             </ListItemButton>
           </ListItem>
           </Link>
