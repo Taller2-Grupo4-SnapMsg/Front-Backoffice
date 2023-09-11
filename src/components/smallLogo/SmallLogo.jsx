@@ -1,7 +1,7 @@
-import * as React from 'react';
-import AspectRatio, { AspectRatioProps } from '@mui/joy/AspectRatio';
+import React from 'react';
+import AspectRatio from '@mui/joy/AspectRatio';
 
-export default function Logo({ sx, ...props }: AspectRatioProps) {
+function Logo({ sx, ...props }) {
   return (
     <AspectRatio
       ratio="1"
@@ -10,7 +10,7 @@ export default function Logo({ sx, ...props }: AspectRatioProps) {
       sx={[
         {
           width: 36,
-          //borderRadius: 'sm',
+          // borderRadius: 'sm',
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -35,3 +35,5 @@ export default function Logo({ sx, ...props }: AspectRatioProps) {
     </AspectRatio>
   );
 }
+
+export default Logo;

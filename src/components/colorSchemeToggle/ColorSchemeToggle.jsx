@@ -1,17 +1,15 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useColorScheme } from '@mui/joy/styles';
-import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
+import IconButton from '@mui/joy/IconButton';
 
-export default function ColorSchemeToggle({
-  onClick,
-  sx,
-  ...props
-}: IconButtonProps) {
+export default function ColorSchemeToggle({ onClick, sx, ...props }) {
   const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
     setMounted(true);
   }, []);
+
   if (!mounted) {
     return (
       <IconButton
@@ -24,6 +22,7 @@ export default function ColorSchemeToggle({
       />
     );
   }
+
   return (
     <IconButton
       id="toggle-mode"
@@ -56,3 +55,4 @@ export default function ColorSchemeToggle({
     </IconButton>
   );
 }
+
