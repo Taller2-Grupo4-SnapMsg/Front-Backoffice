@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import ProfileInformation from './ProfileInformation';
 import ChatsPane from '../../messages/components/ChatsPane';
 import ProfileInformation2 from './ProfileInformation2';
+import ProfileRight from './ProfileRight';
 
 import { chats } from '../../messages/data';
 
@@ -30,16 +31,19 @@ export default function Profile() {
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <Header />
         <Sidebar />
-        <Box component="main" className="MainContent" sx={{ flex: 1 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} lg={8}>
-              <ProfileInformation2 />
-            </Grid>
-            <Grid item xs={12} lg={4} sx={{ backgroundColor: 'red' }}>
-              {/* Aquí puedes agregar contenido para la columna al lado */}
-            </Grid>
+        <Box className="h-100 gradient-custom-2" sx={{ flex: 1 }}>
+        <Grid container spacing={2}>
+            <Grid item xs={12} lg={8} sx={{ backgroundColor: 'blue', display: 'flex', flexDirection: 'column' }}>
+            {/* Contenido de UserProfile */}
+            <ProfileInformation2 />
           </Grid>
-        </Box>
+          <Grid item xs={12} lg={4} sx={{ backgroundColor: 'red', display: 'flex',
+           flexDirection: 'column', paddingLeft: '0px'}} style={{paddingLeft: '0px'}}>
+            <ProfileRight />
+            {/* Contenido adicional */}
+          </Grid>
+        </Grid>
+      </Box>
       </Box>
     </CssVarsProvider>
   );
