@@ -6,7 +6,6 @@ import Home from './screens/home/Home'
 import Messages from './screens/messages/Messages'
 import Notifications from './screens/notifications/Notifications'
 import Explore from './screens/explore/Explore'
-import Login from './screens/login/Login'
 import Profile from './screens/profile/profileMain/Profile';
 import ProfileSettings from './screens/profile/profileSettings/ProfileSettings';
 import Test from './screens/test/Test'
