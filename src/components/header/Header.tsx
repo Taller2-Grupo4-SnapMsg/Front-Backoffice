@@ -4,7 +4,7 @@ import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
 import SmallLogo from '../smallLogo/SmallLogo';
 import ColorSchemeToggle from '../colorSchemeToggle/ColorSchemeToggle';
-import { toggleSidebar } from '../../screens/home/utils';
+import { toggleSidebar } from './utils';
 
 export default function Header() {
   return (

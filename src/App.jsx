@@ -4,6 +4,7 @@ import Signin from './screens/signin/Signin';
 import Home from './screens/home/Home'
 import Messages from './screens/messages/Messages'
 import Notifications from './screens/notifications/Notifications'
+import Explore from './screens/explore/Explore'
 import Login from './screens/login/Login'
 //import Test from './screens/test/Test'
 import Test from './screens/test/InstagramPost'
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/messages" element={<Messages />} />
+        <Route path="/explore" element={<Explore />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/login" element={<Login />} />
         <Route path="/test" element={<Test />} />

@@ -4,10 +4,11 @@ import { CssVarsProvider } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
-import Sidebar from '../../components/sideBar/Sidebar';
-import Header from '../../components/header/Header';
+import Sidebar from '../../../components/sideBar/Sidebar';
+import Header from '../../../components/header/Header';
+import ProfileInformation from './ProfileInformation';
 
-export default function Notifications() {
+export default function Profile() {
   return (
     <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles
@@ -26,9 +27,10 @@ export default function Notifications() {
         <Header />
          <Sidebar />
         <Box component="main" className="MainContent" sx={{ flex: 1 }}>
-          {/*<Feed/>*/}
+          <ProfileInformation/>
         </Box>
       </Box>
     </CssVarsProvider>
   );
 }
+

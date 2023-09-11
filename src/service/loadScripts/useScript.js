@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+/*Este código define un hook personalizado llamado useScript que 
+se utiliza para cargar scripts dinámicamente en una aplicación 
+web, se usa mas que nada para traer los iconos de https://feathericons.com/*/
+
+import React from 'react';
 
 // Cached script statuses
 const cachedScriptStatuses = {};
@@ -10,6 +13,7 @@ const cachedScriptStatuses = {};
 function getScriptNode(src) {
   const node = document.querySelector(`script[src="${src}"]`);
   const status = node?.getAttribute('data-status');
+  
 
   return {
     node,
@@ -17,8 +21,8 @@ function getScriptNode(src) {
   };
 }
 
-function useScript({ src }) {
-  const [status, setStatus] = useState(() => {
+function useScript(src) {
+  const [status, setStatus] = React.useState(() => {
     if (typeof window === 'undefined') {
       // SSR Handling - always return 'loading'
       return 'loading';
@@ -27,7 +31,7 @@ function useScript({ src }) {
     return cachedScriptStatuses[src] ?? 'loading';
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const cachedScriptStatus = cachedScriptStatuses[src];
     if (cachedScriptStatus === 'ready' || cachedScriptStatus === 'error') {
       // If the script is already cached, set its status immediately
@@ -98,3 +102,4 @@ function useScript({ src }) {
 }
 
 export default useScript;
+

@@ -3,24 +3,13 @@ import { CssVarsProvider } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
-import useScript from './useScript';
+import useScript from '../../../service/loadScripts/useScript';
 import Sidebar from '../../../components/sideBar/Sidebar';
 import Header from '../../../components/header/Header';
 import MyProfile from './components/MyProfile';
 
-const useEnhancedEffect =
-  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 export default function ProfileSettings() {
-  const status = useScript(`https://unpkg.com/feather-icons`);
-
-  useEnhancedEffect(() => {
-    // Feather icon setup: https://github.com/feathericons/feather#4-replace
-    if (typeof feather !== 'undefined') {
-      feather.replace();
-    }
-  }, [status]);
-
   useEffect(() => {
     // Define feather here since it's used above
     // eslint-disable-next-line no-undef

@@ -3,26 +3,11 @@ import { CssVarsProvider } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
-import useScript from './useScript';
 import Sidebar from '../../components/sideBar/Sidebar';
 import Header from '../../components/header/Header';
 import MyMessages from './components/MyMessages';
 
-const useEnhancedEffect =
-  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
-
 export default function Messages() {
-  const status = useScript(`https://unpkg.com/feather-icons`);
-
-  useEnhancedEffect(() => {
-    // Feather icon setup: https://github.com/feathericons/feather#4-replace
-    // @ts-ignore
-    if (typeof feather !== 'undefined') {
-      // @ts-ignore
-      feather.replace();
-    }
-  }, [status]);
-
   return (
     <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles

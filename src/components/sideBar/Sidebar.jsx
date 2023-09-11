@@ -9,6 +9,7 @@ import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
 import Input from '@mui/joy/Input';
 //import Link from '@mui/joy/Link';
+import useScript from '../../service/loadScripts/useScript';
 import LinearProgress from '@mui/joy/LinearProgress';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -21,13 +22,27 @@ import Badge from '@mui/joy/Badge';
 import Sheet from '@mui/joy/Sheet';
 import Logo from '../smallLogo/SmallLogo';
 import ColorSchemeToggle from '../colorSchemeToggle/ColorSchemeToggle';
-import { closeSidebar } from './utils';
 
 const Dropdown = styled('i')(({ theme }) => ({
   color: theme.vars.palette.text.tertiary,
 }));
 
+
+const useEnhancedEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 export default function Sidebar() {
+  const status = useScript(`https://unpkg.com/feather-icons`);
+
+  useEnhancedEffect(() => {
+    // Feather icon setup: https://github.com/feathericons/feather#4-replace
+    // @ts-ignore
+    if (typeof feather !== 'undefined') {
+      // @ts-ignore
+      feather.replace();
+    }
+  }, [status]);
+
   return (
     <Sheet
       className="Sidebar"
@@ -82,7 +97,6 @@ export default function Sidebar() {
             lg: 'translateX(-100%)',
           },
         }}
-        onClick={() => closeSidebar()}
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Logo />
@@ -116,13 +130,13 @@ export default function Sidebar() {
               </ListItemButton>
             </ListItem>
           </Link>
-          <Link to="/search" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to="/explore" style={{ textDecoration: 'none', color: 'inherit' }}>
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
                 <i data-feather="search" />
               </ListItemDecorator>
-              <ListItemContent>Search</ListItemContent>
+              <ListItemContent>Explore</ListItemContent>
             </ListItemButton>
           </ListItem>
           </Link>

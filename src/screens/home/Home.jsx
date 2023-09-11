@@ -4,26 +4,11 @@ import { CssVarsProvider } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
-import useScript from './useScript';
 import Sidebar from '../../components/sideBar/Sidebar';
 import Header from '../../components/header/Header';
 import Feed from './Feed';
 
-const useEnhancedEffect =
-  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
-
 export default function Home() {
-  const status = useScript(`https://unpkg.com/feather-icons`);
-
-  useEnhancedEffect(() => {
-    // Feather icon setup: https://github.com/feathericons/feather#4-replace
-    // @ts-ignore
-    if (typeof feather !== 'undefined') {
-      // @ts-ignore
-      feather.replace();
-    }
-  }, [status]);
-
   return (
     <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles
@@ -42,7 +27,7 @@ export default function Home() {
         <Header />
          <Sidebar />
         <Box component="main" className="MainContent" sx={{ flex: 1 }}>
-          <Feed/>
+          {/*<Feed/>*/}
         </Box>
       </Box>
     </CssVarsProvider>
