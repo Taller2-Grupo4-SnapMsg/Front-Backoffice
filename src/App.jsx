@@ -19,7 +19,6 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/notifications" element={<Notifications />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/test" element={<Test />} />
         <Route path="/pin" element={<PINVerification />} />
         <Route path="/password_recovery" element={<PasswordRecovery />} />
