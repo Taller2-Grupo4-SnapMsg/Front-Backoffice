@@ -7,7 +7,8 @@ import Box from '@mui/joy/Box';
 import Sidebar from '../../components/sideBar/Sidebar';
 import Header from '../../components/header/Header';
 
-export default function Notifications() {
+////
+export default function Explore() {
   return (
     <CssVarsProvider disableTransitionOnChange>
       <GlobalStyles

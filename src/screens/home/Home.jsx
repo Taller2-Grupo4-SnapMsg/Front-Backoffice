@@ -1,20 +1,35 @@
-import React from 'react';
+
+import * as React from 'react';
+import { CssVarsProvider } from '@mui/joy/styles';
+import GlobalStyles from '@mui/joy/GlobalStyles';
+import CssBaseline from '@mui/joy/CssBaseline';
+import Box from '@mui/joy/Box';
+import Sidebar from '../../components/sideBar/Sidebar';
+import Header from '../../components/header/Header';
 import Feed from './Feed';
-import Menu from './Menu';
-import "../../styles/home/home.scss";
-import "../../styles/home/container-1.scss";
-import "../../styles/home/container-2.scss";
-import "../../styles/home/container-3.scss";
 
-const Home = () => {
+export default function Home() {
   return (
-    <div className="home">
-      < Menu/>
-      < Feed/>
-      <div className="container-3">
-      </div>
-    </div>
+    <CssVarsProvider disableTransitionOnChange>
+      <GlobalStyles
+        styles={(theme) => ({
+          '[data-feather], .feather': {
+            color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
+            margin: 'var(--Icon-margin)',
+            fontSize: `var(--Icon-fontSize, ${theme.vars.fontSize.xl})`,
+            width: '1em',
+            height: '1em',
+          },
+        })}
+      />
+      <CssBaseline />
+      <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
+        <Header />
+         <Sidebar />
+        <Box component="main" className="MainContent" sx={{ flex: 1 }}>
+          {/*<Feed/>*/}
+        </Box>
+      </Box>
+    </CssVarsProvider>
   );
-};
-
-export default Home;
+}
