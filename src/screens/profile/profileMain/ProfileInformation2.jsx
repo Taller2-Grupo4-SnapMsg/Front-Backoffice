@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Card, CardContent, Grid, Typography, Avatar } from '@mui/joy';
-
+import ProfileFeed from './ProfileFeed'
 
 const buttonStyles = {
   zIndex: 1,
