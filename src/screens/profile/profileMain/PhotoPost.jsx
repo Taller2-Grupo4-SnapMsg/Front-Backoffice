@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardMedia,
-  IconButton,
-  Typography,
-  Box,
-  Divider,
-  Tooltip,
-} from '@mui/material';
+import {CardActions} from '@mui/material';
+import {Card, Avatar, Button, Badge} from '@mui/joy';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/joy/IconButton';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import RepeatIcon from '@mui/icons-material/Repeat';
@@ -17,85 +11,74 @@ import ChatIcon from '@mui/icons-material/Chat';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import CardHeader from '@mui/material/CardHeader';
 import Sheet from '@mui/joy/Sheet';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
-import GlobalStyles from '@mui/joy/GlobalStyles';
+import {CardContent, Typography } from '@mui/joy';
+import CardMedia from '@mui/material/CardMedia';
 
-const PhotoPost = ({ post }) => {
-  const [liked, setLiked] = useState(false);
-  const [retweeted, setRetweeted] = useState(false);
 
-  const handleLike = () => {
-    setLiked(!liked);
+function PhotoPost({ post }) {
+
+  const buttonStyle = {
+    textTransform: 'capitalize',
+    fontWeight: 'bold',
+    marginRight: '8px',
   };
 
-  const handleRetweet = () => {
-    setRetweeted(!retweeted);
+  const iconStyle = {
+    marginRight: '4px',
+    fontSize: '18px',
   };
 
   return (
-    <Card elevation={3} className="photo-post">
-      <CardHeader
-        avatar={<Avatar src={post.userAvatar} alt={post.username} />}
-        title={post.username}
-        subheader={post.timestamp}
-      />
-      <CardContent>
-        <Typography variant="body1" color="textPrimary">
-          {post.caption}
-        </Typography>
-        {post.imageUrl && (
-          <CardMedia
-            component="img"
-            alt={post.caption}
-            height="auto"
-            image={post.imageUrl}
-          />
-        )}
+
+    <Card style={{ marginBottom: '16px' }}>
+
+  <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        <Avatar src={post.userAvatar} alt={post.username} sx={{ marginRight: '8px' }} />
+
+        <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 'bold', fontSize: '25px', marginRight: '8px' }}>
+            {post.username}
+          </Typography>
+          <Typography variant="caption" color="textSecondary">
+            {post.timestamp}
+          </Typography>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <IconButton aria-label="Like">
+            <FavoriteBorderIcon />
+          </IconButton>
+        </div>
       </CardContent>
-      <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
-        <Tooltip title={liked ? 'Unlike' : 'Like'} placement="top">
-          <IconButton
-            onClick={handleLike}
-            color={liked ? 'error' : 'default'}
-            aria-label="Like"
-          >
-            <FavoriteIcon />
+
+
+      <CardContent style={{ alignItems:'center' }}>
+        <Typography variant="body1" style={{ marginBottom: '10px', alignSelf: 'justificate'}}>{post.caption}</Typography>
+        <img src={post.imageUrl} alt="Publicación" style={{ maxWidth: '80%'}} />
+      </CardContent>
+
+
+      <CardActions style={{ display: 'flex', justifyContent: 'space-between', backgroundColor: 'transparent' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <IconButton aria-label="Like">
+            <FavoriteBorderIcon />
+            <span>10</span> {}
           </IconButton>
-        </Tooltip>
-        <Tooltip title="Comment" placement="top">
-          <IconButton color="default" aria-label="Comment">
-            <ChatIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title={retweeted ? 'Undo Retweet' : 'Retweet'} placement="top">
-          <IconButton
-            onClick={handleRetweet}
-            color={retweeted ? 'primary' : 'default'}
-            aria-label="Retweet"
-          >
+          <IconButton aria-label="Retweet">
             <RepeatIcon />
+            <span>5</span> {}
           </IconButton>
-        </Tooltip>
-        <Tooltip title="Share" placement="top">
-          <IconButton color="default" aria-label="Share">
+          <IconButton aria-label="Compartir">
             <ShareIcon />
+            <span>3</span> {}
           </IconButton>
-        </Tooltip>
-      </Box>
-      <Divider />
-      <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
-        <Typography variant="body2" color="textSecondary">
-          {liked ? '1 Like' : '0 Likes'}
-        </Typography>
-        <Typography variant="body2" color="textSecondary">
-          {retweeted ? '1 Retweet' : '0 Retweets'}
-        </Typography>
-        <Typography variant="body2" color="textSecondary">
-          {post.shares} Shares
-        </Typography>
-        </Box>
+        </div>
+    </CardActions>
     </Card>
   );
-};
+}
 
 export default PhotoPost;

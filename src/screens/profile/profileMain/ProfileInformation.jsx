@@ -10,8 +10,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ListItemIcon from '@mui/material/ListItemIcon';
 
 
-
-
 const buttonStyles = {
   zIndex: 1,
   backgroundColor: '#7E6C9C',
@@ -24,10 +22,10 @@ const buttonStyles = {
 
 const UserProfile = () => {
   return (
-    <Box>
+    <Box sx={{marginBottom: '40px', border: '0px'}}>
       <Grid>
         <Grid>
-          <Card elevation={3}>
+          <Card elevation={3} sx={{background: 'transparent', borderRadius: '0px', borderLeft: '0px', borderRight: '0px'}}>
             <CardContent  style={{   boxShadow: '0 0 5px 0 #7E6C9C',
             borderRadius: '25px', 
             padding: '20px', // Adjust padding as needed
@@ -56,14 +54,6 @@ const UserProfile = () => {
                     </Link>
                   </Box>
                   {/* Name */}
-<<<<<<< HEAD
-                  <Typography>Nati y Lari</Typography>
-                  {/* Username */}
-                  <Typography variant="h1">@NatiyLari</Typography>
-                  {/* Biography */}
-                  <Typography variant="body2">Biography: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                  .alskdklasdnkalsdnLKASd</Typography>
-=======
                   <Typography level="title-lg">Nati y Lari</Typography>
                   {/* Username */}
                   <Typography level="body-sm" variant="h5" sx={{color: '#7E6C9C'}}>@natiylari</Typography>
@@ -71,7 +61,6 @@ const UserProfile = () => {
                   <Typography level="body-md" sx={{paddingTop: '10px'}}>Biography: Lorem ipsum dolor sit amet, consectetur adipiscing elit.asdasdasdasdasdsdsdsad
                     asndabajsdjan                     aksdnassdnjasndasjnds
                   </Typography>
->>>>>>> 20d04987a7c27cbdfdf72e1a35293ce34ad6034b
                 </Box>
 
               </Box>

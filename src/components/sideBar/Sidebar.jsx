@@ -57,7 +57,7 @@ export default function Sidebar() {
         transition: 'transform 0.4s, width 0.4s',
         zIndex: 10000,
         height: '100dvh',
-        width: 'var(--Sidebar-width)',
+        width: '15%',
         top: 0,
         p: 1.5,
         py: 3,
@@ -67,6 +67,8 @@ export default function Sidebar() {
         gap: 2,
         borderRight: '1px solid',
         borderColor: 'divider',
+        background: 'transparent',
+        //fontSize: '30px',
       }}
     >
       <GlobalStyles

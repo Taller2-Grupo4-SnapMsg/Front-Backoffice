@@ -12,6 +12,39 @@ const ProfileFeed = () => {
       userAvatar: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp",
       timestamp: '2 hours ago',
       caption: '¡Mi primera publicación en Twitter!',
+      imageUrl: 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-2.webp',
+      likes: 10,
+      retweets: 5,
+      shares: 2,
+    },
+    {
+      id: 2,
+      username: 'Jane Smith',
+      userAvatar: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp",
+      timestamp: '5 hours ago',
+      caption: '¡Hola, mundo!',
+      imageUrl: 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-2.webp',
+      likes: 20,
+      retweets: 8,
+      shares: 4,
+    },
+    {
+      id: 1,
+      username: 'John Doe',
+      userAvatar: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp",
+      timestamp: '2 hours ago',
+      caption: '¡Mi primera publicación en Twitter!',
+      imageUrl: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp",
+      likes: 10,
+      retweets: 5,
+      shares: 2,
+    },
+    {
+      id: 1,
+      username: 'John Doe',
+      userAvatar: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp",
+      timestamp: '2 hours ago',
+      caption: '¡Mi primera publicación en Twitter!',
       imageUrl: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp",
       likes: 10,
       retweets: 5,
@@ -23,18 +56,13 @@ const ProfileFeed = () => {
   return (
     <Container maxWidth="lg">
       <Box mt={4}>
-        <Typography variant="h4" gutterBottom>
-          Feed de Publicaciones
-        </Typography>
-        <ProfileRight />
-          {/*<Grid container spacing={2}>
-          <PhotoPost post={posts[0]} />
+        <Grid container spacing={2} justifyContent="center">
           {posts.map((post) => (
-            <Grid item key={post.id} xs={12} md={6} lg={4}>
+            <Grid item key={post.id} xs={6} md={6} lg={8} sx= {{marginBottom: '40px'}}>
               <PhotoPost post={post} />
             </Grid>
           ))}
-          </Grid>*/}
+        </Grid>
       </Box>
     </Container>
   );

@@ -32,12 +32,13 @@ export default function Profile() {
         <Sidebar />
         <Box className="h-100 gradient-custom-2" sx={{ flex: 1 }}>
         <Grid container spacing={2}>
-            <Grid item xs={12} lg={8} sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Grid item xs={12} lg={8} sx={{ display: 'flex', flexDirection: 'column',
+          borderRight: 'var(--variant-borderWidth, 1px) solid var(--joy-palette-neutral-outlinedBorder, #9fa6ad)' }}>
             <ProfileInformation />
             <ProfileFeed />
           </Grid>
-          <Grid item xs={12} lg={4} sx={{ backgroundColor: 'red', display: 'flex',
-           flexDirection: 'column', paddingLeft: '0px'}} style={{paddingLeft: '0px'}}>
+          <Grid item xs={12} lg={4} sx={{ display: 'flex',
+           flexDirection: 'column'}} style={{paddingLeft: '0px', padding: '4%'}}>
             <ProfileRight />
           </Grid>
         </Grid>
