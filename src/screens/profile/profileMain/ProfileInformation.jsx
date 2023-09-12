@@ -1,6 +1,14 @@
 import React from 'react';
 import { Box, Button, Card, CardContent, Grid, Typography, Avatar } from '@mui/joy';
 import { Link } from 'react-router-dom';
+import Icon from '@mui/material/Icon';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ListItem from '@mui/joy/ListItem';
+import ListItemButton from '@mui/joy/ListItemButton';
+import ListItemContent from '@mui/joy/ListItemContent';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ListItemIcon from '@mui/material/ListItemIcon';
+
 
 const buttonStyles = {
   zIndex: 1,
@@ -18,7 +26,10 @@ const UserProfile = () => {
       <Grid>
         <Grid>
           <Card elevation={3}>
-            <CardContent>
+            <CardContent  style={{   boxShadow: '0 0 5px 0 #7E6C9C',
+            borderRadius: '25px', 
+            padding: '20px', // Adjust padding as needed
+          }}>
               <Box display="flex" alignItems="center">
                 {/* Left Column (Avatar) */}
                 <Box style={{ padding: '5%' }}>
@@ -32,7 +43,7 @@ const UserProfile = () => {
                 {/* Right Column */}
                 <Box style={{ flex: 1, padding: '5%', position: 'relative' }}>
                   {/* Edit Button */}
-                  <Box style={{ position: 'absolute', top: 0, right: 0 }}>
+                  <Box style={{ position: 'absolute', top: 0, right: 0, paddingRight: '25px'}}>
                     <Link to="/profile/settings" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <Button
                       style={buttonStyles}
@@ -42,38 +53,68 @@ const UserProfile = () => {
                     </Link>
                   </Box>
                   {/* Name */}
-                  <Typography variant="h5">Andy Horwitz</Typography>
+                  <Typography level="title-lg">Nati y Lari</Typography>
                   {/* Username */}
-                  <Typography>New York</Typography>
+                  <Typography level="body-sm" variant="h5" sx={{color: '#7E6C9C'}}>@natiylari</Typography>
                   {/* Biography */}
-                  <Typography variant="body2">Biography: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Typography>
+                  <Typography level="body-md" sx={{paddingTop: '10px'}}>Biography: Lorem ipsum dolor sit amet, consectetur adipiscing elit.asdasdasdasdasdsdsdsad
+                    asndabajsdjan                     aksdnassdnjasndasjnds
+                  </Typography>
                 </Box>
 
               </Box>
             </CardContent>
 
             <CardContent>
-              <Grid container justifyContent="flex-end" alignItems="center">
-                <Grid item>
-                  <Box textAlign="center">
-                    <Typography variant="h5">253</Typography>
-                    <Typography variant="body2" color="textSecondary">Photos</Typography>
-                  </Box>
+              <Grid container direction="column">
+                {/* First Row */}
+
+                
+                <Grid item container direction="row" justifyContent="space-between" alignItems="center">
+                  {/* First Column in First Row */}
+                  <Grid item xs={6} sx={{paddingLeft: '50px'}}>
+                  <Typography level="body-sm" color="textSecondary">
+                    <span style={{ color: '#7E6C9C', fontWeight: 'bold' }}>1000</span> Followers
+                      </Typography>
+                  </Grid>
+
+
+
+                  {/* Second Column in First Row */}
+                  <Grid item xs={6}>
+                  <Typography level="body-sm" color="textSecondary">
+                      <span style={{ color: '#7E6C9C', fontWeight: 'bold', paddingLeft: '5px'}}>3</span> Following
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Box textAlign="center" px={3}>
-                    <Typography variant="h5">1026</Typography>
-                    <Typography variant="body2" color="textSecondary">Followers</Typography>
-                  </Box>
-                </Grid>
-                <Grid item>
-                  <Box textAlign="center">
-                    <Typography variant="h5">478</Typography>
-                    <Typography variant="body2" color="textSecondary">Following</Typography>
-                  </Box>
+                
+                {/* Second Row */}
+                <Grid item container direction="row" justifyContent="space-between" alignItems="center">
+                  {/* First Column in First Row */}
+                  <Grid item xs={6} sx={{paddingLeft: '50px'}}>
+                    <ListItem style={{ display: 'flex', alignItems: 'flex-start' }}>
+                      <div style={{alignItems: 'center'}}>
+                        <CalendarMonthIcon style={{ fontSize: '20px' }} /> {/* Adjust the fontSize here */}
+                      </div>
+                      <Typography level="body-sm" variant="h5" sx={{paddingLeft: '10px'}}>Joined May 2022</Typography>
+                    </ListItem>
+                  </Grid>
+
+
+
+                  {/* Second Column in First Row */}
+                  <Grid item xs={6}>
+                    <ListItem style={{ display: 'flex', alignItems: 'flex-start' }}>
+                      <div style={{alignItems: 'center'}}>
+                        <LocationOnIcon style={{ fontSize: '20px'}} /> {/* Adjust the fontSize here */}
+                      </div>
+                      <Typography level="body-sm" variant="h5" sx={{paddingLeft: '10px'}}>Ciudad Autónoma de Buenos Aires</Typography>
+                    </ListItem>
+                  </Grid>
                 </Grid>
               </Grid>
             </CardContent>
+
           </Card>
         </Grid>
       </Grid>
