@@ -2,13 +2,15 @@ import React from 'react';
 import { Box, Button, Card, CardContent, Grid, Typography, Avatar } from '@mui/joy';
 import { Link } from 'react-router-dom';
 
+
+
 const buttonStyles = {
   zIndex: 1,
   backgroundColor: '#7E6C9C',
   borderRadius: '25px',
-  transition: 'background-color 0.3s ease', // Increased transition duration for smoother effect
+  transition: 'background-color 0.3s ease', // Transition for background-color
   '&:hover': {
-    backgroundColor: 'red', // Change to the desired hover color
+    backgroundColor: '#947EB0',
   },
 };
 
@@ -35,18 +37,20 @@ const UserProfile = () => {
                   <Box style={{ position: 'absolute', top: 0, right: 0 }}>
                     <Link to="/profile/settings" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <Button
-                      style={buttonStyles}
-                    >
+                      variant="solid"  
+                      sx={buttonStyles}
+                    >        
                       Edit profile
                     </Button>
                     </Link>
                   </Box>
                   {/* Name */}
-                  <Typography variant="h5">Andy Horwitz</Typography>
+                  <Typography>Nati y Lari</Typography>
                   {/* Username */}
-                  <Typography>New York</Typography>
+                  <Typography variant="h1">@NatiyLari</Typography>
                   {/* Biography */}
-                  <Typography variant="body2">Biography: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Typography>
+                  <Typography variant="body2">Biography: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  .alskdklasdnkalsdnLKASd</Typography>
                 </Box>
 
               </Box>
