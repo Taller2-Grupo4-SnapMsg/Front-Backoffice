@@ -13,8 +13,7 @@ const RegisterHandler = async (email, password, firstName, lastName, nickname) =
       nickname: nickname,
     };
 
-
-    const response = await fetch('http://localhost:8000/register', { //fetch('https://loginback-lg51.onrender.com/register', {
+    const response = await fetch('https://loginback-lg51.onrender.com/register', {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(requestBody),

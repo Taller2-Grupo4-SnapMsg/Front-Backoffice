@@ -10,7 +10,7 @@ const LogInHandler = async (email, password) => {
       password: password,
     };
 
-    const response = await fetch('http://localhost:8000/login/', { //fetch('https://loginback-lg51.onrender.com/login/', {
+    const response = await fetch('https://loginback-lg51.onrender.com/login/', {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(requestBody),
