@@ -13,24 +13,25 @@ const RegisterHandler = async (email, password, firstName, lastName, nickname) =
       nickname: nickname,
     };
 
-    const response = await fetch('https://loginback-lg51.onrender.com/register', {
+
+    const response = await fetch('http://localhost:8000/register', { //fetch('https://loginback-lg51.onrender.com/register', {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(requestBody),
     });
 
-    if (response.status === 200) {
+    const responseData = await response.json();
+
+    if (response.status === 201) {
       // Registration successful
-      console.log('Registration successful');
+      const token = responseData.token
+      localStorage.setItem('token', token);
       // Redirect or perform any other action you need here
       //window.location.href = '/pin';
     } else {
       // Registration failed
-      const responseData = await response.json();
       console.error('Registration failed:', responseData);
     }
-
-    return response.json();
   } catch (error) {
     const message =
       error.response?.data?.error ||

@@ -18,6 +18,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import RegisterHandler from '../../service/Register';
 
 
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -54,6 +55,7 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    console.log("The button has been pressed")
     RegisterHandler(data.get('email'), 
                     data.get('password'), 
                     data.get('firstName'), 

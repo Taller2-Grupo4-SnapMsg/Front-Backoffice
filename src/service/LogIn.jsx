@@ -10,24 +10,27 @@ const LogInHandler = async (email, password) => {
       password: password,
     };
 
-    const response = await fetch('https://loginback-lg51.onrender.com/login/', {
+    const response = await fetch('http://localhost:8000/login/', { //fetch('https://loginback-lg51.onrender.com/login/', {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(requestBody),
     });
 
+    const responseData = await response.json();
+
     if (response.status === 200) {
       // Registration successful
+      const token = responseData.token
+      localStorage.setItem('token', token);
+      console.log("token saved: ", localStorage.getItem('token'));
       console.log('Sign in successful');
-      // Redirect or perform any other action you need here
+      
+      //Redirect or perform any other action you need here
       //window.location.href = '/pin';
     } else {
       // Registration failed
-      const responseData = await response.json();
       console.error('Sign in failed:', responseData);
     }
-
-    return response.json();
   } catch (error) {
     const message =
       error.response?.data?.error ||
