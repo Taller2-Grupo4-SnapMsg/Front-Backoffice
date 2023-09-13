@@ -19,18 +19,18 @@ const RegisterHandler = async (email, password, firstName, lastName, nickname) =
       body: JSON.stringify(requestBody),
     });
 
-    if (response.status === 200) {
+    const responseData = await response.json();
+
+    if (response.status === 201) {
       // Registration successful
-      console.log('Registration successful');
+      const token = responseData.token
+      localStorage.setItem('token', token);
       // Redirect or perform any other action you need here
       //window.location.href = '/pin';
     } else {
       // Registration failed
-      const responseData = await response.json();
       console.error('Registration failed:', responseData);
     }
-
-    return response.json();
   } catch (error) {
     const message =
       error.response?.data?.error ||
