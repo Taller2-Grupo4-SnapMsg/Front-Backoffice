@@ -59,7 +59,6 @@ export default function SignInSide() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  
   const [error, setError] = useState('');
 
   const handleSubmit = (event) => {
@@ -79,7 +78,8 @@ export default function SignInSide() {
     const data = new FormData(event.currentTarget);
     console.log("email: " + data.get('email') + " and password " + data.get('password'));
     LogInHandler(data.get('email'), 
-                 data.get('password'));
+                 data.get('password'))
+    
     //history.push('/pin');
   };
 
@@ -114,7 +114,7 @@ export default function SignInSide() {
           >
             <Avatar alt="logo" src="/small_logo.png" sx={{ m: 1, width: 56, height: 56}} />
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign in 
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
