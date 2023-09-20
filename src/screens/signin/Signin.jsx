@@ -62,7 +62,6 @@ export default function SignInSide() {
   const [error, setError] = useState('');
 
   const handleSubmit = (event) => {
-    //ESTO SE EJECUTA EN EL CLIENTE
     event.preventDefault();
 
     // Check if email and password are empty

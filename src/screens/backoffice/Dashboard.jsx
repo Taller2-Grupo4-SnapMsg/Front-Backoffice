@@ -18,22 +18,26 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './ListItems.jsx';
-import Chart from './Chart.jsx';
-import Deposits from './Deposits.jsx';
 import Orders from './Orders.jsx';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="/" sx = {{
+          color: "#6B5A8E",
+          '&:hover': {
+            color: "#947EB0",
+          }
+      }}>
+        SnapMsg
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
 }
+
 
 const drawerWidth = 240;
 
@@ -81,8 +85,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+
+const defaultTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#353839', //In theory the rest are calculated from here.
+      light: '#F5EBFF',
+    },
+    mode: 'dark',
+  }
+});
+
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
@@ -119,10 +132,10 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              Backoffice
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={2} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
@@ -162,40 +175,12 @@ export default function Dashboard() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Chart />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
+              {/* Users */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <Orders />
                 </Paper>
               </Grid>
-            </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
