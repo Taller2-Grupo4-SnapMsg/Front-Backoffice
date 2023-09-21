@@ -15,7 +15,6 @@ const GetUsersHandler = async () => {
       }
   
       const responseData = await response.json();
-      console.log('Response data:', responseData); // Log the response data
       return responseData; // Return the entire response data
     } catch (error) {
       console.error('Error fetching users:', error);
