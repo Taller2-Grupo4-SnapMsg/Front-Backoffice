@@ -11,27 +11,32 @@ import ProfileSettings from './screens/profile/profileSettings/ProfileSettings';
 import Test from './screens/test/Test'
 import PINVerification from './screens/signup/PINVerification'
 import PasswordRecovery from './screens/signin/PasswordRecovery'
+import Dashboard from './screens/backoffice/Dashboard';
 
 function App() {
   return (
     <Router>
       <Routes> 
-        <Route path="/" element={<Home />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/messages" element={<Messages />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/notifications" element={<Notifications />} />
         <Route path="/test" element={<Test />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/settings" element={<ProfileSettings />} />
         <Route path="/pin" element={<PINVerification />} />
-        <Route path="/password_recovery" element={<PasswordRecovery />} />
         <Route path="*" element={<h1>Not Found</h1>} /> {/* If the path is not found, render this component */}
       </Routes>
     </Router>
   );
 }
+
+/*
+
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/password_recovery" element={<PasswordRecovery />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/settings" element={<ProfileSettings />} />
+*/
 
 export default App;
 
