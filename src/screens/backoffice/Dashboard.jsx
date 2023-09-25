@@ -20,6 +20,9 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './ListItems.jsx';
 import Orders from './Orders.jsx';
 
+import IsTokenValidHandler from '../../service/IsTokenValid.jsx';
+import { useNavigate } from 'react-router-dom';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -99,9 +102,15 @@ const defaultTheme = createTheme({
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
+  const navigate = useNavigate();
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  /*useEffect(() => {
+    // Check for a valid token when the component mounts
+    IsTokenValidHandler(navigate);
+  }, []);*/
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -156,7 +165,7 @@ export default function Dashboard() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            {mainListItems(navigate)}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>

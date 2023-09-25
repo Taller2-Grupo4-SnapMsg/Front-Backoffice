@@ -3,18 +3,24 @@ const headers = {
   'Access-Control-Allow-Origin': '*',
 };
   
-const LogInHandler = async (email, password) => {
+const OK = 200
+const USER_NOT_FOUND = 404
+const PASSWORD_DOES_NOT_MATCH = 401
+const NOT_ADMIN = 400
+
+const LogInHandler = async (navigate, email, password) => {
   try {
     const requestBody = {
       email: email,
       password: password,
     };
 
-    const response = await fetch('https://loginback-lg51.onrender.com/login/', {
+    const response = await fetch('https://loginback-lg51.onrender.com/login_admin/', {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(requestBody),
     });
+
 
     const responseData = await response.json();
 
@@ -22,11 +28,10 @@ const LogInHandler = async (email, password) => {
       // Registration successful
       const token = responseData.token
       localStorage.setItem('token', token);
-      console.log("token saved: ", localStorage.getItem('token'));
+      //console.log("token saved: ", localStorage.getItem('token'));
       console.log('Sign in successful');
       
-      //Redirect or perform any other action you need here
-      //window.location.href = '/pin';
+      navigate('/admin/dashboard');
     } else {
       // Registration failed
       console.error('Sign in failed:', responseData);

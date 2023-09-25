@@ -1,27 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import Routes and Route
 import Signin from './screens/signin/Signin';
-import Signup from './screens/signup/Signup'
-import Home from './screens/home/Home'
-import Messages from './screens/messages/Messages'
-import Notifications from './screens/notifications/Notifications'
-import Explore from './screens/explore/Explore'
-import Profile from './screens/profile/profileMain/Profile';
-import ProfileSettings from './screens/profile/profileSettings/ProfileSettings';
-import Test from './screens/test/Test'
-import PINVerification from './screens/signup/PINVerification'
-import PasswordRecovery from './screens/signin/PasswordRecovery'
+import Test from './screens/test/Test';
 import Dashboard from './screens/backoffice/Dashboard';
+import SignUp from './screens/signup/Signup';
 
 function App() {
+
   return (
     <Router>
       <Routes> 
+        <Route path="/" element={<Signin />}/>
+        <Route path="/admin/signin" element={<Signin />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/admin/signup" element={<SignUp  />} />
         <Route path="/test" element={<Test />} />
-        <Route path="/pin" element={<PINVerification />} />
         <Route path="*" element={<h1>Not Found</h1>} /> {/* If the path is not found, render this component */}
       </Routes>
     </Router>

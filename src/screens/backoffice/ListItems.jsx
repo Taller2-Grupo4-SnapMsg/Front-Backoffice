@@ -3,14 +3,14 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PeopleIcon from '@mui/icons-material/People';
+import PersonAddDisabledIcon from '@mui/icons-material/PersonAddDisabled';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
+import EngineeringIcon from '@mui/icons-material/Engineering';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
-export const mainListItems = (
+export const mainListItems = (navigate) => (
   <React.Fragment>
     <ListItemButton>
       <ListItemIcon>
@@ -18,30 +18,35 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Users" />
     </ListItemButton>
+
+    <ListItemButton onClick={() => navigate('/admin/signup')}>
+      <ListItemIcon>
+        <PersonAddIcon />
+      </ListItemIcon>
+      <ListItemText primary="Create new admin" />
+    </ListItemButton>
+
     <ListItemButton>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <PersonAddDisabledIcon />
       </ListItemIcon>
-      <ListItemText primary="Another one" />
+      <ListItemText primary="Block user" />
     </ListItemButton>
+
     <ListItemButton>
       <ListItemIcon>
-        <DashboardIcon />
+        <EngineeringIcon />
       </ListItemIcon>
-      <ListItemText primary="bites" />
+      <ListItemText primary="User metrics" />
     </ListItemButton>
+
     <ListItemButton>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="the" />
+      <ListItemText primary="Content metrics" />
     </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="dust" />
-    </ListItemButton>
+
   </React.Fragment>
 );
 
