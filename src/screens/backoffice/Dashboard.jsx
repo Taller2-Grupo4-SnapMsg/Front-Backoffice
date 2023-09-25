@@ -107,10 +107,10 @@ export default function Dashboard() {
     setOpen(!open);
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     // Check for a valid token when the component mounts
     IsTokenValidHandler(navigate);
-  }, []);
+  }, []);*/
 
   return (
     <ThemeProvider theme={defaultTheme}>
