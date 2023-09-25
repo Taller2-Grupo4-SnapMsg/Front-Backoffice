@@ -3,6 +3,11 @@ const headers = {
   'Access-Control-Allow-Origin': '*',
 };
   
+const OK = 200
+const USER_NOT_FOUND = 404
+const PASSWORD_DOES_NOT_MATCH = 401
+const NOT_ADMIN = 400
+
 const LogInHandler = async (navigate, email, password) => {
   try {
     const requestBody = {
