@@ -50,19 +50,23 @@ const defaultTheme = createTheme({
 });
 
 export default function SignUp() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log("The button has been pressed")
     RegisterHandler(data.get('email'), 
                     data.get('password'), 
                     data.get('firstName'), 
                     data.get('lastName'), 
                     data.get('username'));
-
-    //window.location.href = '/pin';
   };
 
   return (
@@ -79,7 +83,7 @@ export default function SignUp() {
         >
           <Avatar alt="logo" src="/small_logo.png" sx={{ m: 1, width: 56, height: 56}} />
           <Typography component="h1" variant="h5">
-            Sign up
+          Create a new admin
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -174,6 +178,8 @@ export default function SignUp() {
                     }}
                   />
                 </Grid>
+            
+                
             </Grid>
             <Button
               type="submit"
@@ -186,20 +192,8 @@ export default function SignUp() {
                   }
                 }}
             >
-              Sign Up
+              Create a new admin
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/signin" variant="body2" sx={{
-                  color: "#6B5A8E",
-                  '&:hover': {
-                    color: "#947EB0",
-                  }
-                }}>
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />

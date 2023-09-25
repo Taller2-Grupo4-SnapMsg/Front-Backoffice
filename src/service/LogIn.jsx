@@ -26,7 +26,6 @@ const LogInHandler = async (navigate, email, password) => {
       //console.log("token saved: ", localStorage.getItem('token'));
       console.log('Sign in successful');
       
-      //Redirect or perform any other action you need here
       navigate('/admin/dashboard');
     } else {
       // Registration failed

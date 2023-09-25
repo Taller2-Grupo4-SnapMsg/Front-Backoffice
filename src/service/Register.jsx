@@ -25,8 +25,9 @@ const RegisterHandler = async (email, password, firstName, lastName, nickname) =
       // Registration successful
       const token = responseData.token
       localStorage.setItem('token', token);
-      // Redirect or perform any other action you need here
-      //window.location.href = '/pin';
+      console.log('Sign up successful');
+      
+      navigate('/admin/dashboard');
     } else {
       // Registration failed
       console.error('Registration failed:', responseData);
