@@ -10,47 +10,9 @@ import Title from './Title';
 import GetUsersHandler from '../../service/GetUsers';
 
 // Generate Order Data
-function createData( username, name, surname, email, date_of_birth) {
-  return { username, name, surname, email, date_of_birth };
+function createData( username, name, last_name, email, date_of_birth) {
+  return { username, name, last_name, email, date_of_birth };
 }
-
-const rows2 = [
-  createData(
-    'user1',
-    'Elvis',
-    'Presley',
-    'elvis@gmail.com',
-    '16 Mar, 2019'
-  ),
-  createData(
-    'user1',
-    'Elvis',
-    'Presley',
-    'elvis@gmail.com',
-    '16 Mar, 2019'
-  ),
-  createData(
-    'user1',
-    'Elvis',
-    'Presley',
-    'elvis@gmail.com',
-    '16 Mar, 2019'
-  ),
-  createData(
-    'user1',
-    'Elvis',
-    'Presley',
-    'elvis@gmail.com',
-    '16 Mar, 2019'
-  ),
-  createData(
-    'user1',
-    'Elvis',
-    'Presley',
-    'elvis@gmail.com',
-    '16 Mar, 2019'
-  ),
-];
 
 function preventDefault(event) {
   event.preventDefault();
@@ -75,7 +37,7 @@ export default function Orders() {
           return createData(
             user.username,
             user.name,
-            user.surname,
+            user.last_name,
             user.email,
             user.date_of_birth,
           );
@@ -108,7 +70,7 @@ export default function Orders() {
             <TableRow key={row.email}>
               <TableCell style={{ fontSize: '18px' }}>{row.username}</TableCell>
               <TableCell style={{ fontSize: '18px' }}>{row.name}</TableCell>
-              <TableCell style={{ fontSize: '18px' }}>{row.surname}</TableCell>
+              <TableCell style={{ fontSize: '18px' }}>{row.last_name}</TableCell>
               <TableCell style={{ fontSize: '18px' }}>{row.email}</TableCell>
               <TableCell style={{ fontSize: '18px' }}>{row.date_of_birth}</TableCell>
             </TableRow>

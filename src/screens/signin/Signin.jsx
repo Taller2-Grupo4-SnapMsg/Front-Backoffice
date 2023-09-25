@@ -3,6 +3,9 @@ import { useState } from 'react';
 
 import LogInHandler from '../../service/LogIn';
 
+
+import { useNavigate } from 'react-router-dom';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -61,6 +64,8 @@ export default function SignInSide() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -75,11 +80,9 @@ export default function SignInSide() {
 
     // Now you can send email and password to the backend.
     const data = new FormData(event.currentTarget);
-    console.log("email: " + data.get('email') + " and password " + data.get('password'));
-    LogInHandler(data.get('email'), 
+    LogInHandler(navigate,
+                 data.get('email'), 
                  data.get('password'))
-    
-    //history.push('/pin');
   };
 
 
