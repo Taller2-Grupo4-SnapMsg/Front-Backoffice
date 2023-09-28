@@ -18,6 +18,7 @@ import 'dayjs/locale/en-gb';
 import dayjs from 'dayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import { Alert } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -65,6 +66,7 @@ export default function SignUp() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
+  const [fillFieldsAlert, setFillFieldsAlert] = useState(false);
   const navigate = useNavigate();
 
 
@@ -73,6 +75,7 @@ export default function SignUp() {
     // Check if any field is empty
     if (!email || !password || !firstName || !lastName || !nickname || !selectedDate) {
       setError('Please fill out all fields.');
+      setFillFieldsAlert(true);
       return; // Prevent form submission
     }
     // Clear previous error
@@ -205,7 +208,7 @@ export default function SignUp() {
                 <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
                   <DatePicker
                     id = "birthday"
-                    label="Birthday"
+                    label="Birthday*"
                     value={selectedDate}
                     onChange={(newValue) => {setSelectedDate(newValue);}}
                     textField={(params) => <TextField {...params} />}
@@ -235,6 +238,9 @@ export default function SignUp() {
             </Button>
           </Box>
         </Box>
+        {fillFieldsAlert && <Alert severity="error" onClose = {() => setFillFieldsAlert(false)}>
+            Please, fill out all fields!
+          </Alert>}
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
