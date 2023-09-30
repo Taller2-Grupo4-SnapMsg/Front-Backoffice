@@ -13,9 +13,7 @@ const GetUsersHandler = async (navigate) => {
       });
   
       if (!response.ok) {
-        if (response.status === 401) {
-          navigate('/admin/signin');
-        }
+        navigate('/admin/signin');
         throw new Error(response.detail);
       }
   
