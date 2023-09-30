@@ -17,10 +17,8 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './ListItems.jsx';
+import { mainListItems} from './ListItems.jsx';
 import Orders from './Orders.jsx';
-
-import IsTokenValidHandler from '../../service/IsTokenValid.jsx';
 import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
@@ -103,6 +101,8 @@ const defaultTheme = createTheme({
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
+  const token = localStorage.getItem('token')
+  
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -111,6 +111,10 @@ export default function Dashboard() {
     // Check for a valid token when the component mounts
     IsTokenValidHandler(navigate);
   }, []);*/
+  // If we have no token, redirect to signin
+  React.useEffect(() => {
+    if (!token) navigate('/admin/signin');
+  })
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -167,7 +171,7 @@ export default function Dashboard() {
           <List component="nav">
             {mainListItems(navigate)}
             <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            {}
           </List>
         </Drawer>
         <Box

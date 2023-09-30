@@ -6,6 +6,8 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
+import { useNavigate } from 'react-router-dom';
+
 
 import GetUsersHandler from '../../service/GetUsers';
 
@@ -27,11 +29,12 @@ const titleStyle = {
 
 export default function Orders() {
   const [rows, setRows] = React.useState([]);
+  const navigate = useNavigate();
   
   React.useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await GetUsersHandler();
+        const response = await GetUsersHandler(navigate);
         // Assuming the response is an array of user objects
         const formattedRows = response.map((user, index) => {
           return createData(

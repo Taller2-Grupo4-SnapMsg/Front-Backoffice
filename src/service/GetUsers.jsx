@@ -1,10 +1,11 @@
+
 const headers = {
     'Content-Type': 'application/json;charset=utf-8',
     'Access-Control-Allow-Origin': '*',
     'token': localStorage.getItem('token'),
 };
 
-const GetUsersHandler = async () => {
+const GetUsersHandler = async (navigate) => {
     try {
       const response = await fetch('https://loginback-lg51.onrender.com/users/', {
         method: 'GET',
@@ -12,7 +13,10 @@ const GetUsersHandler = async () => {
       });
   
       if (!response.ok) {
-        throw new Error('Failed to fetch users');
+        if (response.status === 401) {
+          navigate('/admin/signin');
+        }
+        throw new Error(response.detail);
       }
   
       const responseData = await response.json();
