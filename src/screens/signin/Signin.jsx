@@ -10,21 +10,19 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Alert } from '@mui/material';
 
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-
-
 
 function Copyright(props) {
   return (
@@ -63,18 +61,23 @@ export default function SignInSide() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-
+  const [loading, setLoading] = useState(false); // For the loading indicator
+  const [fillFieldsAlert, setFillFieldsAlert] = useState(false);
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true); // Show the loading indicator
 
     // Check if email and password are empty
     if (!email || !password) {
-      setError('Please fill out all fields.');
+      setFillFieldsAlert(true);
+      setLoading(false); // Hide the loading indicator
       return; // Prevent form submission
     }
 
+    setFillFieldsAlert(false); // Clear any previous error messages
     // Clear any previous error messages
     setError('');
 
@@ -82,7 +85,10 @@ export default function SignInSide() {
     const data = new FormData(event.currentTarget);
     LogInHandler(navigate,
                  data.get('email'), 
-                 data.get('password'))
+                 data.get('password'),
+                 setLoading,
+                 setInvalidCredentials,
+                 setError)
   };
 
 
@@ -167,56 +173,44 @@ export default function SignInSide() {
                     )
                 }}
                 />
-              <FormControlLabel
-                control={
-                    <Checkbox
-                    value="remember"
-                    color="default"
-                    />
-                }
-                label="Remember me"
-                />
-              <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2, 
-                backgroundColor: "#947EB0",
-                '&:hover': {
-                  backgroundColor: "#6B5A8E",
-                  }
-                }}
-            >
-                Sign In
-            </Button>
+              { loading ? (
+                <Box margin="normal"
+                  sx={{
+                    margin: 'inherit',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <CircularProgress margin = "normal" color="inherit" />
+                </Box>
+              ) : (
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2, 
+                    backgroundColor: "#947EB0",
+                    '&:hover': {
+                      backgroundColor: "#6B5A8E",
+                      }
+                    }}
+                  >
+                  Sign In
+              </Button>
+              )}
              {/* Display error message */}
-                {error && (
-                    <Typography variant="body2" color="error" align="center">
-                    {error}
-                    </Typography>
-                )}
-                <Grid container justifyContent="space-between">
-                <Grid item>
-                    <Link href="/password_recovery" variant="body2" sx={{
-                    color: "#6B5A8E",
-                    '&:hover': {
-                        color: "#947EB0",
-                    }
-                    }}>
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                <Link href="/signup" variant="body2" sx={{
-                    color: "#6B5A8E",
-                    '&:hover': {
-                        color: "#947EB0",
-                    }
-                    }}>
-                    Don't have an account? Sign Up
-                  </Link>
-                </Grid>
-              </Grid>
+             {invalidCredentials &&
+               <Alert sx={{ margin: "inherit"}} severity="error" onClose = {() => setInvalidCredentials(false)}>
+                   {error}
+               </Alert>
+             }
+             {fillFieldsAlert && 
+                <Alert sx={{ margin: "inherit"}} severity="error" onClose = {() => setFillFieldsAlert(false)}>
+                  Please, fill out all fields!
+                </Alert>
+              }
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>

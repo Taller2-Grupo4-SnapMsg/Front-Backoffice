@@ -8,8 +8,10 @@ const USER_NOT_FOUND = 404
 const PASSWORD_DOES_NOT_MATCH = 401
 const NOT_ADMIN = 400
 
-const LogInHandler = async (navigate, email, password) => {
+const LogInHandler = async (navigate, email, password, setLoading, setInvalidCredentials, setError) => {
   try {
+    setInvalidCredentials(false)
+    
     const requestBody = {
       email: email,
       password: password,
@@ -34,6 +36,9 @@ const LogInHandler = async (navigate, email, password) => {
       navigate('/admin/dashboard');
     } else {
       // Registration failed
+      setLoading(false)
+      setInvalidCredentials(true)
+      setError(responseData.detail)
       console.error('Sign in failed:', responseData);
     }
   } catch (error) {
