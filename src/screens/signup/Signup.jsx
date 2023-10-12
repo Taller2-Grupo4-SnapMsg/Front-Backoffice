@@ -24,6 +24,7 @@ import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import RegisterHandler from '../../service/Register';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
@@ -67,9 +68,16 @@ export default function SignUp() {
   const [lastName, setLastName] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [fillFieldsAlert, setFillFieldsAlert] = useState(false);
+  const [unexpectedErrorAlert, setUnexpectedErrorAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const token = localStorage.getItem('token')
 
-
+  // If we have no token, redirect to signin
+  // TODO: Get an endpoint on the backend that checks if the token is an admin token.
+  React.useEffect(() => {
+    if (!token) navigate('/admin/signin');
+  })
   const handleSubmit = (event) => {
     event.preventDefault();
     // Check if any field is empty
@@ -87,7 +95,9 @@ export default function SignUp() {
                     data.get('firstName'), 
                     data.get('lastName'), 
                     data.get('username'),
-                    selectedDate);
+                    selectedDate,
+                    setLoading,
+                    setUnexpectedErrorAlert);
   };
 
   return (
@@ -223,23 +233,40 @@ export default function SignUp() {
                 </LocalizationProvider>
                 </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2, 
-                backgroundColor: "#947EB0",
-                '&:hover': {
-                  backgroundColor: "#6B5A8E",
-                  }
-                }}
-            >
-              Create a new admin
-            </Button>
+            { loading ? (
+                <Box margin="normal"
+                  sx={{
+                    margin: 'inherit',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <CircularProgress margin = "normal" color="inherit" />
+                </Box>
+              ) : (
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2, 
+                    backgroundColor: "#947EB0",
+                    '&:hover': {
+                      backgroundColor: "#6B5A8E",
+                      }
+                    }}
+                  >
+                  Create a new admin
+              </Button>
+              )}
           </Box>
         </Box>
         {fillFieldsAlert && <Alert severity="error" onClose = {() => setFillFieldsAlert(false)}>
             Please, fill out all fields!
+          </Alert>}
+        {unexpectedErrorAlert && <Alert severity="error" onClose = {() => setUnexpectedErrorAlert(false)}>
+            Unexpected error. Please try again later.
           </Alert>}
         <Copyright sx={{ mt: 5 }} />
       </Container>
