@@ -3,8 +3,18 @@ const headers = {
   'Access-Control-Allow-Origin': '*',
 };
 
-const RegisterHandler = async (navigate, email, password, firstName, lastName, nickname, birthday) => {
+const RegisterHandler = async (
+  navigate,
+  email,
+  password,
+  firstName,
+  lastName,
+  nickname,
+  birthday,
+  setLoading,
+  setUnexpectedErrorAlert) => {
   try {
+    setLoading(true);
     const birthdayDate = new Date(birthday);
     const year = birthdayDate.getFullYear(); // Get full year
     const month = birthdayDate.getMonth() + 1; // Get month (0-based, so add 1)
@@ -38,6 +48,8 @@ const RegisterHandler = async (navigate, email, password, firstName, lastName, n
     } else {
       // Registration failed
       console.error('Registration failed:', responseData);
+      setLoading(false);
+      setUnexpectedErrorAlert(true);
     }
   } catch (error) {
     const message =
