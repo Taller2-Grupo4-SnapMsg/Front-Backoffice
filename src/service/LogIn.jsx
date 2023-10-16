@@ -1,3 +1,4 @@
+import { API_URL } from '../constants';
 const headers = {
   'Content-Type': 'application/json;charset=utf-8',
   'Access-Control-Allow-Origin': '*',
@@ -17,7 +18,7 @@ const LogInHandler = async (navigate, email, password, setLoading, setInvalidCre
       password: password,
     };
 
-    const response = await fetch('https://loginback-lg51.onrender.com/login_admin/', {
+    const response = await fetch(API_URL + '/login_admin', {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(requestBody),

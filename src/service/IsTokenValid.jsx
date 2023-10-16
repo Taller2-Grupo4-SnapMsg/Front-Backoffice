@@ -1,3 +1,4 @@
+import { API_URL } from "../constants";
 const headers = {
     'Content-Type': 'application/json;charset=utf-8',
     'Access-Control-Allow-Origin': '*',
@@ -9,7 +10,7 @@ const headers = {
         token: localStorage.getItem('token'),
       };
   
-      const response = await fetch('https://loginback-lg51.onrender.com/validate_user/', { //a pensar!
+      const response = await fetch(API_URL + '/validate_user/', { //a pensar!
         method: 'POST', //(??)
         headers: headers,
         body: JSON.stringify(requestBody),

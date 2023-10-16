@@ -1,3 +1,4 @@
+import { API_URL } from "../constants";
 
 const headers = {
     'Content-Type': 'application/json;charset=utf-8',
@@ -7,7 +8,7 @@ const headers = {
 
 const GetUsersHandler = async (navigate) => {
     try {
-      const response = await fetch('https://loginback-lg51.onrender.com/users/', {
+      const response = await fetch(API_URL + '/users', {
         method: 'GET',
         headers: headers,
       });
