@@ -1,1 +1,1 @@
-export const API_URL = 'https://gateway-api-merok23.cloud.okteto.net';
+export const API_URL = 'https://gateway-api-service-merok23.cloud.okteto.net';
