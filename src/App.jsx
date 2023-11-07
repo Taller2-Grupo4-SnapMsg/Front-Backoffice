@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Im
 import Signin from './screens/signin/Signin';
 import Dashboard from './screens/backoffice/Dashboard';
 import SignUp from './screens/signup/Signup';
+import UserProfile from './screens/profile2/UserProfile';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Route path="/admin/signin" element={<Signin />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/signup" element={<SignUp  />} />
+        <Route path="/admin/users/:email" element={<UserProfile  />} />
         <Route path="*" element={<h1>Not Found</h1>} /> {/* If the path is not found, render this component */}
       </Routes>
     </Router>

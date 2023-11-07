@@ -5,6 +5,8 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
+
 import Title from './Title';
 import { useNavigate } from 'react-router-dom';
 
@@ -61,25 +63,43 @@ export default function Orders() {
       <Table size="medium">
         <TableHead>
           <TableRow>
-            <TableCell style={{ fontSize: '23px' }}>Username</TableCell>
-            <TableCell style={{ fontSize: '23px' }}>First Name</TableCell>
-            <TableCell style={{ fontSize: '23px' }}>Last Name</TableCell>
-            <TableCell style={{ fontSize: '23px' }}>Email</TableCell>
-            <TableCell style={{ fontSize: '23px' }}>Date of Birth</TableCell>
+            <TableCell style={{ fontSize: '23px', textAlign: 'center' }}>Username</TableCell>
+            <TableCell style={{ fontSize: '23px', textAlign: 'center' }}>First Name</TableCell>
+            <TableCell style={{ fontSize: '23px', textAlign: 'center' }}>Last Name</TableCell>
+            <TableCell style={{ fontSize: '23px', textAlign: 'center' }}>Email</TableCell>
+            <TableCell style={{ fontSize: '23px', textAlign: 'center' }}>See profile</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.email}>
-              <TableCell style={{ fontSize: '18px' }}>{row.username}</TableCell>
-              <TableCell style={{ fontSize: '18px' }}>{row.name}</TableCell>
-              <TableCell style={{ fontSize: '18px' }}>{row.last_name}</TableCell>
-              <TableCell style={{ fontSize: '18px' }}>{row.email}</TableCell>
-              <TableCell style={{ fontSize: '18px' }}>{row.date_of_birth}</TableCell>
+              <TableCell style={{ fontSize: '18px', textAlign: 'center' }}>{row.username}</TableCell>
+              <TableCell style={{ fontSize: '18px', textAlign: 'center' }}>{row.name}</TableCell>
+              <TableCell style={{ fontSize: '18px', textAlign: 'center' }}>{row.last_name}</TableCell>
+              <TableCell style={{ fontSize: '18px', textAlign: 'center' }}>{row.email}</TableCell>
+              <TableCell style={{ fontSize: '18px', textAlign: 'center' }}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    backgroundColor: "#947EB0",
+                    '&:hover': {
+                      backgroundColor: "#6B5A8E",
+                    },
+                  }}
+                  onClick={() => navigate(`/admin/users/${row.email}`)}
+                >
+                  Check Profile
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
       <Link color="#947eb0" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
         See more users
       </Link>
