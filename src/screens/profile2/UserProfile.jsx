@@ -1,22 +1,32 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import FetchUser from '../../service/FetchUser';
+import { useState } from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Sidebar from '../backoffice/SideBar';
+import { defaultTheme } from '../../constants.js';
+import ProfileInformation from './ProfileInformation';
 
 function UserProfile() {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({});
   const { email } = useParams();
-  const user = FetchUser(email);
+  FetchUser(email, setLoading, setUser);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
-    <div>
-      {/* Display user information here */}
-      <h1>User Profile</h1>
-      <p>Email: {user.email}</p>
-      <p>Name: {user.name}</p>
-      <p>Surname: {user.surname}</p>
-      <p>Username: {user.username}</p>
-      <p>Date of Birth: {user.dateOfBirth}</p>
-      <p>Location: {user.location}</p>
-      <p>Timestamp: {user.timestamp}</p>
-    </div>
+    <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
+      <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
+        <Sidebar />
+        <Box component="main" className="MainContent" sx={{ flex: 1 }}>
+          <ProfileInformation userData={user} />
+        </Box>
+      </Box>
+    </ThemeProvider>
   );
 }
 

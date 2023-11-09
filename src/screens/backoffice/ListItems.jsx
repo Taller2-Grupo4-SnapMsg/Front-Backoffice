@@ -12,7 +12,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 
 export const mainListItems = (navigate) => (
   <React.Fragment>
-    <ListItemButton>
+    <ListItemButton onClick={() => navigate('/admin/dashboard')}>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>

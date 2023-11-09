@@ -198,8 +198,9 @@ export default function SignInSide() {
                     }}
                   >
                   Sign In
-              </Button>
-              )}
+                </Button>
+              )
+              }
              {/* Display error message */}
              {invalidCredentials &&
                <Alert sx={{ margin: "inherit"}} severity="error" onClose = {() => setInvalidCredentials(false)}>

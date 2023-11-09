@@ -1,16 +1,11 @@
 import { API_URL } from "../constants";
-
-const headers = {
-    'Content-Type': 'application/json;charset=utf-8',
-    'Access-Control-Allow-Origin': '*',
-    'token': localStorage.getItem('token'),
-};
+import { headers_token } from "../constants";
 
 const GetUsersHandler = async (navigate) => {
     try {
       const response = await fetch(API_URL + '/users', {
         method: 'GET',
-        headers: headers,
+        headers: headers_token,
       });
   
       if (!response.ok) {
