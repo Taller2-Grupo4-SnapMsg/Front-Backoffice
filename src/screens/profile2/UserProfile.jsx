@@ -4,7 +4,8 @@ import FetchUser from '../../service/FetchUser';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Sidebar from '../backoffice/SideBar';
+import SideBar from '../backoffice/SideBar';
+import TopBar from '../backoffice/TopBar';
 import { defaultTheme } from '../../constants.js';
 import ProfileInformation from './ProfileInformation';
 
@@ -28,9 +29,10 @@ function UserProfile() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
-        <Sidebar />
-        <Box component="main" className="MainContent" sx={{ flex: 1 }}>
+      <Box sx = {{display: 'flex', flexDirection: 'row'}}>
+        <SideBar />
+        <Box component="main" className="MainContent" sx={{ display: 'flex', flexDirection: 'column' }}>
+          <TopBar />
           <ProfileInformation userData={user} />
         </Box>
       </Box>

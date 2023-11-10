@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { defaultTheme } from '../../constants.js';
 import IsTokenValidHandler from '../../service/IsTokenValid.jsx';
 import SideBar from './SideBar.jsx';
+import TopBar from './TopBar.jsx';
 
 function Copyright(props) {
   return (
@@ -48,7 +49,8 @@ export default function Dashboard() {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <SideBar/>
+        <SideBar />
+        <TopBar />
         <Box
           component="main"
           sx={{
