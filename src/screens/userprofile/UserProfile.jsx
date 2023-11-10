@@ -8,6 +8,7 @@ import SideBar from '../../components/SideBar.jsx';
 import TopBar from '../../components/TopBar.jsx';
 import { defaultTheme } from '../../constants.js';
 import ProfileInformation from './ProfileInformation.jsx';
+import LoadingAnimation from '../../components/loadinglogo/LoadingScreen.jsx';
 
 function UserProfile() {
   const [loading, setLoading] = useState(true);
@@ -23,16 +24,16 @@ function UserProfile() {
   }, [email]); // Dependency array ensures this effect runs only when 'email' changes
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingAnimation />;
   }
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <Box sx = {{display: 'flex', flexDirection: 'row'}}>
-        <SideBar />
-        <Box component="main" className="MainContent" sx={{ display: 'flex', flexDirection: 'column' }}>
-          <TopBar />
+      <TopBar />
+      <SideBar />
+      <Box component="main" className="MainContent" sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Box sx = {{display: 'flex', flexDirection: 'row'}}>
           <ProfileInformation userData={user} />
         </Box>
       </Box>

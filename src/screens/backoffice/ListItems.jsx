@@ -47,21 +47,3 @@ export const mainListItems = (navigate) => (
 
   </React.Fragment>
 );
-/*
-import ListSubheader from '@mui/material/ListSubheader';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-
-export const secondaryListItems = (
-  <React.Fragment>
-  <ListSubheader component="div" inset>
-  Saved reports
-  </ListSubheader>
-  <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItemButton>
-  </React.Fragment>
-);
-*/
