@@ -36,8 +36,13 @@ export default function Dashboard() {
 
   const navigate = useNavigate();
   
-  IsTokenValidHandler(navigate);
+  React.useEffect(() => {
+    const verifyToken = async () => {
+      await IsTokenValidHandler(navigate);
+    };
 
+    verifyToken();
+  });
 
   return (
     <ThemeProvider theme={defaultTheme}>

@@ -2,7 +2,7 @@ import { API_URL } from '../constants.js';
 import { headers_token } from '../constants.js';
 import { useNavigate } from 'react-router-dom';
 
-const FetchUser = async (email, setLoading, setUser) => {
+const FetchUser = async (email, setLoading, setData) => {
     try {
         const response = await fetch(`${API_URL}/users/find?email=${encodeURIComponent(email)}`, {
             method: 'GET',
@@ -14,7 +14,7 @@ const FetchUser = async (email, setLoading, setUser) => {
         }
         setLoading(false);
         const responseData = await response.json();
-        setUser(responseData);
+        setData(responseData);
         return;
 
       } catch (error) {
