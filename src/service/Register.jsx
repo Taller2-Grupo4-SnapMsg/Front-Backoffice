@@ -9,27 +9,13 @@ const RegisterHandler = async (
   navigate,
   email,
   password,
-  firstName,
-  lastName,
-  nickname,
-  birthday,
   setLoading,
   setUnexpectedErrorAlert) => {
   try {
     setLoading(true);
-    const birthdayDate = new Date(birthday);
-    const year = birthdayDate.getFullYear(); // Get full year
-    const month = birthdayDate.getMonth() + 1; // Get month (0-based, so add 1)
-    const day = birthdayDate.getDate(); // Get day of the month
-    
-    const formattedBirthday = `${year} ${month} ${day}`;
     const requestBody = {
       email: email,
-      password: password,
-      name: firstName,
-      last_name: lastName,
-      username: nickname,
-      date_of_birth: formattedBirthday,
+      password: password
     };
 
     const response = await fetch(API_URL + '/register_admin', {
@@ -44,12 +30,9 @@ const RegisterHandler = async (
       // Registration successful
       const token = responseData.token
       localStorage.setItem('token', token);
-      console.log('Sign up successful');
-      
       navigate('/admin/dashboard');
     } else {
       // Registration failed
-      console.error('Registration failed:', responseData);
       setLoading(false);
       setUnexpectedErrorAlert(true);
     }

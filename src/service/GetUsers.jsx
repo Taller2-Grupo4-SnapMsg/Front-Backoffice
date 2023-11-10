@@ -7,12 +7,7 @@ const GetUsersHandler = async (navigate) => {
         method: 'GET',
         headers: headers_token,
       });
-  
-      if (!response.ok) {
-        navigate('/admin/signin');
-        throw new Error(response.detail);
-      }
-  
+        
       const responseData = await response.json();
       return responseData; // Return the entire response data
     } catch (error) {

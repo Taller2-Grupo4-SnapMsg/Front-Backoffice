@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import { styled } from '@mui/material/styles';
-import { mainListItems} from './ListItems.jsx';
+import { mainListItems} from '../screens/backoffice/ListItems.jsx';
 import MuiDrawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';

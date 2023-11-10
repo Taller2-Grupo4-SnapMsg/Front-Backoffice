@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import FetchUser from '../../service/FetchUser';
+import FetchUser from '../../service/FetchUser.jsx';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import SideBar from '../backoffice/SideBar';
-import TopBar from '../backoffice/TopBar';
+import SideBar from '../../components/SideBar.jsx';
+import TopBar from '../../components/TopBar.jsx';
 import { defaultTheme } from '../../constants.js';
-import ProfileInformation from './ProfileInformation';
+import ProfileInformation from './ProfileInformation.jsx';
 
 function UserProfile() {
   const [loading, setLoading] = useState(true);
