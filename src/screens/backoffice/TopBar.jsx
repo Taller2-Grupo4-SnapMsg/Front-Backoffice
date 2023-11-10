@@ -8,8 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 import MuiAppBar from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import drawerWidth from './SideBar.jsx';
-import { useNavigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
 
 
 
@@ -22,8 +21,7 @@ const AppBar = styled(MuiAppBar, {
       duration: theme.transitions.duration.leavingScreen,
     }),
     ...(open && {
-      marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
+      width: `100%`,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -32,22 +30,23 @@ const AppBar = styled(MuiAppBar, {
   }));
 
 
-export default function SideBar() {
+export default function TopBar() {
 
     return(
         <AppBar open={open}>
             <Toolbar>
-            <Typography
-                component="h1"
-                variant="h6"
-                color="inherit"
-                noWrap
-                sx={{ flexGrow: 1 }}
-            >
-                Backoffice
-            </Typography>
+              <Box component = "img" src = '/small_logo.png' sx = {{ width: 32, height: 32, margin: '1%' }}/>
+              <Typography
+                  component="h1"
+                  variant="h6"
+                  color="inherit"
+                  noWrap
+                  sx={{ flexGrow: 1 }}
+              >
+                  SnapMsg - Backoffice
+              </Typography>
             </Toolbar>
         </AppBar>
-    )
+    );
 
 }

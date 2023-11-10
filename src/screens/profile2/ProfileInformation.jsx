@@ -9,7 +9,7 @@ import { defaultTheme } from '../../constants.js';
 
 export default function ProfileInformation({userData}) {
     const image_src = userData?.avatar;
-    while (image_src === undefined) {
+    if (image_src === undefined) {
         return <div>Loading...</div>;
     }
     return (
@@ -22,6 +22,7 @@ export default function ProfileInformation({userData}) {
                     border: '2px solid #fff',
                     boxShadow: '0 0 0 2px #fff',
                     marginBottom: 8,
+                    marginTop: 8
                 }}/>
                 <Typography variant="h4" sx={{ textAlign: 'center', mt: 2 }}>
                     {userData.name}
