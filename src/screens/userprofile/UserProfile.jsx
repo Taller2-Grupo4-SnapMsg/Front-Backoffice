@@ -9,6 +9,7 @@ import TopBar from '../../components/TopBar.jsx';
 import { defaultTheme } from '../../constants.js';
 import ProfileInformation from './ProfileInformation.jsx';
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen.jsx';
+import SnapMsgTable from './SnapMsgTable.jsx';
 
 function UserProfile() {
   const [loading, setLoading] = useState(true);
@@ -33,8 +34,11 @@ function UserProfile() {
       <TopBar />
       <SideBar />
       <Box component="main" className="MainContent" sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Box sx = {{display: 'flex', flexDirection: 'row'}}>
-          <ProfileInformation userData={user} />
+        <Box sx = {{display: 'flex', flexDirection: 'row', margin: '1%'}}>
+          <Box sx = {{margin: '1%'}}>
+            <ProfileInformation userData={user} />
+          </Box>
+          <SnapMsgTable userData={user} />
         </Box>
       </Box>
     </ThemeProvider>
