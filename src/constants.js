@@ -1,6 +1,8 @@
 import { createTheme } from '@mui/material/styles';
 
 export const API_URL = 'https://gateway-api-service-merok23.cloud.okteto.net';
+export const SNAPMSG_URL = 'https://postsback.onrender.com';
+
 export const headers = {
     'Content-Type': 'application/json;charset=utf-8',
     'Access-Control-Allow-Origin': '*',

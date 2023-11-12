@@ -7,19 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-function createData(body, likes, shares) {
-  return { body, likes, shares};
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Eclair', 262, 16.0),
-  createData('Cupcake', 305, 3.7),
-  createData('Gingerbread', 356, 16.0),
-];
-
-export default function SnapMsgTable() {
+export default function SnapMsgTable({rows}) {
+  const filteredRows = rows.filter((row) => row.body != "");
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -31,7 +20,7 @@ export default function SnapMsgTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {filteredRows.map((row) => (
             <TableRow
               key={row.body}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

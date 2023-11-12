@@ -25,7 +25,7 @@ export default function ProfileInformation({userData}) {
                     marginTop: 8
                 }}/>
                 <Typography variant="h4" sx={{ textAlign: 'center', mt: 2 }}>
-                    {userData.name}
+                    {userData.username}
                 </Typography>
                 <Typography variant="subtitle1" sx={{ textAlign: 'center', color: 'text.secondary' }}>
                     {userData.email}

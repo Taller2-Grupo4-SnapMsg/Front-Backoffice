@@ -50,7 +50,6 @@ export default function Dashboard() {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <SideBar />
-        <TopBar />
         <Box
           component="main"
           sx={{
@@ -63,7 +62,7 @@ export default function Dashboard() {
             overflow: 'auto',
           }}
           >
-          <Toolbar />
+          <TopBar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
               {/* Users */}
               <Grid item xs={12}>
