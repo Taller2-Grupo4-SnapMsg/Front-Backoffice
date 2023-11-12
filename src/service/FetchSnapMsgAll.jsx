@@ -5,7 +5,7 @@ import { PAGE_SIZE } from '../constants.js';
 const FetchSnapMsgAll = async (pageNumber) => {
     try {
         const offset = (pageNumber - 1) * PAGE_SIZE;  
-        const response = await fetch(`${SNAPMSG_URL}/posts/admin?start=${offset}&ammount=${PAGE_SIZE}`, {
+        const response = await fetch(`${SNAPMSG_URL}/posts/admin/all?start=${offset}&ammount=${PAGE_SIZE}`, {
             method: 'GET',
             headers: headers_token,
             });
