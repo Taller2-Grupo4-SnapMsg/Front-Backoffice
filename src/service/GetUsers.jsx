@@ -1,20 +1,27 @@
-import { API_URL } from "../constants";
-import { headers_token } from "../constants";
+import { API_URL, headers_token, PAGE_SIZE } from "../constants";
 
-const GetUsersHandler = async (navigate) => {
-    try {
-      const response = await fetch(API_URL + '/users', {
-        method: 'GET',
-        headers: headers_token,
-      });
-        
-      const responseData = await response.json();
-      return responseData; // Return the entire response data
-    } catch (error) {
-      console.error('Error fetching users:', error);
-      throw new Error('Failed to fetch users');
+const GetUsersHandler = async (query, pageNumber) => {
+  try {
+    const offset = (pageNumber - 1) * PAGE_SIZE;
+    let url;
+
+    if (query === "") {
+      url = `${API_URL}/users?start=${offset}&ammout=${PAGE_SIZE}`;
+    } else {
+      url = `${API_URL}/users/${query}?start=${offset}&ammout=${PAGE_SIZE}`;
     }
-  };
-  
-  export default GetUsersHandler;
-  
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: headers_token,
+    });
+
+    const responseData = await response.json();
+    return responseData; // Return the entire response data
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw new Error('Failed to fetch users');
+  }
+};
+
+export default GetUsersHandler;

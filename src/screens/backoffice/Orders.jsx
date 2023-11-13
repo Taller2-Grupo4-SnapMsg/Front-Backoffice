@@ -1,11 +1,15 @@
 import * as React from 'react';
-import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
+import Pagination from '@mui/material/Pagination';
+import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Title from './Title';
 import { useNavigate } from 'react-router-dom';
@@ -18,10 +22,6 @@ function createData( username, name, last_name, email, date_of_birth) {
   return { username, name, last_name, email, date_of_birth };
 }
 
-function preventDefault(event) {
-  event.preventDefault();
-}
-
 const titleStyle = {
   color: '#947eb0',
   fontSize: '24px',
@@ -32,11 +32,15 @@ const titleStyle = {
 export default function Orders() {
   const [rows, setRows] = React.useState([]);
   const navigate = useNavigate();
-  
+  const [pageNumber, setPage] = React.useState(1);
+  const [loadingPage, setLoadingPage] = React.useState(true);
+  const [query, setQuery] = React.useState(''); // Search query
+
   React.useEffect(() => {
+    setLoadingPage(true);
     const fetchUsers = async () => {
       try {
-        const response = await GetUsersHandler(navigate);
+        const response = await GetUsersHandler(query, pageNumber);
         // Assuming the response is an array of user objects
         const formattedRows = response.map((user, index) => {
           return createData(
@@ -53,13 +57,40 @@ export default function Orders() {
       }
     };
 
-    fetchUsers();
-  }, []); // Run this effect only once when component mounts
+    const loadData = async () => {
+      try {
+        await Promise.all([fetchUsers()]);
+      } finally {
+        setLoadingPage(false);
+      }
+    };
+    loadData();
 
+  }, [pageNumber, query]); // Run this when the page number or the query changes
 
   return (
     <React.Fragment>
-      <Title style={titleStyle}>Users</Title>
+      {/** Search bar + title */}
+      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+        <Title style={titleStyle}>Users</Title>
+        <Divider orientation="vertical" flexItem sx = {{margin: '1%'}} />
+        <TextField                   
+                id="Search user"
+                label="Search user"
+                name="Search user"
+                autoComplete="query"
+                color = "primary"
+                fullWidth
+                sx = {{ 
+                  "& label.Mui-focused": {
+                    color: "#A995C9"
+                  }
+                  }}
+                value = {query}
+                onChange={(e) => {setQuery(e.target.value), setPage(1)}}
+                autoFocus />
+      </Box>
+      {/** Table */}
       <Table size="medium">
         <TableHead>
           <TableRow>
@@ -99,10 +130,30 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
+      <Divider />
 
-      <Link color="#947eb0" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-        See more users
-      </Link>
+      {/* Pagination */}
+      {loadingPage ? (
+        <Pagination
+            count={10000}
+            siblingCount={5}
+            boundaryCount={0}
+            page={pageNumber}
+            color="primary"
+            disabled
+            sx={{ margin: '1%', '.MuiPagination-ul': { justifyContent: 'space-around' } }}
+        />
+        ) : (
+        <Pagination
+            count={10000}
+            page={pageNumber}
+            siblingCount={5}
+            boundaryCount={0}
+            color="primary"
+            onChange={(_, page) => setPage(page)}
+            sx={{ margin: '1%', '.MuiPagination-ul': { justifyContent: 'space-around' } }}
+        />
+      )}
     </React.Fragment>
   );
 }
