@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const FetchUser = async (email, setData) => {
     try {
-        const response = await fetch(`${API_URL}/users/find?email=${encodeURIComponent(email)}`, {
+        const response = await fetch(`${API_URL}/users/admin/find?email=${encodeURIComponent(email)}`, {
             method: 'GET',
             headers: headers_token,
             });
