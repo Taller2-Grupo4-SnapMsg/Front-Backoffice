@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Pagination from '@mui/material/Pagination';
+import TextField from '@mui/material/TextField';
 
 import FetchSnapMsgAll from '../../service/FetchSnapMsgAll.jsx';
 import SideBar from '../../components/SideBar.jsx';
@@ -21,12 +22,13 @@ function SnapMsg() {
     const [loading, setLoading] = useState(true);
     const [rows, setRows] = React.useState([]);
     const [page, setPage] = React.useState(1);
+    const [query, setQuery] = React.useState('');
     const [loadingPage, setLoadingPage] = React.useState(true);
 
     useEffect(() => {
         setLoadingPage(true);
         const fetchSnapMsg = async () => {
-        const response = await FetchSnapMsgAll(page);
+        const response = await FetchSnapMsgAll(page, query);
         const formattedRows = response.map((snapmsg) => {
             return createData(
                 snapmsg.user_creator.email,
@@ -49,7 +51,7 @@ function SnapMsg() {
     
     loadData();
     setLoadingPage(false);
-    }, [page]);
+    }, [page, query]);
 
     if (loading) {
         return <LoadingAnimation />;
@@ -74,6 +76,21 @@ function SnapMsg() {
                 >
                 <TopBar />
                 <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+                <TextField                   
+                        id="Search text"
+                        label="Search text"
+                        name="Search text"
+                        autoComplete="query"
+                        color = "primary"
+                        fullWidth
+                        sx = {{ 
+                        "& label.Mui-focused": {
+                            color: "#A995C9"
+                        }
+                        }}
+                        value = {query}
+                        onChange={(e) => {setQuery(e.target.value), setPage(1)}}
+                        autoFocus />
                     {/* Posts */}
                     <Box sx = {{margin: '1%'}}>
                         <SnapMsgTableWithUsers rows = {rows}/>
@@ -83,6 +100,7 @@ function SnapMsg() {
                         <Pagination
                             count={10000}
                             siblingCount={5}
+                            page={page}
                             boundaryCount={0}
                             color="primary"
                             disabled
@@ -92,6 +110,7 @@ function SnapMsg() {
                         <Pagination
                             count={10000}
                             siblingCount={5}
+                            page={page}
                             boundaryCount={0}
                             color="primary"
                             onChange={(_, value) => setPage(value)}

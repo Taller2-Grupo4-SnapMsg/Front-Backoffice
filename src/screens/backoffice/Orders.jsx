@@ -9,7 +9,6 @@ import Pagination from '@mui/material/Pagination';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import Title from './Title';
 import { useNavigate } from 'react-router-dom';
