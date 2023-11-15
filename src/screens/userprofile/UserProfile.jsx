@@ -15,10 +15,11 @@ import ProfileInformation from './ProfileInformation.jsx';
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen.jsx';
 import SnapMsgTable from './SnapMsgTable.jsx';
 import FetchUserSnapMsg from '../../service/FetchUserSnapMsg.jsx';
+import { translateImage } from '../../service/TranslateImagePath.jsx';
 
 
-function createData(body, likes, shares, created_at) {
-  return { body, likes, shares, created_at};
+function createData(body, image, likes, shares, created_at) {
+  return { body, image, likes, shares, created_at};
 }
 
 function UserProfile() {
@@ -37,14 +38,24 @@ function UserProfile() {
     const fetchSnapMsg = async () => {
       setLoadingPage(true);
       const response = await FetchUserSnapMsg(email, page);
-      const formattedRows = response.map((snapmsg) => {
-        return createData(
-          snapmsg.text,
-          snapmsg.number_likes,
-          snapmsg.number_reposts,
-          snapmsg.created_at,
-        );
+
+      const promises = response.map(async (snapmsg) => {
+        const responseImage = await translateImage(snapmsg.image);
+        snapmsg.image = responseImage;
+        return snapmsg;
       });
+      
+      const resolvedResponse = await Promise.all(promises);
+      const formattedRows = resolvedResponse.map((snapmsg) =>
+      createData(
+        snapmsg.text,
+        snapmsg.image,
+        snapmsg.number_likes,
+        snapmsg.number_reposts,
+        snapmsg.created_at
+      )
+    );
+
       setRows(formattedRows);
     };
   

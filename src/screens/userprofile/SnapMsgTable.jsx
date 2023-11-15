@@ -6,7 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import { defaultTheme } from '../../constants';
+import ModalAndImage from './ModalAndImage';
 
 const secondary_colour = defaultTheme.palette.secondary.main;
 
@@ -20,6 +22,7 @@ export default function SnapMsgTable({rows}) {
         <TableHead>
           <TableRow>
             <TableCell sx = {{color: secondary_colour}}>SnapMsg</TableCell>
+            <TableCell sx = {{color: secondary_colour}} align="right">Image</TableCell>
             <TableCell sx = {{color: secondary_colour}} align="right">Likes</TableCell>
             <TableCell sx = {{color: secondary_colour}} align="right">Shares</TableCell>
             <TableCell sx = {{color: secondary_colour}} align="right">Created at</TableCell>
@@ -36,6 +39,7 @@ export default function SnapMsgTable({rows}) {
               <TableCell component="th" scope="row">
                 {row.body}
               </TableCell>
+              <TableCell align="right"><ModalAndImage image_src = {row.image} /></TableCell>
               <TableCell align="right">{row.likes}</TableCell>
               <TableCell align="right">{row.shares}</TableCell>
               <TableCell align="right">{row.created_at}</TableCell>

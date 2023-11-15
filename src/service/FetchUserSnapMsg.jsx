@@ -1,4 +1,4 @@
-import { SNAPMSG_URL } from '../constants.js';
+import { SNAPMSG_URL, API_URL } from '../constants.js';
 import { headers_token } from '../constants.js';
 import { PAGE_SIZE } from '../constants.js';
 
@@ -9,7 +9,7 @@ const FetchUserSnapMsg = async (email, page) => {
             method: 'GET',
             headers: headers_token,
             });
-        const data = await response.json();
+        let data = await response.json();
         return data;
       } catch (error) {
         console.error('Error fetching user: ', error);
