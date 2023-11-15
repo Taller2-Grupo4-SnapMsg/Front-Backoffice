@@ -12,10 +12,11 @@ import TopBar from '../../components/TopBar.jsx';
 import { defaultTheme } from '../../constants.js';
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen.jsx';
 import SnapMsgTableWithUsers from './SnapMsgTableWithUsers.jsx';
+import { translateImage } from '../../service/TranslateImagePath.jsx';
 
 
-function createData(poster, body, likes, shares, created_at) {
-  return {poster, body, likes, shares, created_at};
+function createData(poster, image, body, likes, shares, created_at) {
+  return {poster, image, body, likes, shares, created_at};
 }
 
 function SnapMsg() {
@@ -29,9 +30,19 @@ function SnapMsg() {
         setLoadingPage(true);
         const fetchSnapMsg = async () => {
         const response = await FetchSnapMsgAll(page, query);
-        const formattedRows = response.map((snapmsg) => {
+
+        const promises = response.map(async (snapmsg) => {
+            const responseImage = await translateImage(snapmsg.image);
+            snapmsg.image = responseImage;
+            return snapmsg;
+        });
+
+        const resolvedResponse = await Promise.all(promises);
+
+        const formattedRows = resolvedResponse.map((snapmsg) => {
             return createData(
                 snapmsg.user_creator.email,
+                snapmsg.image,
                 snapmsg.text,
                 snapmsg.number_likes,
                 snapmsg.number_reposts,
