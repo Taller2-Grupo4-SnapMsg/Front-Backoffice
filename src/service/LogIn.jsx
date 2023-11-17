@@ -30,8 +30,9 @@ const LogInHandler = async (navigate, email, password, setLoading, setInvalidCre
     if (response.status === 200) {
       // Registration successful
       const token = responseData.token
-      localStorage.setItem('token', token);
-      //console.log("token saved: ", localStorage.getItem('token'));
+      if (token !== undefined) {
+        localStorage.setItem('token', token);
+      }//console.log("token saved: ", localStorage.getItem('token'));
       console.log('Sign in successful');
       
       navigate('/admin/dashboard');

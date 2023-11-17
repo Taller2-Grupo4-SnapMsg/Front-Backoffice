@@ -12,12 +12,8 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import 'dayjs/locale/en-gb';
-import dayjs from 'dayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers';
+import { ThemeProvider } from '@mui/material/styles';
+import { defaultTheme } from '../../constants.js';
 import { Alert } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
@@ -25,6 +21,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import RegisterHandler from '../../service/Register';
 import CircularProgress from '@mui/material/CircularProgress';
+import IsTokenValidHandler from '../../service/IsTokenValid.jsx';
 
 
 
@@ -46,27 +43,11 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
-const defaultTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#353839', //In theory the rest are calculated from here.
-      light: '#F5EBFF',
-    },
-    mode: 'dark',
-  }
-});
-
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [selectedDate, setSelectedDate] = useState(null);
   const [fillFieldsAlert, setFillFieldsAlert] = useState(false);
   const [unexpectedErrorAlert, setUnexpectedErrorAlert] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -74,14 +55,14 @@ export default function SignUp() {
   const token = localStorage.getItem('token')
 
   // If we have no token, redirect to signin
-  // TODO: Get an endpoint on the backend that checks if the token is an admin token.
   React.useEffect(() => {
-    if (!token) navigate('/admin/signin');
+    IsTokenValidHandler(navigate, token)
   })
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Check if any field is empty
-    if (!email || !password || !firstName || !lastName || !nickname || !selectedDate) {
+    if (!email || !password) {
       setError('Please fill out all fields.');
       setFillFieldsAlert(true);
       return; // Prevent form submission
@@ -91,11 +72,7 @@ export default function SignUp() {
     const data = new FormData(event.currentTarget);
     RegisterHandler(navigate, 
                     data.get('email'), 
-                    data.get('password'), 
-                    data.get('firstName'), 
-                    data.get('lastName'), 
-                    data.get('username'),
-                    selectedDate,
+                    data.get('password'),
                     setLoading,
                     setUnexpectedErrorAlert);
   };
@@ -118,39 +95,6 @@ export default function SignUp() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  sx = {{ 
-                    "& label.Mui-focused": {
-                      color: "#A995C9"
-                    }
-                  }}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                  sx = {{ 
-                    "& label.Mui-focused": {
-                      color: "#A995C9"
-                    }
-                  }}
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -166,6 +110,7 @@ export default function SignUp() {
                     }
                     }}
                   onChange={(e) => setEmail(e.target.value)}
+                  autoFocus
                 />
               </Grid>
               <Grid item xs={12}>
@@ -198,40 +143,6 @@ export default function SignUp() {
                 onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                    required
-                    fullWidth
-                    id="username"
-                    label="Username"
-                    name="username"
-                    autoComplete="username"
-                    sx = {{
-                      "& label.Mui-focused": {
-                        color: "#A995C9"
-                      }
-                    }}
-                    onChange={(e) => setNickname(e.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
-                  <DatePicker
-                    id = "birthday"
-                    label="Birthday*"
-                    value={selectedDate}
-                    onChange={(newValue) => {setSelectedDate(newValue);}}
-                    textField={(params) => <TextField {...params} />}
-                    maxDate={dayjs(new Date())}
-                    sx = {{
-                      "& label.Mui-focused": {
-                        color: "#A995C9"
-                      },
-                      "width": "100%"
-                    }}
-                  />
-                </LocalizationProvider>
-                </Grid>
             </Grid>
             { loading ? (
                 <Box margin="normal"
