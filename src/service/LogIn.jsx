@@ -1,14 +1,6 @@
 import { API_URL } from '../constants';
-const headers = {
-  'Content-Type': 'application/json;charset=utf-8',
-  'Access-Control-Allow-Origin': '*',
-};
+import { headers } from '../constants';
   
-const OK = 200
-const USER_NOT_FOUND = 404
-const PASSWORD_DOES_NOT_MATCH = 401
-const NOT_ADMIN = 400
-
 const LogInHandler = async (navigate, email, password, setLoading, setInvalidCredentials, setError) => {
   try {
     setInvalidCredentials(false)
