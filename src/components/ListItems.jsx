@@ -4,7 +4,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PeopleIcon from '@mui/icons-material/People';
-import PersonAddDisabledIcon from '@mui/icons-material/PersonAddDisabled';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import Divider from '@mui/material/Divider';
@@ -69,14 +68,6 @@ export const mainListItems = (navigate) => (
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="SnapMsg's posts" />
-    </ListItemButton>
-    <Divider sx={{ my: 1 }} />
-
-    <ListItemButton>
-      <ListItemIcon>
-        <PersonAddDisabledIcon />
-      </ListItemIcon>
-      <ListItemText primary="Block user" />
     </ListItemButton>
     <Divider sx={{ my: 1 }} />
 

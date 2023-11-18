@@ -15,10 +15,11 @@ import { useNavigate } from 'react-router-dom';
 
 
 import GetUsersHandler from '../../service/GetUsers';
+import BlockingButton from './BlockingButton';
 
 // Generate Order Data
-function createData( username, name, last_name, email, date_of_birth) {
-  return { username, name, last_name, email, date_of_birth };
+function createData( username, name, last_name, email, date_of_birth, blocked) {
+  return { username, name, last_name, email, date_of_birth, blocked};
 }
 
 const titleStyle = {
@@ -40,14 +41,14 @@ export default function Orders() {
     const fetchUsers = async () => {
       try {
         const response = await GetUsersHandler(query, pageNumber);
-        // Assuming the response is an array of user objects
-        const formattedRows = response.map((user, index) => {
+        const formattedRows = response.map((user) => {
           return createData(
             user.username,
             user.name,
             user.last_name,
             user.email,
             user.date_of_birth,
+            user.blocked
           );
         });
         setRows(formattedRows);
@@ -98,6 +99,8 @@ export default function Orders() {
             <TableCell style={{ fontSize: '23px', textAlign: 'center' }}>Last Name</TableCell>
             <TableCell style={{ fontSize: '23px', textAlign: 'center' }}>Email</TableCell>
             <TableCell style={{ fontSize: '23px', textAlign: 'center' }}>See profile</TableCell>
+            <TableCell style={{ fontSize: '23px', textAlign: 'center' }}>Block User</TableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -124,6 +127,9 @@ export default function Orders() {
                 >
                   Check Profile
                 </Button>
+              </TableCell>
+              <TableCell style={{ fontSize: '18px', textAlign: 'center' }}>
+                  <BlockingButton email={row.email} blocked={row.blocked} />
               </TableCell>
             </TableRow>
           ))}

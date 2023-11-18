@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { mainListItems} from '../screens/backoffice/ListItems.jsx';
+import { mainListItems} from './ListItems';
 import AppBar from '@mui/material/AppBar';
 import List from '@mui/material/List';
 import { useNavigate } from 'react-router-dom';
