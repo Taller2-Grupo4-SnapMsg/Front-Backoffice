@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 
 import { defaultTheme } from '../../constants';
 import ModalAndImage from '../../components/ModalAndImage';
+import { formatDateToUTC } from '../../utils/DateTransformer.jsx';
 
 const secondary_colour = defaultTheme.palette.secondary.main;
 
@@ -45,7 +46,7 @@ export default function SnapMsgTable({rows}) {
                 <TableCell align="right"><ModalAndImage image_src = {row.image} /></TableCell>
                 <TableCell align="right">{row.likes}</TableCell>
                 <TableCell align="right">{row.shares}</TableCell>
-                <TableCell align="right">{row.created_at}</TableCell>
+                <TableCell align="right">{formatDateToUTC(row.created_at)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
