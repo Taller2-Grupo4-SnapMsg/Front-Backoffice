@@ -17,10 +17,10 @@ import ServiceStatus from './ServiceStatus';
 
 const ServiceList = () => {
   const services = [
-    { name: 'Admins', status: 'up' },
-    { name: 'Users', status: 'down' },
-    { name: 'Posts', status: 'up' },
-    { name: 'Metrics', status: 'down' },
+    { name: 'Admins'},
+    { name: 'Users'},
+    { name: 'Posts'},
+    { name: 'Metrics'},
   ];
 
   return (

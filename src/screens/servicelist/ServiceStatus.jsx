@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Badge from '@mui/material/Badge';
+import Paper from '@mui/material/Paper';
 
 import { API_URL } from '../../constants';
 
 const ServiceStatus = ({ service }) => {
     const [isUp, setStatus] = useState(false);
-    console.log("ServiceName: " + service.name)
+    const lower_name = service.name.toLowerCase();
     useEffect(() => {
     const checkServiceStatus = async () => {
         try {
-        //const response = await fetch(API_URL + '/status/' + serviceName);
-        const response = { status: 200 };
+        const response = await fetch(API_URL + '/service_status?service=' + lower_name);
         if (response.status === 200) {
             setStatus(true);
         } else {
@@ -26,18 +26,20 @@ const ServiceStatus = ({ service }) => {
 
     if (isUp) {
         return (
-            <Badge color = "secondary" badgeContent={0}>
-                {/**Tick: */}
-                &#10004;
-            </Badge>
+            <Paper elevation = {0} sx = {{color: "green"}}>
+                <Badge color = "secondary" badgeContent={0}>
+                    Available
+                </Badge>
+            </Paper>
         )
     }
 
     return (
-        <Badge color = "secondary" badgeContent={0}>
-            {/**Cross: */}
-            &#10008;
-        </Badge>
+        <Paper elevation = {0} sx = {{color: "red"}}>
+            <Badge color = "secondary" badgeContent={0}>
+                Unavailable
+            </Badge>
+        </Paper>
     )
 };
 
