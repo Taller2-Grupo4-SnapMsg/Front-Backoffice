@@ -71,7 +71,7 @@ export const mainListItems = (navigate) => (
     </ListItemButton>
     <Divider sx={{ my: 1 }} />
 
-    <ListItemButton>
+    <ListItemButton onClick={() => navigate('/admin/user_metrics')}>
       <ListItemIcon>
         <EngineeringIcon />
       </ListItemIcon>
