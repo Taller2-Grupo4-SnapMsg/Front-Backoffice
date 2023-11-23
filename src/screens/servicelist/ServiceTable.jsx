@@ -7,6 +7,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Switch from '@mui/material/Switch';
 
 import { defaultTheme } from '../../constants';
 import ServiceStatus from './ServiceStatus';
