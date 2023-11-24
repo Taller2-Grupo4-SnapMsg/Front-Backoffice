@@ -5,6 +5,7 @@ import Dashboard from './screens/backoffice/Dashboard';
 import SignUp from './screens/signup/Signup';
 import UserProfile from './screens/userprofile/UserProfile';
 import SnapMsg from './screens/snapmsg/SnapMsg';
+import UserMetrics from './screens/user_metrics/UserMetrics';
 import ServiceList from './screens/servicelist/ServiceList';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/admin/signup" element={<SignUp  />} />
         <Route path="/admin/users/:email" element={<UserProfile  />} />
         <Route path="/admin/snapmsg" element={<SnapMsg />} />
+        <Route path="/admin/user_metrics" element={<UserMetrics />} />
         <Route path="/admin/service_status" element={<ServiceList />} />
         <Route path="*" element={<h1>Not Found</h1>} /> {/* If the path is not found, render this component */}
       </Routes>
