@@ -1,155 +1,79 @@
 import React, { useEffect, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import { Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { defaultTheme } from '../../constants';
 import { ThemeProvider } from '@mui/material/styles';
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
-import Grid from '@mui/material/Grid';
+import Public from '@mui/icons-material/Public';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Person from '@mui/icons-material/Person';
+
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 import SideBar from '../../components/SideBar';
 import TopBar from '../../components/TopBar';
-import NumberBox from '../../components/NumberBox';
-import LoadingAnimation from '../../components/loadinglogo/LoadingScreen';
 
-import FetchGeoZoneData from '../../service/FetchGeoZoneData';
-import FetchRegistrationData from '../../service/FetchRegistrationData';
-import FetchRegistrationAvgTimeData from '../../service/FetchRegistrationAvgTimeData';
-import FetchLogInData from '../../service/FetchLogInData';
-import FetchLogInAvgTimeData from '../../service/FetchLogInAvgTimeData';
+import GeoZonesMetrics from './GeoZonesMetrics';
+import LoginMetrics from './LogInMetrics';
+import RegistrationMetrics from './RegistrationMetrics';
 
 function UserMetrics() {
-    const [loading, setLoading] = useState(true);
-    const [loadingPage, setLoadingPage] = useState(true);
-    const [geoZonesData, setGeoZonesData] = useState([]);
-    const [regData, setRegData] = useState([]);
-    const [regAvgTimeData, setRegAvgTimeData] = useState([]);
-    const [loginData, setLogInData] = useState([]);
-    const [loginAvgTimeData, setLogInAvgTimeData] = useState([]);
-    
+    const [value, setValue] = useState('one');
 
-
-    useEffect(() => {
-        setLoadingPage(true);
-        const fetchData = async () => {
-            setGeoZonesData(await FetchGeoZoneData());
-            setRegData(await FetchRegistrationData());
-            setRegAvgTimeData(await FetchRegistrationAvgTimeData());
-            setLogInData(await FetchLogInData());
-            setLogInAvgTimeData(await FetchLogInAvgTimeData());
-        };
-    
-        const loadData = async () => {
-        try {
-            await Promise.all([fetchData()]);
-        } catch {
-            setGeoZonesData([]);
-        } finally {
-            setLoading(false);
-        }
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
-    
-    loadData();
-    setLoadingPage(false);
-    }, []);
-
-    if (loading) {
-        return <LoadingAnimation />;
-    }
-
 
 
     return (
-    <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={defaultTheme}>
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <SideBar />
             <Box
                 component="main"
                 sx={{
-                backgroundColor: (theme) =>
-                theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-                flexGrow: 1,
-                height: '100vh',
-                overflow: 'auto',
+                    backgroundColor: (theme) =>
+                        theme.palette.mode === 'light'
+                            ? theme.palette.grey[100]
+                            : theme.palette.grey[900],
+                    flexGrow: 1,
+                    height: '100vh',
+                    overflow: 'auto',
                 }}
-                >
+            >
                 <TopBar />
-                {/* All data */}
-                <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
-                    <Grid container spacing={4}>
-                       <Typography variant="h4" sx={{ mb: 2 }}>
-                            Registration Email Amount
-                        </Typography>
-                        <NumberBox number={regData["amount_registrations"]} borderColor={'white'} />
-
-                        <Typography variant="h4" sx={{ mb: 2 }}>
-                            Registration Average Time
-                        </Typography>
-                        <NumberBox number={regAvgTimeData["average_time"]} borderColor={'white'} />
-
-                        <Typography variant="h4" sx={{ mb: 2 }}>
-                            Login Email Average Time
-                        </Typography>
-                        <NumberBox number={loginAvgTimeData["average_time"]} borderColor={'white'} />
-
-                        <Typography variant="h4" sx={{ mb: 2 }}>
-                            Login Email Success
-                        </Typography>
-                        <NumberBox number={loginData["amount_email_succ"]} borderColor={'white'} />
-
-                        <Typography variant="h4" sx={{ mb: 2 }}>
-                            Login Email Fails
-                        </Typography>
-                        <NumberBox number={loginData["amount_email_fail"]} borderColor={'white'} />
-
-                        <Typography variant="h4" sx={{ mb: 2 }}>
-                            Login Email Average Time
-                        </Typography>
-                        <NumberBox number={loginAvgTimeData["average_time"]} borderColor={'white'} />
-                        
-                        <Typography variant="h4" sx={{ mb: 2 }}>
-                            Login All Success
-                        </Typography>
-                        <NumberBox number={loginData["amount_all_succ"]} borderColor={'white'} />
-                        
-                        <Typography variant="h4" sx={{ mb: 2 }}>
-                            Login All Fails
-                        </Typography>
-                        <NumberBox number={loginData["amount_all_fail"]} borderColor={'white'} />
-                        
-
-                        {Object.entries(loginData.amount_federated_succ?.amount_logins || {}).map(([provider, count]) => (
-                            <div key={provider}>
-                                <Typography variant="h4" sx={{ mb: 2 }}>
-                                {`Login ${provider} Success`}
-                                </Typography>
-                                <NumberBox number={count} borderColor={'white'} />
-                            </div>
-                        ))}
-
-                        {/* Geozones distribution */}
-                        <Grid item xs={12} md={5}>
-                            <BarChart 
-                                width={600} 
-                                height={300} 
-                                data={geoZonesData}
-                                margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+                <Container maxWidth="lg" sx={{ mt: 0, mb: 8}}>
+                    <Box sx={{ width: '100%' }}>
+                        <Tabs
+                            value={value}
+                            onChange={handleChange}
+                            centered
+                            textColor="secondary"
+                            indicatorColor="secondary"
+                            aria-label="secondary tabs example"
+                            sx={{
+                                height: '64px',
+                                '& .MuiTabs-flexContainer': {
+                                  width: '100%',
+                                  justifyContent: 'space-around',
+                                },
+                                '& .MuiTab-root': {
+                                  width: '100%',
+                                },
+                              }}
                             >
-                                <Bar type="monotone" dataKey="amount_users" fill="#A995C9"/>
-                                <XAxis 
-                                    dataKey="country"
-                                    tick={{ fill: "#A995C9" }} 
-                                    axisLine={{ stroke: "#A995C9" }} />
-                                <YAxis 
-                                    tick={{ fill: "#A995C9" }} 
-                                    axisLine={{ stroke: "#A995C9" }} />
-                                <Tooltip />
-                            </BarChart>
-                        </Grid>
-                    </Grid>
+                            <Tab value="one" icon={<PersonAdd />} label="Registration Metrics" />
+                            <Tab value="two" icon={<Person />} label="Login Metrics" />
+                            <Tab value="three" icon={<Public />} label="GeoZones Metrics" />
+                        </Tabs>
+
+
+                        {value === 'one' && <RegistrationMetrics />}
+                        {value === 'two' && <LoginMetrics />}
+                        {value === 'three' && <GeoZonesMetrics />}
+                    </Box>
                 </Container>
             </Box>
         </Box>
