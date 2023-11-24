@@ -28,7 +28,7 @@ function UserMetrics() {
 
     return (
         <ThemeProvider theme={defaultTheme}>
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex'}}>
             <CssBaseline />
             <SideBar />
             <Box
@@ -39,6 +39,7 @@ function UserMetrics() {
                             ? theme.palette.grey[100]
                             : theme.palette.grey[900],
                     flexGrow: 1,
+                    height: '100vh',
                     overflow: 'auto',
                 }}
             >
