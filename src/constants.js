@@ -25,3 +25,9 @@ export const defaultTheme = createTheme({
     mode: 'dark',
   }
 });
+
+export const titleStyle = {
+  color: '#947eb0',
+  fontSize: '24px',
+  fontWeight: 'bold',
+};

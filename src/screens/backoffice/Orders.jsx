@@ -16,18 +16,12 @@ import { useNavigate } from 'react-router-dom';
 
 import GetUsersHandler from '../../service/GetUsers';
 import BlockingButton from './BlockingButton';
+import { titleStyle } from '../../constants';
 
 // Generate Order Data
 function createData( username, name, last_name, email, date_of_birth, blocked) {
   return { username, name, last_name, email, date_of_birth, blocked};
 }
-
-const titleStyle = {
-  color: '#947eb0',
-  fontSize: '24px',
-  fontWeight: 'bold',
-};
-
 
 export default function Orders() {
   const [rows, setRows] = React.useState([]);
