@@ -3,8 +3,8 @@ import NumberBox from '../../components/NumberBox';
 import { Typography, Container, Grid, Box } from '@mui/material';
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen';
 
-import FetchLoginData from '../../service/FetchLoginData';
-import FetchLoginAvgTimeData from '../../service/FetchLoginAvgTimeData';
+import FetchLogInData from '../../service/FetchLogInData';
+import FetchLogInAvgTimeData from '../../service/FetchLogInAvgTimeData'
 
 const RED = '#AD3435';
 const GREEN = '#6DA34D';
@@ -19,8 +19,8 @@ const LoginMetrics = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        setLoginData(await FetchLoginData());
-        setLoginAvgTimeData(await FetchLoginAvgTimeData());
+        setLoginData(await FetchLogInData());
+        setLoginAvgTimeData(await FetchLogInAvgTimeData());
       } catch (error) {
         console.error('Error fetching Login data:', error);
         setLoginData([]);

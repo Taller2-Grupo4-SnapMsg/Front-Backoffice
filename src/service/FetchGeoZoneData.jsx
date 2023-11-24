@@ -3,7 +3,7 @@ import { headers_token } from '../constants.js';
 
 const FetchGeoZoneData = async (x) => {
   try {
-      let url = `${METRICS_URL}geozones/amount`
+      let url = `${METRICS_URL}/geozones/amount`
       if (x) {
         const params = new URLSearchParams();
         params.append('x', x);

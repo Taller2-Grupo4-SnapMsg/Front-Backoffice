@@ -84,15 +84,13 @@ const fetchAllFail = async (url) => {
 
 const FetchLogInData = async () => {
   try {
-      const url = `${METRICS_URL}login`
+      const url = `${METRICS_URL}/login`
 
       const dataEmailSucc = await fetchEmailSucc(url);
       const dataFederatedSucc = await fetchFederatedSucc(url);
       const dataEmailFail = await fetchEmailFail(url);
       const dataAllSucc = await fetchAllSucc(url);
       const dataAllFail = await fetchAllFail(url);
-      
-      console.log(dataEmailSucc);
 
       const newData = {
         amount_email_succ: dataEmailSucc,

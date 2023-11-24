@@ -3,7 +3,7 @@ import { headers_token } from '../constants.js';
 
 const FetchLogInAvgTimeData = async () => {
   try {
-      const url = `${METRICS_URL}login/average_time`
+      const url = `${METRICS_URL}/login/average_time`
       
       const response = await fetch(url, {
           method: 'GET',

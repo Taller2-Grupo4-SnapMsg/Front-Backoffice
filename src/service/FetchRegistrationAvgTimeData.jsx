@@ -3,7 +3,7 @@ import { headers_token } from '../constants.js';
 
 const FetchRegistrationAvgTimeData = async () => {
   try {
-      const url = `${METRICS_URL}registration/average_time`
+      const url = `${METRICS_URL}/registration/average_time`
       
       const response = await fetch(url, {
           method: 'GET',
@@ -12,7 +12,6 @@ const FetchRegistrationAvgTimeData = async () => {
       const data = await response.json();
       const roundedData = {
         average_time: parseFloat(data.average_time).toFixed(2),
-        // Add other properties if there are more float values
       };
       return roundedData;
     } catch (error) {

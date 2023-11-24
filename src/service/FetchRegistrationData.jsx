@@ -3,7 +3,7 @@ import { headers_token } from '../constants.js';
 
 const FetchRegistrationData = async () => {
   try {
-      const url = `${METRICS_URL}registration/amount`
+      const url = `${METRICS_URL}/registration/amount`
       
       const response = await fetch(url, {
           method: 'GET',

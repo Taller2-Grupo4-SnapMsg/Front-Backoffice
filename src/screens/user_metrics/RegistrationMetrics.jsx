@@ -35,7 +35,7 @@ const RegistrationMetrics = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
-      <Box display="flex" justifyContent="center" alignItems="center" height="60vh">
+      <Box display="flex" justifyContent="center" alignItems="center">
         <Box mx={4} display="flex" flexDirection="column" alignItems="center">
           <Typography variant="h4" sx={{ mb: 2 }}>
             Registration Email Amount

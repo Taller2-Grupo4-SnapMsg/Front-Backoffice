@@ -39,7 +39,6 @@ function UserMetrics() {
                             ? theme.palette.grey[100]
                             : theme.palette.grey[900],
                     flexGrow: 1,
-                    height: '100vh',
                     overflow: 'auto',
                 }}
             >
@@ -54,7 +53,6 @@ function UserMetrics() {
                             indicatorColor="secondary"
                             aria-label="secondary tabs example"
                             sx={{
-                                height: '64px',
                                 '& .MuiTabs-flexContainer': {
                                   width: '100%',
                                   justifyContent: 'space-around',
