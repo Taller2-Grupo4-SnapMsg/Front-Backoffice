@@ -79,14 +79,6 @@ export const mainListItems = (navigate) => (
     </ListItemButton>
     <Divider sx={{ my: 1 }} />
 
-    <ListItemButton onClick={() => navigate('/admin/service_status')}>
-      <ListItemIcon>
-        <EngineeringIcon />
-      </ListItemIcon>
-      <ListItemText primary="Service Status" />
-    </ListItemButton>
-    <Divider sx={{ my: 1 }} />
-
     <ListItemButton onClick={() => navigate('/admin/user_metrics')}>
       <ListItemIcon>
         <EngineeringIcon />
