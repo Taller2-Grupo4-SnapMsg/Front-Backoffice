@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 
 import { API_URL } from '../../constants';
 
-const ServiceStatus = ({ service }) => {
+const ServiceStatus = ({ service, setDate, setDescription }) => {
     const [isUp, setStatus] = useState(false);
     const lower_name = service.name.toLowerCase();
     useEffect(() => {
@@ -13,6 +13,9 @@ const ServiceStatus = ({ service }) => {
         const response = await fetch(API_URL + '/service_status?service=' + lower_name);
         if (response.status === 200) {
             setStatus(true);
+            const data = await response.json();
+            setDate(data.creation_date);
+            setDescription(data.description);
         } else {
             setStatus(false);
         }

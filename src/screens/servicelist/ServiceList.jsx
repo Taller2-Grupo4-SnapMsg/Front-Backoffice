@@ -16,7 +16,7 @@ import ServiceTable from './ServiceTable';
 const defaultServices = [
     { name: 'Admins'},
     { name: 'Users'},
-    { name: 'Posts'},
+    { name: 'SnapMsg'},
     { name: 'Metrics'},
 ];
 
