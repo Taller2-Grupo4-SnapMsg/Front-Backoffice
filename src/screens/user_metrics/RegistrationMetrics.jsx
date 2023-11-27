@@ -11,12 +11,25 @@ const RegistrationMetrics = () => {
   const [registrationAvgTimeData, setRegistrationAvgTimeData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const novemberFirstDate = new Date(2023, 10, 1); // 1st of November, month is 0 based
+
+  // Calculate tomorrow's date
+  const currentDate = new Date();
+  const tomorrowDate = new Date(currentDate);
+  tomorrowDate.setDate(currentDate.getDate() + 1);
+
+  // Set initial values using useState
+  const [timestampBegin, setTimestampBegin] = useState(novemberFirstDate.toISOString());
+  const [timestampEnd, setTimestampEnd] = useState(tomorrowDate.toISOString());
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        setRegistrationAvgTimeData(await FetchRegistrationAvgTimeData());
-        setRegistrationData(await FetchRegistrationData());
+        setRegistrationAvgTimeData(await FetchRegistrationAvgTimeData(timestampBegin, timestampEnd));
+        setRegistrationData(await FetchRegistrationData(timestampBegin, timestampEnd));
       } catch (error) {
         console.error('Error fetching Registration data:', error);
         setRegistrationData([]);

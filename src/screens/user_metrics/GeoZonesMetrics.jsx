@@ -12,12 +12,23 @@ const GeoZonesMetrics = () => {
   const [loading, setLoading] = useState(true);
   const [topX, setTopX] = useState(3);
   const fillcolor = defaultTheme.palette.secondary.main;
+  
+  const novemberFirstDate = new Date(2023, 10, 1); // 1st of November, month is 0 based
+
+  // Calculate tomorrow's date
+  const currentDate = new Date();
+  const tomorrowDate = new Date(currentDate);
+  tomorrowDate.setDate(currentDate.getDate() + 1);
+
+  // Set initial values using useState
+  const [timestampBegin, setTimestampBegin] = useState(novemberFirstDate.toISOString());
+  const [timestampEnd, setTimestampEnd] = useState(tomorrowDate.toISOString());
 
   const fetchData = async (amount)  => {
     try {
       console.log("amount es ", amount);
       setLoading(true);
-      const data = await FetchGeoZoneData(amount);
+      const data = await FetchGeoZoneData(amount, timestampBegin, timestampEnd);
       setGeoZonesData(data);
     } catch (error) {
       console.error('Error fetching GeoZone data:', error);

@@ -1,9 +1,9 @@
 import { METRICS_URL } from '../constants.js';
 import { headers_token } from '../constants.js';
 
-const FetchRegistrationData = async () => {
+const FetchRegistrationData = async (timestamp_begin, timestamp_end) => {
   try {
-      const url = `${METRICS_URL}/registration/amount`
+      const url = `${METRICS_URL}/registration/amount?timestamp_begin=${timestamp_begin}&timestamp_end=${timestamp_end}`;
       
       const response = await fetch(url, {
           method: 'GET',

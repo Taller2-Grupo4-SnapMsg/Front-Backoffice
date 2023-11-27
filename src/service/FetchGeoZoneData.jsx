@@ -1,14 +1,14 @@
 import { METRICS_URL } from '../constants.js';
 import { headers_token } from '../constants.js';
 
-const FetchGeoZoneData = async (x) => {
+const FetchGeoZoneData = async (x, timestamp_begin, timestamp_end) => {
   try {
-      let url = `${METRICS_URL}/geozones/amount`
+      let url = `${METRICS_URL}/geozones/amount?timestamp_begin=${timestamp_begin}&timestamp_end=${timestamp_end}`;
       if (x) {
         const params = new URLSearchParams();
         params.append('x', x);
         
-        url = `${url}?${params.toString()}`;
+        url = `${url}${params.toString()}`;
       }
       const response = await fetch(url, {
           method: 'GET',

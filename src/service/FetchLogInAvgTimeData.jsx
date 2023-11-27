@@ -1,9 +1,9 @@
 import { METRICS_URL } from '../constants.js';
 import { headers_token } from '../constants.js';
 
-const FetchLogInAvgTimeData = async () => {
+const FetchLogInAvgTimeData = async (timestamp_begin, timestamp_end) => {
   try {
-      const url = `${METRICS_URL}/login/average_time`
+      const url = `${METRICS_URL}/login/average_time?timestamp_begin=${timestamp_begin}&timestamp_end=${timestamp_end}`;
       
       const response = await fetch(url, {
           method: 'GET',
