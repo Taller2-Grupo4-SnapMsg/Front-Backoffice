@@ -15,10 +15,6 @@ const secondary_colour = defaultTheme.palette.secondary.main;
 
 
 const ServiceTable = ({ services }) => {
-    const [creationDate, setCreationDate] = React.useState('---- -- --');
-    const [description, setDescription] = React.useState('Loading');
-
-
     return (
         <ThemeProvider theme = {defaultTheme}>
             <Box sx={{ display: 'flex', margin: "1%" }}>
@@ -44,14 +40,12 @@ const ServiceTable = ({ services }) => {
                                 {row.name}
                             </TableCell>
                             <TableCell component="th" scope="row">
-                                {creationDate}
+                                {row.creationDate}
                             </TableCell>
-                            <TableCell align="left">{description}</TableCell>
+                            <TableCell align="left" sx={{maxWidth: 650}}>{row.description}</TableCell>
                             <TableCell align='center'>
                                 <ServiceStatus
-                                    service={row} 
-                                    setDate={setCreationDate}
-                                    setDescription={setDescription} 
+                                    isUp={row.isUp} 
                                 />
                                 </TableCell>
                         </TableRow>

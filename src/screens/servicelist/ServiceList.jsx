@@ -12,25 +12,65 @@ import SideBar from '../../components/SideBar';
 import { defaultTheme } from '../../constants';
 import { titleStyle } from '../../constants';
 import ServiceTable from './ServiceTable';
+import { API_URL } from '../../constants';
 
-const defaultServices = [
-    { name: 'Admins'},
-    { name: 'Users'},
-    { name: 'SnapMsg'},
-    { name: 'Metrics'},
+const defaultServices = [{ 
+        name: 'Admins',
+        creationDate: '---- -- --',
+        description: '-',
+        isUp: false,
+    }, { 
+        name: 'Users',
+        creationDate: '---- -- --',
+        description: '-',
+        isUp: false,
+    },{ 
+        name: 'SnapMsg',
+        creationDate: '---- -- --',
+        description: '-',
+        isUp: false,
+    },{ 
+        name: 'Metrics',
+        creationDate: '---- -- --',
+        description: '-',
+        isUp: false,
+    },
 ];
 
 const ServiceList = () => {
     const [query, setQuery] = React.useState('');
-    const [services, setFilteredServices] = React.useState(defaultServices);
+    const [services, setServices] = React.useState(defaultServices);
+
+    React.useEffect(() => {
+        const checkServiceStatus = async () => {
+            const updatedServices = [...services]; // Clone the services array
+            for (let i = 0; i < updatedServices.length; i++) {
+                try {
+                    const lower_name = updatedServices[i].name.toLowerCase();
+                    const response = await fetch(API_URL + '/service_status?service=' + lower_name);
+                    if (response.status === 200) {
+                        const data = await response.json();
+                        updatedServices[i].creationDate = data.creation_date;
+                        updatedServices[i].description = data.description;
+                        updatedServices[i].isUp = true;
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            setServices(updatedServices);
+        };
+
+        checkServiceStatus();
+    }, []);
 
     React.useEffect(() => {
         const filteredServices = defaultServices.filter((service) => {
             return service.name.toLowerCase().includes(query.toLowerCase());
         });
-        setFilteredServices(filteredServices);
+        setServices(filteredServices);
         if (query === '') {
-            setFilteredServices(defaultServices);
+            setServices(defaultServices);
         }
     }, [query]);
 
