@@ -1,5 +1,4 @@
-import { METRICS_URL } from '../constants.js';
-import { headers_token } from '../constants.js';
+import { METRICS_URL, headers_token, encodeTimestampForURL } from '../constants.js';
 
 
 const fetchEmailSucc = async (url, timestamp_begin, timestamp_end) => {
@@ -94,13 +93,15 @@ const fetchAllFail = async (url, timestamp_begin, timestamp_end) => {
 
 const FetchLogInData = async (timestamp_begin, timestamp_end) => {
   try {
-      const url = `${METRICS_URL}/login`
+      const url = `${METRICS_URL}/login`;
+      const timestamp_begin_url = encodeTimestampForURL(timestamp_begin);
+      const timestamp_end_url = encodeTimestampForURL(timestamp_end);
 
-      const dataEmailSucc = await fetchEmailSucc(url, timestamp_begin, timestamp_end);
-      const dataFederatedSucc = await fetchFederatedSucc(url, timestamp_begin, timestamp_end);
-      const dataEmailFail = await fetchEmailFail(url, timestamp_begin, timestamp_end);
-      const dataAllSucc = await fetchAllSucc(url, timestamp_begin, timestamp_end);
-      const dataAllFail = await fetchAllFail(url, timestamp_begin, timestamp_end);
+      const dataEmailSucc = await fetchEmailSucc(url, timestamp_begin_url, timestamp_end_url);
+      const dataFederatedSucc = await fetchFederatedSucc(url, timestamp_begin_url, timestamp_end_url);
+      const dataEmailFail = await fetchEmailFail(url, timestamp_begin_url, timestamp_end_url);
+      const dataAllSucc = await fetchAllSucc(url, timestamp_begin_url, timestamp_end_url);
+      const dataAllFail = await fetchAllFail(url, timestamp_begin_url, timestamp_end_url);
 
       const newData = {
         amount_email_succ: dataEmailSucc,

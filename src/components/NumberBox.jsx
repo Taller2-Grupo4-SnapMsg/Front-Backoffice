@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const GREY = '#3e393f';
 
-const NumberBox = ({ number, borderColor, style }) => {
+const NumberBox = ({ number, borderColor, unit, style }) => {
   const boxStyle = {
     width: '100px', // Adjust the width as needed
     height: '100px', // Adjust the height as needed
@@ -20,7 +20,7 @@ const NumberBox = ({ number, borderColor, style }) => {
 
   return (
     <div style={boxStyle}>
-      {number}
+      {number} {unit}
     </div>
   );
 };

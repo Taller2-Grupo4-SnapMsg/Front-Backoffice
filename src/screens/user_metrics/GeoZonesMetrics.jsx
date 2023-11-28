@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { Typography, Input, Button, Box } from '@mui/material';
-import { defaultTheme } from '../../constants';
+
+import TopBarCalendars from '../../components/TopBarCalendars';
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen';
 import FetchGeoZoneData from '../../service/FetchGeoZoneData';
+import { defaultTheme } from '../../constants';
 
 const GREY = '#DFE0DC';
 
@@ -20,9 +22,10 @@ const GeoZonesMetrics = () => {
   const tomorrowDate = new Date(currentDate);
   tomorrowDate.setDate(currentDate.getDate() + 1);
 
-  // Set initial values using useState
-  const [timestampBegin, setTimestampBegin] = useState(novemberFirstDate.toISOString());
-  const [timestampEnd, setTimestampEnd] = useState(tomorrowDate.toISOString());
+  // // Set initial values using useState
+  const [timestampBegin, setTimestampBegin] = useState(novemberFirstDate);
+  const [timestampEnd, setTimestampEnd] = useState(tomorrowDate);
+
 
   const fetchData = async (amount)  => {
     try {
@@ -59,7 +62,29 @@ const GeoZonesMetrics = () => {
   }
 
   return (
+    <>
+    {/* <TopBarCalendars
+        timestampBegin={timestampBegin}
+        timestampEnd={timestampEnd}
+        setTimestampBegin={setTimestampBegin}
+        setTimestampEnd={setTimestampEnd}
+      /> */}
     <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40px', marginBottom: '40px' }}>
+      <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 8 }}>
+          {/* <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#947EB0",
+              '&:hover': {
+                backgroundColor: "#6B5A8E",
+              },
+              width: '17vw',
+              fontSize: 16,
+              marginLeft: '0.8vw',
+            }}
+            onClick={fetchData}
+          >Apply</Button> */}
+          </Box>
       <Box style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
         <Typography color={GREY} variant="h4" style={{ marginBottom: '40px', marginTop: '10px', marginRight: '20px' }}>
           Distribution of Users around the World
@@ -97,6 +122,7 @@ const GeoZonesMetrics = () => {
         {/* <Tooltip /> */}
       </BarChart>
     </Box>
+    </>
   );
 };
 

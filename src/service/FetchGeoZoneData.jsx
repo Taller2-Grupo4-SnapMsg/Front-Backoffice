@@ -1,9 +1,10 @@
-import { METRICS_URL } from '../constants.js';
-import { headers_token } from '../constants.js';
+import { METRICS_URL, headers_token, encodeTimestampForURL } from '../constants.js';
 
 const FetchGeoZoneData = async (x, timestamp_begin, timestamp_end) => {
   try {
-      let url = `${METRICS_URL}/geozones/amount?timestamp_begin=${timestamp_begin}&timestamp_end=${timestamp_end}`;
+    const timestamp_begin_url = encodeTimestampForURL(timestamp_begin);
+    const timestamp_end_url = encodeTimestampForURL(timestamp_end);
+      let url = `${METRICS_URL}/geozones/amount?timestamp_begin=${timestamp_begin_url}&timestamp_end=${timestamp_end_url}`;
       if (x) {
         const params = new URLSearchParams();
         params.append('x', x);
