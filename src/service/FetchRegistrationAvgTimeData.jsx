@@ -1,9 +1,10 @@
-import { METRICS_URL } from '../constants.js';
-import { headers_token } from '../constants.js';
+import { METRICS_URL, headers_token, encodeTimestampForURL } from '../constants.js';
 
 const FetchRegistrationAvgTimeData = async (timestamp_begin, timestamp_end) => {
   try {
-      const url = `${METRICS_URL}/registration/average_time?timestamp_begin=${timestamp_begin}&timestamp_end=${timestamp_end}`;
+      const timestamp_begin_url = encodeTimestampForURL(timestamp_begin);
+      const timestamp_end_url = encodeTimestampForURL(timestamp_end);
+      const url = `${METRICS_URL}/registration/average_time?timestamp_begin=${timestamp_begin_url}&timestamp_end=${timestamp_end_url}`;
       
       const response = await fetch(url, {
           method: 'GET',

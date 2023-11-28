@@ -31,3 +31,10 @@ export const titleStyle = {
   fontSize: '24px',
   fontWeight: 'bold',
 };
+
+export const encodeTimestampForURL = (datetime_timestamp) => {
+  // Encode the datetime timestamp to make it URL-safe in an iso format
+  const isoTimestamp = datetime_timestamp.toISOString()
+  const encodedTimestamp = encodeURIComponent(isoTimestamp);
+  return encodedTimestamp;
+}

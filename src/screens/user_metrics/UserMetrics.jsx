@@ -44,7 +44,10 @@ function UserMetrics() {
                 }}
             >
                 <TopBar />
-                <Container maxWidth="lg" sx={{ mt: 0, mb: 8}}>
+                <Container
+                    style={{ maxWidth: '70vw' }}
+                    sx={{ margin: '0 auto', mt: 0, mb: 8 }}
+                    >
                     <Box sx={{ width: '100%' }}>
                         <Tabs
                             value={value}
