@@ -7,7 +7,6 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Switch from '@mui/material/Switch';
 
 import { defaultTheme } from '../../constants';
 import ServiceStatus from './ServiceStatus';
@@ -18,7 +17,7 @@ const secondary_colour = defaultTheme.palette.secondary.main;
 const ServiceTable = ({ services }) => {
     return (
         <ThemeProvider theme = {defaultTheme}>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', margin: "1%" }}>
                 <CssBaseline />
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     {/**Head: */}
@@ -27,7 +26,6 @@ const ServiceTable = ({ services }) => {
                             <TableCell sx = {{color: secondary_colour}}>Service</TableCell>
                             <TableCell sx = {{color: secondary_colour}}>Created at</TableCell>
                             <TableCell sx = {{color: secondary_colour}} align="left">Description</TableCell>
-                            <TableCell sx = {{color: secondary_colour}} align='center'>Other?</TableCell>
                             <TableCell sx = {{color: secondary_colour}} align='center'>Status</TableCell>
                         </TableRow>
                     </TableHead>
@@ -42,11 +40,14 @@ const ServiceTable = ({ services }) => {
                                 {row.name}
                             </TableCell>
                             <TableCell component="th" scope="row">
-                                ---- -- -- UTC
+                                {row.creationDate}
                             </TableCell>
-                            <TableCell align="left">Que lindo backoffice</TableCell>
-                            <TableCell align='center'>que?</TableCell>
-                            <TableCell align='center'><ServiceStatus service={row} /></TableCell>
+                            <TableCell align="left" sx={{maxWidth: 650}}>{row.description}</TableCell>
+                            <TableCell align='center'>
+                                <ServiceStatus
+                                    isUp={row.isUp} 
+                                />
+                                </TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
