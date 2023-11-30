@@ -12,7 +12,7 @@ const NumberBox = ({ number, borderColor, unit, style }) => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '2vw',
+    fontSize: '1vw',
     fontWeight: 'bold',
     ...style,
   };
