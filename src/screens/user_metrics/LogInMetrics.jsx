@@ -1,35 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import NumberBox from '../../components/NumberBox';
-import { Typography, Container, Grid, Box } from '@mui/material';
+import { Typography, Container, Grid, Box, Button } from '@mui/material';
+
+import TopBarCalendars from '../../components/TopBarCalendars';
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen';
 
 import FetchLogInData from '../../service/FetchLogInData';
 import FetchLogInAvgTimeData from '../../service/FetchLogInAvgTimeData'
 
-const RED = '#AD3435';
-const GREEN = '#6DA34D';
-const GREY = '#DFE0DC';
+import { GREY, GREEN, RED } from '../../constants';
 
 const LoginMetrics = () => {
   const [loginData, setLoginData] = useState([]);
   const [loginAvgTimeData, setLoginAvgTimeData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setLoginData(await FetchLogInData());
-        setLoginAvgTimeData(await FetchLogInAvgTimeData());
-      } catch (error) {
-        console.error('Error fetching Login data:', error);
-        setLoginData([]);
-        setLoginAvgTimeData([]);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // 1st of November, month is 0 based
+  // starting before any metrics where created, as to start counting from the beggining
+  const novemberFirstDate = new Date(2023, 10, 1); 
 
+  const currentDate = new Date();
+  const tomorrowDate = new Date(currentDate);
+  tomorrowDate.setDate(currentDate.getDate() + 1);
+
+  const [timestampBegin, setTimestampBegin] = useState(novemberFirstDate);
+  const [timestampEnd, setTimestampEnd] = useState(tomorrowDate);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setLoginData(await FetchLogInData(timestampBegin, timestampEnd));
+      setLoginAvgTimeData(await FetchLogInAvgTimeData(timestampBegin, timestampEnd));
+    } catch (error) {
+      console.error('Error fetching Login data:', error);
+      setLoginData([]);
+      setLoginAvgTimeData([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -38,7 +49,29 @@ const LoginMetrics = () => {
   }
 
   return (
+    <>
+    <TopBarCalendars
+        timestampBegin={timestampBegin}
+        timestampEnd={timestampEnd}
+        setTimestampBegin={setTimestampBegin}
+        setTimestampEnd={setTimestampEnd}
+      />
     <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
+    <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 8 }}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#947EB0",
+              '&:hover': {
+                backgroundColor: "#6B5A8E",
+              },
+              width: '17vw',
+              fontSize: 16,
+              marginLeft: '0.8vw',
+            }}
+            onClick={fetchData}
+          >Apply</Button>
+          </Box>
       <Grid container spacing={2} justifyContent="center" alignItems="center">
         {/* First Row */}
         <Grid item xs={12}>
@@ -48,7 +81,7 @@ const LoginMetrics = () => {
                 <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
                   Login Email Success
                 </Typography>
-                <NumberBox number={loginData["amount_email_succ"]} borderColor={GREEN} />
+                <NumberBox number={loginData["amount_email_succ"]} borderColor={GREEN} unit={''}/>
               </Box>
             </Grid>
             <Grid item xs={6} md={3}>
@@ -56,7 +89,7 @@ const LoginMetrics = () => {
                 <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
                   Login Email Fails
                 </Typography>
-                <NumberBox number={loginData["amount_email_fail"]} borderColor={RED} />
+                <NumberBox number={loginData["amount_email_fail"]} borderColor={RED} unit={''}/>
               </Box>
             </Grid>
             <Grid item xs={6} md={3}>
@@ -64,7 +97,7 @@ const LoginMetrics = () => {
                 <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
                   Login All Success
                 </Typography>
-                <NumberBox number={loginData["amount_all_succ"]} borderColor={GREEN} />
+                <NumberBox number={loginData["amount_all_succ"]} borderColor={GREEN} unit={''}/>
               </Box>
             </Grid>
             <Grid item xs={6} md={3}>
@@ -72,7 +105,7 @@ const LoginMetrics = () => {
                 <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
                   Login All Fails
                 </Typography>
-                <NumberBox number={loginData["amount_all_fail"]} borderColor={RED} />
+                <NumberBox number={loginData["amount_all_fail"]} borderColor={RED} unit={''} />
               </Box>
             </Grid>
           </Grid>
@@ -100,11 +133,12 @@ const LoginMetrics = () => {
             <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
               Login Average Time
             </Typography>
-            <NumberBox number={loginAvgTimeData["average_time"]} borderColor={GREY} />
+            <NumberBox number={loginAvgTimeData["average_time"]} borderColor={GREY} unit={'s'}/>
           </Box>
         </Grid>
       </Grid>
     </Container>
+    </>
   );
 };
 

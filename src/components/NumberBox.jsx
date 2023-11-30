@@ -1,26 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { GREY } from '../constants';
 
-const GREY = '#3e393f';
-
-const NumberBox = ({ number, borderColor, style }) => {
+const NumberBox = ({ number, borderColor, unit, style }) => {
   const boxStyle = {
-    width: '100px', // Adjust the width as needed
-    height: '100px', // Adjust the height as needed
-    backgroundColor: GREY, // Light gray background color
-    border: `4px solid ${borderColor}`, // Border color based on the parameter
-    borderRadius: '8px', // Adjust the border radius as needed
+    width: '5vw',
+    height: '5vw',
+    backgroundColor: GREY,
+    border: `4px solid ${borderColor}`,
+    borderRadius: '8px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '24px', // Adjust the font size as needed
+    fontSize: '1vw',
     fontWeight: 'bold',
     ...style,
   };
 
   return (
     <div style={boxStyle}>
-      {number}
+      {number} {unit}
     </div>
   );
 };

@@ -1,11 +1,12 @@
-import { METRICS_URL } from '../constants.js';
-import { headers_token } from '../constants.js';
+import { METRICS_URL, headers_token, encodeTimestampForURL } from '../constants.js';
 
 
-const fetchEmailSucc = async (url) => {
+const fetchEmailSucc = async (url, timestamp_begin, timestamp_end) => {
   const params = new URLSearchParams();
   params.append('entity', 'email');
   params.append('successful', false);
+  params.append('timestamp_begin', timestamp_begin);
+  params.append('timestamp_end', timestamp_end);
 
   const fullUrl = `${url}?${params.toString()}`;
 
@@ -17,10 +18,12 @@ const fetchEmailSucc = async (url) => {
   return parseInt(data.amount_logins);
 }
 
-const fetchFederatedSucc = async (url) => {
+const fetchFederatedSucc = async (url, timestamp_begin, timestamp_end) => {
   const params = new URLSearchParams();
   params.append('entity', 'federated');
   params.append('successful', true);
+  params.append('timestamp_begin', timestamp_begin);
+  params.append('timestamp_end', timestamp_end);
   
   const fullUrl = `${url}?${params.toString()}`;
 
@@ -32,10 +35,12 @@ const fetchFederatedSucc = async (url) => {
   return await response.json();
 }
 
-const fetchEmailFail = async (url) => {
+const fetchEmailFail = async (url, timestamp_begin, timestamp_end) => {
   const params = new URLSearchParams();
   params.append('entity', 'email');
   params.append('successful', false);
+  params.append('timestamp_begin', timestamp_begin);
+  params.append('timestamp_end', timestamp_end);
   
   const fullUrl = `${url}?${params.toString()}`;
 
@@ -48,10 +53,12 @@ const fetchEmailFail = async (url) => {
   return parseInt(data.amount_logins);
 }
 
-const fetchAllSucc = async (url) => {
+const fetchAllSucc = async (url, timestamp_begin, timestamp_end) => {
   const params = new URLSearchParams();
   params.append('entity', 'all');
   params.append('successful', true);
+  params.append('timestamp_begin', timestamp_begin);
+  params.append('timestamp_end', timestamp_end);
   
   const fullUrl = `${url}?${params.toString()}`;
 
@@ -64,10 +71,12 @@ const fetchAllSucc = async (url) => {
   return parseInt(data.amount_logins);
 }
 
-const fetchAllFail = async (url) => {
+const fetchAllFail = async (url, timestamp_begin, timestamp_end) => {
   const params = new URLSearchParams();
   params.append('entity', 'all');
   params.append('successful', false);
+  params.append('timestamp_begin', timestamp_begin);
+  params.append('timestamp_end', timestamp_end);
   
   const fullUrl = `${url}?${params.toString()}`;
 
@@ -82,15 +91,17 @@ const fetchAllFail = async (url) => {
 
 
 
-const FetchLogInData = async () => {
+const FetchLogInData = async (timestamp_begin, timestamp_end) => {
   try {
-      const url = `${METRICS_URL}/login`
+      const url = `${METRICS_URL}/login`;
+      const timestamp_begin_url = encodeTimestampForURL(timestamp_begin);
+      const timestamp_end_url = encodeTimestampForURL(timestamp_end);
 
-      const dataEmailSucc = await fetchEmailSucc(url);
-      const dataFederatedSucc = await fetchFederatedSucc(url);
-      const dataEmailFail = await fetchEmailFail(url);
-      const dataAllSucc = await fetchAllSucc(url);
-      const dataAllFail = await fetchAllFail(url);
+      const dataEmailSucc = await fetchEmailSucc(url, timestamp_begin_url, timestamp_end_url);
+      const dataFederatedSucc = await fetchFederatedSucc(url, timestamp_begin_url, timestamp_end_url);
+      const dataEmailFail = await fetchEmailFail(url, timestamp_begin_url, timestamp_end_url);
+      const dataAllSucc = await fetchAllSucc(url, timestamp_begin_url, timestamp_end_url);
+      const dataAllFail = await fetchAllFail(url, timestamp_begin_url, timestamp_end_url);
 
       const newData = {
         amount_email_succ: dataEmailSucc,

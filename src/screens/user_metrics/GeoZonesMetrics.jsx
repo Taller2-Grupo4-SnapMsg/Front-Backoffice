@@ -1,23 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { Typography, Input, Button, Box } from '@mui/material';
-import { defaultTheme } from '../../constants';
+
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen';
 import FetchGeoZoneData from '../../service/FetchGeoZoneData';
+import { defaultTheme, GREY } from '../../constants';
 
-const GREY = '#DFE0DC';
 
 const GeoZonesMetrics = () => {
   const [geoZonesData, setGeoZonesData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [topX, setTopX] = useState(3);
   const fillcolor = defaultTheme.palette.secondary.main;
+  
+  const novemberFirstDate = new Date(2023, 10, 1); // 1st of November, month is 0 based
+
+  // Calculate tomorrow's date
+  const currentDate = new Date();
+  const tomorrowDate = new Date(currentDate);
+  tomorrowDate.setDate(currentDate.getDate() + 1);
+
+  // // Set initial values using useState
+  const [timestampBegin, setTimestampBegin] = useState(novemberFirstDate);
+  const [timestampEnd, setTimestampEnd] = useState(tomorrowDate);
+
 
   const fetchData = async (amount)  => {
     try {
       console.log("amount es ", amount);
       setLoading(true);
-      const data = await FetchGeoZoneData(amount);
+      const data = await FetchGeoZoneData(amount, timestampBegin, timestampEnd);
       setGeoZonesData(data);
     } catch (error) {
       console.error('Error fetching GeoZone data:', error);
@@ -48,7 +60,10 @@ const GeoZonesMetrics = () => {
   }
 
   return (
+    <>
     <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40px', marginBottom: '40px' }}>
+      <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 8 }}>
+          </Box>
       <Box style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
         <Typography color={GREY} variant="h4" style={{ marginBottom: '40px', marginTop: '10px', marginRight: '20px' }}>
           Distribution of Users around the World
@@ -83,9 +98,9 @@ const GeoZonesMetrics = () => {
           tick={{ fill: GREY }}
           axisLine={{ stroke: GREY }}
         />
-        {/* <Tooltip /> */}
       </BarChart>
     </Box>
+    </>
   );
 };
 

@@ -8,36 +8,35 @@ import NumberBox from '../../components/NumberBox';
 import { Typography, Container, Box } from '@mui/material';
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen';
 
-import FetchRegistrationData from '../../service/FetchRegistrationData';
-import FetchRegistrationAvgTimeData from '../../service/FetchRegistrationAvgTimeData';
+import FetchBlockedNow from '../../service/FetchBlockedNow';
+import FetchBlocks from '../../service/FetchBlocks';
 
-const RegistrationMetrics = () => {
-  const [registrationData, setRegistrationData] = useState([]);
-  const [registrationAvgTimeData, setRegistrationAvgTimeData] = useState([]);
+const BlockMetrics = () => {
+  const [blocksInTimeframe, setBlocksInTimeframe] = useState([]);
+  const [unblocksInTimeframe, setUnBlocksInTimeframe] = useState([]);
+  const [blocksNow, setBlocksNow] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 1st of November, month is 0 based
-  // starting before any metrics where created, as to start counting from the beggining
-  const novemberFirstDate = new Date(2023, 10, 1); 
+  const novemberFirstDate = new Date(2023, 10, 1); // 1st of November, month is 0 based
 
-  // Calculate tomorrow's date
   const currentDate = new Date();
   const tomorrowDate = new Date(currentDate);
   tomorrowDate.setDate(currentDate.getDate() + 1);
 
-  // // Set initial values using useState
   const [timestampBegin, setTimestampBegin] = useState(novemberFirstDate);
   const [timestampEnd, setTimestampEnd] = useState(tomorrowDate);
 
   const fetchData = async () => {
     try {
       setLoading(true);
-      setRegistrationAvgTimeData(await FetchRegistrationAvgTimeData(timestampBegin, timestampEnd));
-      setRegistrationData(await FetchRegistrationData(timestampBegin, timestampEnd));
+      setBlocksInTimeframe(await FetchBlocks(timestampBegin, timestampEnd, true));
+      setUnBlocksInTimeframe(await FetchBlocks(timestampBegin, timestampEnd, false));
+      setBlocksNow(await FetchBlockedNow());
     } catch (error) {
-      console.error('Error fetching Registration data:', error);
-      setRegistrationData([]);
-      setRegistrationAvgTimeData([]);
+      console.error('Error fetching Blocking data:', error);
+      setBlocksInTimeframe([]);
+      setUnBlocksInTimeframe([]);
+      setBlocksNow([]);
     } finally {
       setLoading(false);
     }
@@ -81,17 +80,24 @@ const RegistrationMetrics = () => {
 
         <Box display="flex" justifyContent="center" alignItems="center">
           <Box mx={4} display="flex" flexDirection="column" alignItems="center">
-            <Typography variant="h4" sx={{ mb: 2 }}>
-              Registration Email Amount
+            <Typography variant="h4" sx={{ mb: 2, textAlign: 'center'  }}>
+              Blocks made in timeframe
             </Typography>
-            <NumberBox number={registrationData["amount_registrations"]} borderColor={'white'} unit={'s'}/>
+            <NumberBox number={blocksInTimeframe["blocks_amount"]} borderColor={'white'} unit={''}/>
           </Box>
 
           <Box mx={4} display="flex" flexDirection="column" alignItems="center">
-            <Typography variant="h4" sx={{ mb: 2 }}>
-              Registration Average Time
+            <Typography variant="h4" sx={{ mb: 2, textAlign: 'center'  }}>
+              Unblocks made in timeframe
             </Typography>
-            <NumberBox number={registrationAvgTimeData["average_time"]} borderColor={'white'} unit={'s'}/>
+            <NumberBox number={unblocksInTimeframe["blocks_amount"]} borderColor={'white'} unit={''}/>
+          </Box>
+
+          <Box mx={4} display="flex" flexDirection="column" alignItems="center">
+            <Typography variant="h4" sx={{ mb: 2, textAlign: 'center'  }}>
+              Blocked users right now
+            </Typography>
+            <NumberBox number={blocksNow["blocked_now_amount"]} borderColor={'white'} unit={''}/>
           </Box>
         </Box>
       </Container>
@@ -99,4 +105,4 @@ const RegistrationMetrics = () => {
   );
 };
 
-export default RegistrationMetrics;
+export default BlockMetrics;
