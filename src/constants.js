@@ -5,6 +5,9 @@ export const SNAPMSG_URL = 'https://postsback.onrender.com';
 export const METRICS_URL = 'https://snapmsgs-metrics.onrender.com';
 
 export const PAGE_SIZE = 10;
+export const GREY = '#3e393f';
+export const RED = '#AD3435';
+export const GREEN = '#6DA34D';
 
 export const headers = {
     'Content-Type': 'application/json;charset=utf-8',

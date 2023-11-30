@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { Typography, Input, Button, Box } from '@mui/material';
 
-import TopBarCalendars from '../../components/TopBarCalendars';
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen';
 import FetchGeoZoneData from '../../service/FetchGeoZoneData';
-import { defaultTheme } from '../../constants';
+import { defaultTheme, GREY } from '../../constants';
 
-const GREY = '#DFE0DC';
 
 const GeoZonesMetrics = () => {
   const [geoZonesData, setGeoZonesData] = useState([]);
@@ -63,27 +61,8 @@ const GeoZonesMetrics = () => {
 
   return (
     <>
-    {/* <TopBarCalendars
-        timestampBegin={timestampBegin}
-        timestampEnd={timestampEnd}
-        setTimestampBegin={setTimestampBegin}
-        setTimestampEnd={setTimestampEnd}
-      /> */}
     <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40px', marginBottom: '40px' }}>
       <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 8 }}>
-          {/* <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#947EB0",
-              '&:hover': {
-                backgroundColor: "#6B5A8E",
-              },
-              width: '17vw',
-              fontSize: 16,
-              marginLeft: '0.8vw',
-            }}
-            onClick={fetchData}
-          >Apply</Button> */}
           </Box>
       <Box style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
         <Typography color={GREY} variant="h4" style={{ marginBottom: '40px', marginTop: '10px', marginRight: '20px' }}>
@@ -119,7 +98,6 @@ const GeoZonesMetrics = () => {
           tick={{ fill: GREY }}
           axisLine={{ stroke: GREY }}
         />
-        {/* <Tooltip /> */}
       </BarChart>
     </Box>
     </>

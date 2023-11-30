@@ -4,10 +4,7 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { defaultTheme } from '../constants';
-
-const GREY = '#3e393f';
+import { GREY } from '../constants';
 
 const ButtonWithCalendar = ({ buttonText, originalDate, changeOriginalDate }) => {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -21,7 +18,6 @@ const ButtonWithCalendar = ({ buttonText, originalDate, changeOriginalDate }) =>
 
   const handleApply = () => {
     changeOriginalDate(selectedDate);
-    console.log("Apply button pressed");
     setDialogOpen(false);
   };
 
@@ -47,7 +43,7 @@ const ButtonWithCalendar = ({ buttonText, originalDate, changeOriginalDate }) =>
         value={selectedDate.toDateString()}
         readOnly
         sx={{
-          marginLeft: '8px',
+          marginLeft: '1vw',
           width: '12vw',
           backgroundColor: GREY,
           color: 'white',

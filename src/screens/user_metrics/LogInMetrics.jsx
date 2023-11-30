@@ -8,23 +8,21 @@ import LoadingAnimation from '../../components/loadinglogo/LoadingScreen';
 import FetchLogInData from '../../service/FetchLogInData';
 import FetchLogInAvgTimeData from '../../service/FetchLogInAvgTimeData'
 
-const RED = '#AD3435';
-const GREEN = '#6DA34D';
-const GREY = '#DFE0DC';
+import { GREY, GREEN, RED } from '../../constants';
 
 const LoginMetrics = () => {
   const [loginData, setLoginData] = useState([]);
   const [loginAvgTimeData, setLoginAvgTimeData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const novemberFirstDate = new Date(2023, 10, 1); // 1st of November, month is 0 based
+  // 1st of November, month is 0 based
+  // starting before any metrics where created, as to start counting from the beggining
+  const novemberFirstDate = new Date(2023, 10, 1); 
 
-  // Calculate tomorrow's date
   const currentDate = new Date();
   const tomorrowDate = new Date(currentDate);
   tomorrowDate.setDate(currentDate.getDate() + 1);
 
-  // // Set initial values using useState
   const [timestampBegin, setTimestampBegin] = useState(novemberFirstDate);
   const [timestampEnd, setTimestampEnd] = useState(tomorrowDate);
 

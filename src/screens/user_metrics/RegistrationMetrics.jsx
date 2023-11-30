@@ -16,7 +16,9 @@ const RegistrationMetrics = () => {
   const [registrationAvgTimeData, setRegistrationAvgTimeData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const novemberFirstDate = new Date(2023, 10, 1); // 1st of November, month is 0 based
+  // 1st of November, month is 0 based
+  // starting before any metrics where created, as to start counting from the beggining
+  const novemberFirstDate = new Date(2023, 10, 1); 
 
   // Calculate tomorrow's date
   const currentDate = new Date();
