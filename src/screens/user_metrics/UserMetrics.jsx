@@ -7,6 +7,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import Public from '@mui/icons-material/Public';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Person from '@mui/icons-material/Person';
+import PersonOff from '@mui/icons-material/PersonOff';
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -17,9 +18,10 @@ import TopBar from '../../components/TopBar';
 import GeoZonesMetrics from './GeoZonesMetrics';
 import LoginMetrics from './LogInMetrics';
 import RegistrationMetrics from './RegistrationMetrics';
+import BlockMetrics from './BlockMetrics';
 
 function UserMetrics() {
-    const [value, setValue] = useState('one');
+    const [value, setValue] = useState('three');
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -68,13 +70,15 @@ function UserMetrics() {
                             >
                             <Tab value="one" icon={<PersonAdd />} label="Registration Metrics" />
                             <Tab value="two" icon={<Person />} label="Login Metrics" />
-                            <Tab value="three" icon={<Public />} label="GeoZones Metrics" />
+                            <Tab value="three" icon={<PersonOff />} label="Blocked Metrics" />
+                            <Tab value="four" icon={<Public />} label="GeoZones Metrics" />
                         </Tabs>
 
 
                         {value === 'one' && <RegistrationMetrics />}
                         {value === 'two' && <LoginMetrics />}
-                        {value === 'three' && <GeoZonesMetrics />}
+                        {value === 'three' && <BlockMetrics />}
+                        {value === 'four' && <GeoZonesMetrics />}
                     </Box>
                 </Container>
             </Box>
