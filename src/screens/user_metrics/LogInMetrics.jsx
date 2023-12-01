@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NumberBox from '../../components/NumberBox';
 import { Typography, Container, Grid, Box, Button } from '@mui/material';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, ResponsiveContainer } from 'recharts';
 
 import TopBarCalendars from '../../components/TopBarCalendars';
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen';
@@ -38,7 +38,7 @@ const LoginMetrics = () => {
 
       const emailChartData = [
         {
-          label: 'Login Email',
+          label: 'Email',
           'Successful Logins': dataLogin.amount_email_succ || 0,
           'Failed Logins': dataLogin.amount_email_fail || 0,
         },
@@ -48,16 +48,8 @@ const LoginMetrics = () => {
         'Successful Logins': dataLogin.amount_federated_succ?.amount_logins[provider] || 0,
         'Failed Logins': dataLogin.amount_federated_fail?.amount_logins[provider] || 0,
       }));
-
-      const allChartData = [
-        {
-          label: 'Login All',
-          'Successful Logins': dataLogin.amount_all_succ || 0,
-          'Failed Logins': dataLogin.amount_all_fail || 0,
-        },
-      ];
       
-      const stackedChartData = emailChartData.concat(federatedChartData, allChartData);
+      const stackedChartData = emailChartData.concat(federatedChartData);
 
       setChartData(stackedChartData);
 
@@ -80,107 +72,73 @@ const LoginMetrics = () => {
 
   return (
     <>
-    <TopBarCalendars
+      <TopBarCalendars
         timestampBegin={timestampBegin}
         timestampEnd={timestampEnd}
         setTimestampBegin={setTimestampBegin}
         setTimestampEnd={setTimestampEnd}
       />
-    <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
-    <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 8 }}>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#947EB0",
-              '&:hover': {
-                backgroundColor: "#6B5A8E",
-              },
-              width: '17vw',
-              fontSize: 16,
-              marginLeft: '0.8vw',
-            }}
-            onClick={fetchData}
-          >Apply</Button>
+      <Container sx={{ mt: 8, mb: 8, width: '80%' }}>
+        {/* Apply Button */}
+        <Grid item xs={12}>
+          <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 8 }}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#947EB0",
+                '&:hover': {
+                  backgroundColor: "#6B5A8E",
+                },
+                width: '17vw',
+                fontSize: 16,
+                marginLeft: '0.8vw',
+              }}
+              onClick={fetchData}
+            >
+              Apply
+            </Button>
           </Box>
-      <Grid container spacing={2} justifyContent="center" alignItems="center">
-        <BarChart width={800} height={400} data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="label" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="Successful Logins" stackId="a" fill={GREEN} />
-          <Bar dataKey="Failed Logins" stackId="a" fill={RED} />
-      </BarChart>
-      </Grid>
-    </Container>
+        </Grid>
+        <Grid container spacing={2} justifyContent="center" alignItems="center">
+          {/* Bar Chart */}
+          <Grid item xs={12} md={8}>
+            <Box display="flex" flexDirection="column" alignItems="center">
+              <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
+                Login Metrics
+              </Typography>
+              <ResponsiveContainer width="100%" height={400}>
+                <BarChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="label" label={{ value: 'Login Entity', position: 'insideBottom', offset: 0, dy: 10 }} />
+                  <YAxis label={{ value: 'Distribution', angle: -90, position: 'insideLeft', dy: -20 }} />
+                  <Tooltip />
+                  <Legend wrapperStyle={{ marginBottom: '-3rem' }} />
+                  <Bar dataKey="Successful Logins" stackId="a" fill={GREEN} />
+                  <Bar dataKey="Failed Logins" stackId="a" fill={RED} />
+                </BarChart>
+              </ResponsiveContainer>
+            </Box>
+          </Grid>
+
+          {/* Number Boxes for "Login All" */}
+          <Grid item xs={12} md={4} container spacing={2} justifyContent="center" alignItems="center">
+            <Grid item xs={12} textAlign="center">
+              <Typography variant="h5" sx={{ mb: 2 }}>
+                Login All Success
+              </Typography>
+              <NumberBox number={loginData.amount_all_succ} borderColor={GREEN} unit={''} />
+            </Grid>
+            <Grid item xs={12} textAlign="center">
+              <Typography variant="h5" sx={{ mb: 2 }}>
+                Login All Fails
+              </Typography>
+              <NumberBox number={loginData.amount_all_fail} borderColor={RED} unit={''} />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 };
 
 export default LoginMetrics;
-
-
-// First Row
-//         <Grid item xs={12}>
-//           <Grid container spacing={2} justifyContent="center" alignItems="center">
-//             <Grid item xs={6} md={3}>
-//               <Box display="flex" flexDirection="column" alignItems="center">
-//                 <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
-//                   Login Email Success
-//                 </Typography>
-//                 <NumberBox number={loginData["amount_email_succ"]} borderColor={GREEN} unit={''}/>
-//               </Box>
-//             </Grid>
-//             <Grid item xs={6} md={3}>
-//               <Box display="flex" flexDirection="column" alignItems="center">
-//                 <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
-//                   Login Email Fails
-//                 </Typography>
-//                 <NumberBox number={loginData["amount_email_fail"]} borderColor={RED} unit={''}/>
-//               </Box>
-//             </Grid>
-//             <Grid item xs={6} md={3}>
-//               <Box display="flex" flexDirection="column" alignItems="center">
-//                 <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
-//                   Login All Success
-//                 </Typography>
-//                 <NumberBox number={loginData["amount_all_succ"]} borderColor={GREEN} unit={''}/>
-//               </Box>
-//             </Grid>
-//             <Grid item xs={6} md={3}>
-//               <Box display="flex" flexDirection="column" alignItems="center">
-//                 <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
-//                   Login All Fails
-//                 </Typography>
-//                 <NumberBox number={loginData["amount_all_fail"]} borderColor={RED} unit={''} />
-//               </Box>
-//             </Grid>
-//           </Grid>
-//         </Grid>
-
-//         {/* Second Row */}
-//         <Grid item xs={12}>
-//           <Grid container spacing={2} justifyContent="center" alignItems="center">
-//             {Object.entries(loginData.amount_federated_succ?.amount_logins || {}).map(([provider, count]) => (
-//               <Grid key={provider} item xs={6} md={3}>
-//                 <Box display="flex" flexDirection="column" alignItems="center">
-//                   <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
-//                     {`Login ${provider}`}
-//                   </Typography>
-//                   <NumberBox number={count} borderColor={GREEN} />
-//                 </Box>
-//               </Grid>
-//             ))}
-//           </Grid>
-//         </Grid>
-
-//         {/* Third Row */}
-//         <Grid item xs={12} textAlign="center">
-//           <Box display="flex" flexDirection="column" alignItems="center">
-//             <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
-//               Login Average Time
-//             </Typography>
-//             <NumberBox number={loginAvgTimeData["average_time"]} borderColor={GREY} unit={'s'}/>
-//           </Box>
-//         </Grid>
