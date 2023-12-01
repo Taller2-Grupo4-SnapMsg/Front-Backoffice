@@ -111,7 +111,7 @@ const LoginMetrics = () => {
                 <BarChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="label" label={{ value: 'Login Entity', position: 'insideBottom', offset: 0, dy: 10 }} />
-                  <YAxis label={{ value: 'Distribution', angle: -90, position: 'insideLeft', dy: -20 }} />
+                  <YAxis label={{ value: 'Amount of Logins', angle: -90, position: 'insideLeft', dy: -20 }} />
                   <Tooltip />
                   <Legend wrapperStyle={{ marginBottom: '-3rem' }} />
                   <Bar dataKey="Successful Logins" stackId="a" fill={GREEN} />

@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Input, Button, Box, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
+
+
+import TopBarCalendars from '../../components/TopBarCalendars';
 import LoadingAnimation from '../../components/loadinglogo/LoadingScreen';
+
 import FetchGeoZoneData from '../../service/FetchGeoZoneData';
-import { defaultTheme, GREY } from '../../constants';
+
+import { defaultTheme } from '../../constants';
 
 const GeoZonesMetrics = () => {
   const [geoZonesData, setGeoZonesData] = useState([]);
@@ -10,23 +15,19 @@ const GeoZonesMetrics = () => {
   const [topX, setTopX] = useState(3);
   const fillcolor = defaultTheme.palette.secondary.main;
 
-  const novemberFirstDate = new Date(2023, 10, 1); // 1st of November, month is 0 based
-
   // Calculate tomorrow's date
   const currentDate = new Date();
   const tomorrowDate = new Date(currentDate);
   tomorrowDate.setDate(currentDate.getDate() + 1);
 
-  // // Set initial values using useState
-  const [timestampBegin, setTimestampBegin] = useState(novemberFirstDate);
   const [timestampEnd, setTimestampEnd] = useState(tomorrowDate);
 
 
   const fetchData = async (amount)  => {
     try {
       setLoading(true);
-      const data = await FetchGeoZoneData(amount, timestampBegin, timestampEnd);
-      setGeoZonesData(data);
+      // const data = await FetchGeoZoneData(amount, timestampEnd);
+      // setGeoZonesData(data);
     } catch (error) {
       console.error('Error fetching GeoZone data:', error);
       setGeoZonesData([]);
@@ -58,6 +59,10 @@ const GeoZonesMetrics = () => {
 
   return (
     <>
+      <TopBarCalendars
+          timestampEnd={timestampEnd}
+          setTimestampEnd={setTimestampEnd}
+        />
       <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40px', marginBottom: '40px' }}>
         <Box style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
           <Typography color="lightgray" variant="h4" style={{ marginBottom: '40px', marginTop: '10px', marginRight: '20px' }}>

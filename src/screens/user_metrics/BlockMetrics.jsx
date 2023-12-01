@@ -13,7 +13,6 @@ import FetchBlocks from '../../service/FetchBlocks';
 
 const BlockMetrics = () => {
   const [blocksInTimeframe, setBlocksInTimeframe] = useState([]);
-  const [unblocksInTimeframe, setUnBlocksInTimeframe] = useState([]);
   const [blocksNow, setBlocksNow] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,13 +28,11 @@ const BlockMetrics = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      setBlocksInTimeframe(await FetchBlocks(timestampBegin, timestampEnd, true));
-      setUnBlocksInTimeframe(await FetchBlocks(timestampBegin, timestampEnd, false));
-      setBlocksNow(await FetchBlockedNow());
+      // setBlocksInTimeframe(await FetchBlocks(timestampEnd));
+       setBlocksNow(await FetchBlockedNow());
     } catch (error) {
       console.error('Error fetching Blocking data:', error);
       setBlocksInTimeframe([]);
-      setUnBlocksInTimeframe([]);
       setBlocksNow([]);
     } finally {
       setLoading(false);
@@ -53,12 +50,9 @@ const BlockMetrics = () => {
   return (
     <>
       <TopBarCalendars
-        timestampBegin={timestampBegin}
         timestampEnd={timestampEnd}
-        setTimestampBegin={setTimestampBegin}
         setTimestampEnd={setTimestampEnd}
       />
-      
 
       <Container maxWidth="lg" sx={{ mt: 4, mb: 8 }}>
         <Box display="flex" justifyContent="center" alignItems="center" sx={{ mb: 8 }}>

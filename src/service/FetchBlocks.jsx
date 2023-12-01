@@ -1,10 +1,9 @@
 import { METRICS_URL, headers_token, encodeTimestampForURL } from '../constants.js';
 
-const FetchBlocks = async (timestamp_begin, timestamp_end, blocked) => {
+const FetchBlocks = async (timestamp_end, blocked) => {
   try {
-      const timestamp_begin_url = encodeTimestampForURL(timestamp_begin);
       const timestamp_end_url = encodeTimestampForURL(timestamp_end);
-      const url = `${METRICS_URL}/block?timestamp_begin=${timestamp_begin_url}&timestamp_end=${timestamp_end_url}&blocked=${blocked}`;
+      const url = `${METRICS_URL}/block?timestamp_end=${timestamp_end_url}`;
       
       const response = await fetch(url, {
           method: 'GET',
