@@ -9,8 +9,9 @@ const FetchGeoZoneData = async (x, timestamp_begin, timestamp_end) => {
         const params = new URLSearchParams();
         params.append('x', x);
         
-        url = `${url}${params.toString()}`;
+        url = `${url}&${params.toString()}`;
       }
+
       const response = await fetch(url, {
           method: 'GET',
           headers: headers_token,
@@ -20,6 +21,8 @@ const FetchGeoZoneData = async (x, timestamp_begin, timestamp_end) => {
         country: item._id,
         amount_users: item.amount_users
       })).sort((a, b) => a.country.localeCompare(b.country));;
+
+      console.log("response data: ", responseData);
       return data;
     } catch (error) {
       console.error('Error fetching user: ', error);

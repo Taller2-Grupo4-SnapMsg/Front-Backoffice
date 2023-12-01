@@ -10,6 +10,7 @@ import FetchLogInData from '../../service/FetchLogInData';
 import FetchLogInAvgTimeData from '../../service/FetchLogInAvgTimeData'
 
 import { GREY, GREEN, RED } from '../../constants';
+const DEFAULT_AMOUNT_GEOZONES = 15
 
 const LoginMetrics = () => {
   const [loginData, setLoginData] = useState([]);
@@ -63,7 +64,7 @@ const LoginMetrics = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(DEFAULT_AMOUNT_GEOZONES);
   }, []);
 
   if (loading) {
@@ -120,19 +121,31 @@ const LoginMetrics = () => {
             </Box>
           </Grid>
 
-          {/* Number Boxes for "Login All" */}
+          {/* Number Boxes for "Login All" and Average time */}
           <Grid item xs={12} md={4} container spacing={2} justifyContent="center" alignItems="center">
             <Grid item xs={12} textAlign="center">
+              <Box display="flex" flexDirection="column" alignItems="center">
               <Typography variant="h5" sx={{ mb: 2 }}>
                 Login All Success
               </Typography>
               <NumberBox number={loginData.amount_all_succ} borderColor={GREEN} unit={''} />
+              </Box>
             </Grid>
             <Grid item xs={12} textAlign="center">
+              <Box display="flex" flexDirection="column" alignItems="center">
               <Typography variant="h5" sx={{ mb: 2 }}>
                 Login All Fails
               </Typography>
               <NumberBox number={loginData.amount_all_fail} borderColor={RED} unit={''} />
+              </Box>
+            </Grid>
+            <Grid item xs={12} textAlign="center">
+              <Box display="flex" flexDirection="column" alignItems="center">
+              <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
+                Login Average Time
+              </Typography>
+              <NumberBox number={loginAvgTimeData["average_time"]} borderColor={GREY} unit={'s'}/>
+            </Box>
             </Grid>
           </Grid>
         </Grid>
