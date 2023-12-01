@@ -21,7 +21,7 @@ import RegistrationMetrics from './RegistrationMetrics';
 import BlockMetrics from './BlockMetrics';
 
 function UserMetrics() {
-    const [value, setValue] = useState('three');
+    const [value, setValue] = useState('two');
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
