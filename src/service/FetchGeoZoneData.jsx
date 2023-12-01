@@ -19,9 +19,7 @@ const FetchGeoZoneData = async (x, timestamp_end) => {
       const data = responseData.map(item => ({
         country: item._id,
         amount_users: item.amount_users
-      })).sort((a, b) => a.country.localeCompare(b.country));;
-
-      console.log("response data: ", responseData);
+      })).sort((a, b) => b.amount_users - a.amount_users);
       return data;
     } catch (error) {
       console.error('Error fetching user: ', error);

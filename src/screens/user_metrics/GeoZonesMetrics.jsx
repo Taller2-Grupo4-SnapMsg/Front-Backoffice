@@ -26,8 +26,8 @@ const GeoZonesMetrics = () => {
   const fetchData = async (amount)  => {
     try {
       setLoading(true);
-      // const data = await FetchGeoZoneData(amount, timestampEnd);
-      // setGeoZonesData(data);
+      const data = await FetchGeoZoneData(amount, timestampEnd);
+      setGeoZonesData(data);
     } catch (error) {
       console.error('Error fetching GeoZone data:', error);
       setGeoZonesData([]);

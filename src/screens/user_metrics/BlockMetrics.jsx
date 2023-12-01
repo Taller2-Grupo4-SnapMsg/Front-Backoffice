@@ -16,20 +16,17 @@ const BlockMetrics = () => {
   const [blocksNow, setBlocksNow] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const novemberFirstDate = new Date(2023, 10, 1); // 1st of November, month is 0 based
-
   const currentDate = new Date();
   const tomorrowDate = new Date(currentDate);
   tomorrowDate.setDate(currentDate.getDate() + 1);
 
-  const [timestampBegin, setTimestampBegin] = useState(novemberFirstDate);
   const [timestampEnd, setTimestampEnd] = useState(tomorrowDate);
 
   const fetchData = async () => {
     try {
       setLoading(true);
-      // setBlocksInTimeframe(await FetchBlocks(timestampEnd));
-       setBlocksNow(await FetchBlockedNow());
+      setBlocksInTimeframe(await FetchBlocks(timestampEnd));
+      setBlocksNow(await FetchBlockedNow());
     } catch (error) {
       console.error('Error fetching Blocking data:', error);
       setBlocksInTimeframe([]);
@@ -75,18 +72,10 @@ const BlockMetrics = () => {
         <Box display="flex" justifyContent="center" alignItems="center">
           <Box mx={4} display="flex" flexDirection="column" alignItems="center">
             <Typography variant="h4" sx={{ mb: 2, textAlign: 'center'  }}>
-              Blocks made in timeframe
+              Blocked users at the time
             </Typography>
             <NumberBox number={blocksInTimeframe["blocks_amount"]} borderColor={'white'} unit={''}/>
           </Box>
-
-          <Box mx={4} display="flex" flexDirection="column" alignItems="center">
-            <Typography variant="h4" sx={{ mb: 2, textAlign: 'center'  }}>
-              Unblocks made in timeframe
-            </Typography>
-            <NumberBox number={unblocksInTimeframe["blocks_amount"]} borderColor={'white'} unit={''}/>
-          </Box>
-
           <Box mx={4} display="flex" flexDirection="column" alignItems="center">
             <Typography variant="h4" sx={{ mb: 2, textAlign: 'center'  }}>
               Blocked users right now
