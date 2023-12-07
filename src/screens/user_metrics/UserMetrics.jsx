@@ -47,33 +47,33 @@ function UserMetrics() {
             >
                 <TopBar />
                 <Container
-                    style={{ maxWidth: '70vw' }}
+                    style={{ maxWidth: '80vw' }}
                     sx={{ margin: '0 auto', mt: 0, mb: 8 }}
                     >
                     <Box >
-                        <Tabs
-                            value={value}
-                            onChange={handleChange}
-                            centered
-                            textColor="secondary"
-                            indicatorColor="secondary"
-                            aria-label="secondary tabs example"
-                            sx={{
-                                '& .MuiTabs-flexContainer': {
-                                  width: '100%',
-                                  justifyContent: 'space-around',
-                                },
-                                '& .MuiTab-root': {
-                                  width: '100%',
-                                },
-                              }}
-                            >
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        centered
+                        textColor="secondary"
+                        indicatorColor="secondary"
+                        variant="scrollable"
+                        aria-label="scrollable auto tabs example"
+                        sx={{
+                            '& .MuiTabs-flexContainer': {
+                            width: '100%',
+                            justifyContent: 'flex-start', // Align tabs to the start of the container
+                            },
+                            '& .MuiTab-root': {
+                            width: '90%', // Allow tabs to have dynamic width
+                            },
+                        }}
+                    >
                             <Tab value="one" icon={<PersonAdd />} label="Registration Metrics" />
                             <Tab value="two" icon={<Person />} label="Login Metrics" />
                             <Tab value="three" icon={<PersonOff />} label="Blocked Metrics" />
                             <Tab value="four" icon={<Public />} label="GeoZones Metrics" />
                         </Tabs>
-
 
                         {value === 'one' && <RegistrationMetrics />}
                         {value === 'two' && <LoginMetrics />}
