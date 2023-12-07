@@ -84,7 +84,7 @@ const RegistrationMetrics = () => {
             <Typography variant="h4" sx={{ mb: 2 }}>
               Registration Email Amount
             </Typography>
-            <NumberBox number={registrationData["amount_registrations"]} borderColor={'white'} unit={'s'}/>
+            <NumberBox number={registrationData["amount_registrations"]} borderColor={'white'} unit={''}/>
           </Box>
 
           <Box mx={4} display="flex" flexDirection="column" alignItems="center">
