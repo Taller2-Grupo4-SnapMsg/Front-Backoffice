@@ -24,9 +24,8 @@ const LogInHandler = async (navigate, email, password, setLoading, setInvalidCre
       const token = responseData.token
       if (token !== undefined) {
         localStorage.setItem('token', token);
-      }//console.log("token saved: ", localStorage.getItem('token'));
+      }
       console.log('Sign in successful');
-      
       navigate('/admin/dashboard');
     } else {
       // Registration failed

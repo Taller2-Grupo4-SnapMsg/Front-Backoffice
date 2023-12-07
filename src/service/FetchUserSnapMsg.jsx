@@ -1,4 +1,4 @@
-import { SNAPMSG_URL, API_URL } from '../constants.js';
+import { SNAPMSG_URL } from '../constants.js';
 import { headers_token } from '../constants.js';
 import { PAGE_SIZE } from '../constants.js';
 

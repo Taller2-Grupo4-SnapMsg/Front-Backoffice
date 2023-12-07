@@ -1,4 +1,4 @@
-import { SNAPMSG_URL } from '../constants.js';
+import { API_URL } from '../constants.js';
 import { headers_token } from '../constants.js';
 import { PAGE_SIZE } from '../constants.js';
 
@@ -7,9 +7,9 @@ const FetchSnapMsgAll = async (pageNumber, query) => {
       const offset = (pageNumber - 1) * PAGE_SIZE;  
       let url
       if (query === "") {
-        url = `${SNAPMSG_URL}/posts/admin/all?start=${offset}&ammount=${PAGE_SIZE}`;
+        url = `${API_URL}/posts/admin/all?start=${offset}&ammount=${PAGE_SIZE}`;
       } else {
-        url = `${SNAPMSG_URL}/posts/admin/search/${query}?offset=${offset}&ammount=${PAGE_SIZE}`;
+        url = `${API_URL}/posts/admin/search/${query}?offset=${offset}&ammount=${PAGE_SIZE}`;
       }
       const response = await fetch(url, {
           method: 'GET',
