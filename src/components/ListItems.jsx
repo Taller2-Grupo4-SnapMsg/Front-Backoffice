@@ -81,19 +81,11 @@ export const mainListItems = (navigate) => (
 
     <ListItemButton onClick={() => navigate('/admin/user_metrics')}>
       <ListItemIcon>
-        <EngineeringIcon />
+        <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="User metrics" />
     </ListItemButton>
     <Divider sx={{ my: 1 }} />
-
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Content metrics" />
-    </ListItemButton>
-    <Divider sx={{ my: 1 }} />
-
+    
   </React.Fragment>
 );
