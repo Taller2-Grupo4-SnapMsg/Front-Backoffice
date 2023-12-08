@@ -1,8 +1,8 @@
-import { METRICS_URL, headers_token } from '../constants.js';
+import { headers_token, API_URL  } from '../constants.js';
 
 const FetchBlockedNow = async () => {
   try {
-      const url = `${METRICS_URL}/block/blocked_now`;
+      const url = `${API_URL}/block/blocked_now`;
       
       const response = await fetch(url, {
           method: 'GET',

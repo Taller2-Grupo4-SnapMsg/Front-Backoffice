@@ -1,4 +1,4 @@
-import { METRICS_URL, headers_token, encodeTimestampForURL } from '../constants.js';
+import { headers_token, encodeTimestampForURL, API_URL } from '../constants.js';
 
 
 const fetchEmailSucc = async (url, timestamp_begin, timestamp_end) => {
@@ -109,7 +109,7 @@ const fetchAllFail = async (url, timestamp_begin, timestamp_end) => {
 
 const FetchLogInData = async (timestamp_begin, timestamp_end) => {
   try {
-      const url = `${METRICS_URL}/login`;
+      const url = `${API_URL}/metrics_login`;
       const timestamp_begin_url = encodeTimestampForURL(timestamp_begin);
       const timestamp_end_url = encodeTimestampForURL(timestamp_end);
 

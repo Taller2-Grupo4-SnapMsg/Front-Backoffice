@@ -2,7 +2,6 @@ import { createTheme } from '@mui/material/styles';
 
 export const API_URL = 'https://gateway-api-service-merok23.cloud.okteto.net';
 export const SNAPMSG_URL = 'https://postsback.onrender.com';
-export const METRICS_URL = 'https://snapmsgs-metrics.onrender.com';
 
 export const PAGE_SIZE = 10;
 export const GREY = '#3e393f';
