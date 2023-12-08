@@ -36,6 +36,9 @@ const LogInHandler = async (navigate, email, password, setLoading, setInvalidCre
       console.error('Sign in failed:', responseData);
     }
   } catch (error) {
+    setLoading(false)
+    setInvalidCredentials(true)
+    setError("Invalid Credentials.")
     const message =
       error.response?.data?.error ||
       error.message ||
